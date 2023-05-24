@@ -23,7 +23,7 @@ import {
 import * as Constants from './constants';
 import * as Controls from '../../controls';
 
-const { ResRangleControl } = Controls;
+const { ResRangleControl, ColorControl, TabPanelControl } = Controls;
 const { GRID_COLUMNS } = Constants;
 
 import objAttributes from './attributes';
@@ -38,8 +38,8 @@ const Inspector = ({ attributes, setAttributes }) => {
 		btnLabel,
 		btnLink,
 		btnTarget,
-		btnbgcolor,
-		btncolor,
+		btnbgcolor, // btnBgColor + btnHoverBgColor
+		btncolor, // btnColor + btnHoverColor
 		btnLinkObj,
 	} = attributes;
 	const objAttrs = { attributes, setAttributes, objAttributes };
@@ -48,7 +48,19 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 	return (
 		<InspectorControls>
-			<PanelBody title={__('Column Settings', 'bdt-blocks')}>
+			<PanelBody title={__('Colors Settings', 'bdt-blocks')}>
+				<ColorControl
+					label={__('Text Color', 'bdt-blocks')}
+					color={btncolor}
+					onChange={(value) => {
+						setAttributes({ btncolor: value });
+					}}
+				/>
+			</PanelBody>
+			<PanelBody
+				title={__('Column Settings', 'bdt-blocks')}
+				initialOpen={false}
+			>
 				<ResRangleControl
 					label={__('Grid Columns', 'bdt-blocks')}
 					controlName={GRID_COLUMNS}
