@@ -20,7 +20,6 @@ import { useState } from '@wordpress/element';
 
 const ColorControl = ({ label, color, onChange }) => {
 	const [showColorPanel, setShowColorPanel] = useState(false);
-	console.log(color);
 	return (
 		<div className="bdt-color-control-wrapper">
 			<style>
