@@ -12,7 +12,7 @@ if ( !defined( 'ABSPATH' ) ) {
 /**
  * Blocks Loader Class
  */
-class BDT_BLOCKS_LOADER {
+class BDT_ICON_BOX_BLOCK_LOADER {
 
     /**
      * Constructor
@@ -86,8 +86,8 @@ class BDT_BLOCKS_LOADER {
         require_once BDT_DIR_PATH . './includes/blocks/blocks.php';
 
         // Register Blocks
-        if( ! empty( $bdt_blocks ) && is_array( $bdt_blocks ) ) {
-            foreach( $bdt_blocks as $block ) {
+        if( ! empty( $bdt_icon_box_blocks ) && is_array( $bdt_icon_box_blocks ) ) {
+            foreach( $bdt_icon_box_blocks as $block ) {
                 $this->register_single_block( $block );
             }
         }
@@ -139,4 +139,4 @@ class BDT_BLOCKS_LOADER {
 
 }
 
-new BDT_BLOCKS_LOADER();
+new BDT_ICON_BOX_BLOCK_LOADER();

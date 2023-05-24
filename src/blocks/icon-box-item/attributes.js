@@ -34,6 +34,9 @@ const attributes = {
 	alignment: {
 		type: 'string',
 	},
+	btnLinkObj: {
+		type: 'object',
+	},
 	btnLabel: {
 		type: 'string',
 		default: 'Button',

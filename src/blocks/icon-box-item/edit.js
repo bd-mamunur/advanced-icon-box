@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-// import { __ } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import {} from '@wordpress/components';
 const { Fragment, useEffect } = wp.element;
@@ -29,6 +29,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		alignment,
 		btnbgcolor,
 		btncolor,
+		btnLinkObj,
 	} = attributes;
 
 	useEffect(() => {
@@ -87,7 +88,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					className: uniqueId,
 				})}
 			>
-				<h2>1</h2>
 				<div className="bdt-container">
 					<div className="bdt-advanced-icon-box bdt-avnaced-icon-box-style-1">
 						<div className="bdt-item">
@@ -126,13 +126,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 									/>
 								</div>
 								<div className="bdt-link-btn">
-									<a
-										href={btnLink}
-										target={btnTarget}
-										rel="noopener noreferrer"
-									>
-										{btnLabel}
-									</a>
+									<RichText
+										tagName="span"
+										value={btnLabel}
+										onChange={(value) =>
+											setAttributes({ btnLabel: value })
+										}
+										placeholder={__(
+											'Button Label',
+											'text-domain'
+										)}
+									/>
 								</div>
 							</div>
 							<div className="bdt-hover-icon">

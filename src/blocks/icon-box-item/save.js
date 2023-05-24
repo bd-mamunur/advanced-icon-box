@@ -10,6 +10,7 @@ export default function save({ attributes }) {
 		btnLabel,
 		btnLink,
 		btnTarget,
+		btnLinkObj,
 	} = attributes;
 	return (
 		<>
@@ -19,7 +20,6 @@ export default function save({ attributes }) {
 				})}
 			>
 				<div className="bdt-container">
-					<h2>1</h2>
 					<div className="bdt-advanced-icon-box bdt-avnaced-icon-box-style-1">
 						<div className="bdt-item">
 							<div className="bdt-icon-wrap">
@@ -48,15 +48,32 @@ export default function save({ attributes }) {
 										value={description}
 									/>
 								</div>
-								<div className="bdt-link-btn">
-									<a
-										href={btnLink}
-										target={btnTarget}
-										rel="noopener noreferrer"
-									>
-										{btnLabel}
-									</a>
-								</div>
+								{btnLinkObj && btnLinkObj.url && (
+									<div className="bdt-link-btn">
+										<a
+											href={
+												btnLinkObj &&
+												btnLinkObj.url &&
+												btnLinkObj.url
+											}
+											target={
+												btnLinkObj &&
+												btnLinkObj.openInNewTab &&
+												'_blank'
+											}
+											rel={
+												btnLinkObj &&
+												btnLinkObj.openInNewTab
+													? 'noopener noreferrer'
+													: 'noopener'
+											}
+										>
+											<RichText.Content
+												value={btnLabel}
+											/>
+										</a>
+									</div>
+								)}
 							</div>
 							<div className="bdt-hover-icon">
 								<svg

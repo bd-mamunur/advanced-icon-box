@@ -10,11 +10,7 @@ import { InspectorControls } from '@wordpress/block-editor';
  */
 
 const Inspector = () => {
-	return (
-		<div className="bdt-inspector-controls">
-			<InspectorControls>No panel</InspectorControls>
-		</div>
-	);
+	return <InspectorControls>No panel</InspectorControls>;
 };
 
 export default Inspector;

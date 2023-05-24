@@ -15,14 +15,7 @@ import Inspector from './inspector';
 import { softMinifyCssStrings } from '../../helper/softminify';
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-	const {
-		uniqueId,
-		blockStyle,
-
-		titleColor,
-
-		descriptionColor,
-	} = attributes;
+	const { uniqueId, blockStyle, titleColor, descriptionColor } = attributes;
 
 	useEffect(() => {
 		if (!uniqueId) {

@@ -3,7 +3,7 @@
  * All Blocks
  */
 
- $bdt_blocks = [
+ $bdt_icon_box_blocks = [
     [
         'name' => 'advanced-icon-box',
 
