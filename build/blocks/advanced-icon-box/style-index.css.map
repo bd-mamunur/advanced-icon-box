@@ -1,0 +1,1 @@
+{"version":3,"file":"blocks/advanced-icon-box/style-index.css","mappings":";;;;;;;;;;;AAAA;EACC;AACD,C","sources":["webpack://gutenberg-boilerplate/./src/controls/icon-picker-control/style.scss"],"sourcesContent":["button.components-button.aib-icon.is-primary {\n\tmargin: 5px;\n}\n"],"names":[],"sourceRoot":""}

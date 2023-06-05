@@ -10,6 +10,8 @@ import './editor.scss';
 /**
  * Internal dependencies
  */
+import * as Constants from './constants';
+const { GRID_COLUMNS } = Constants;
 
 import Inspector from './inspector';
 import { softMinifyCssStrings } from '../../helper/softminify';
@@ -23,9 +25,16 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		}
 	}, []);
 
+	const {
+		[`${GRID_COLUMNS}DeskRange`]: columnDesk,
+		[`${GRID_COLUMNS}TabRange`]: columnTab,
+		[`${GRID_COLUMNS}MobRange`]: columnMob,
+	} = attributes;
+
 	const deskStyles = `
-		.${uniqueId} .bdt-title {
-			color: ${titleColor};
+		.${uniqueId} .block-editor-block-list__layout {
+			display: grid;
+			grid-template-columns: repeat(${columnDesk}, 1fr);
 		}
 		.${uniqueId} .bdt-description {
 			color: ${descriptionColor};

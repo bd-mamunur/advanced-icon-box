@@ -31,7 +31,7 @@ const attributes = {
 	...generateResRangleControlAttributes({
 		controlName: GRID_COLUMNS,
 		defaults: {
-			[`${GRID_COLUMNS}DeskRange`]: 3,
+			[`${GRID_COLUMNS}DeskRange`]: 2,
 			[`${GRID_COLUMNS}TabRange`]: 2,
 			[`${GRID_COLUMNS}MobRange`]: 1,
 		},

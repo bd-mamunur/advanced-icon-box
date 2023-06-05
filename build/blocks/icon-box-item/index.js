@@ -402,6 +402,34 @@ const {
   GRID_COLUMNS
 } = _constants__WEBPACK_IMPORTED_MODULE_4__;
 
+const headingTagOptions = [{
+  label: 'h1',
+  value: 'h1'
+}, {
+  label: 'h2',
+  value: 'h2'
+}, {
+  label: 'h3',
+  value: 'h3'
+}, {
+  label: 'h4',
+  value: 'h4'
+}, {
+  label: 'h5',
+  value: 'h5'
+}, {
+  label: 'h6',
+  value: 'h6'
+}, {
+  label: 'div',
+  value: 'div'
+}, {
+  label: 'span',
+  value: 'span'
+}, {
+  label: 'p',
+  value: 'p'
+}];
 
 const Inspector = _ref => {
   let {
@@ -409,17 +437,22 @@ const Inspector = _ref => {
     setAttributes
   } = _ref;
   const {
+    title,
+    headingTag,
     titleColor,
     titleHoverColor,
-    headingTag,
+    description,
+    descColor,
     contentTag,
     btnLabel,
+    alignment,
     btnBgColor,
     btnColor,
     btnBgHovercolor,
     btnHoverColor,
+    icons,
     btnLinkObj,
-    icons
+    gridLine
   } = attributes;
   const objAttrs = {
     attributes,
@@ -427,15 +460,37 @@ const Inspector = _ref => {
     objAttributes: _attributes__WEBPACK_IMPORTED_MODULE_6__["default"]
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Column Settings', 'advanced-icon-box'),
-    initialOpen: true
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ResRangleControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Grid Columns', 'advanced-icon-box'),
-    controlName: GRID_COLUMNS,
-    objAttrs: objAttrs,
-    noUnits: false,
-    min: 1,
-    max: 4
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content', 'advanced-icon-box'),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Title', 'advanced-icon-box'),
+    onChange: value => setAttributes({
+      title: value
+    }),
+    value: title,
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter title', 'advanced-icon-box')
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Title Tag', 'advanced-icon-box'),
+    value: headingTag,
+    onChange: value => setAttributes({
+      headingTag: value
+    }),
+    options: headingTagOptions
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter description. Press Enter to create a new line.', 'advanced-icon-box'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description', 'advanced-icon-box'),
+    onChange: text => setAttributes({
+      description: text
+    }),
+    value: description,
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter description', 'advanced-icon-box')
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description Tag', 'advanced-icon-box'),
+    value: contentTag,
+    onChange: value => setAttributes({
+      contentTag: value
+    }),
+    options: headingTagOptions
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Picker', 'advacned-icon-box'),
     initialOpen: true
@@ -1322,6 +1377,7 @@ module.exports = JSON.parse('{"apiVersion":2,"name":"bdt/icon-box-item","version
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"blocks/icon-box-item/index": 0,
+/******/ 			"blocks/advanced-icon-box/style-index": 0,
 /******/ 			"blocks/icon-box-item/style-index": 0
 /******/ 		};
 /******/ 		
@@ -1374,7 +1430,7 @@ module.exports = JSON.parse('{"apiVersion":2,"name":"bdt/icon-box-item","version
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/icon-box-item/style-index"], function() { return __webpack_require__("./src/blocks/icon-box-item/index.js"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/advanced-icon-box/style-index","blocks/icon-box-item/style-index"], function() { return __webpack_require__("./src/blocks/icon-box-item/index.js"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

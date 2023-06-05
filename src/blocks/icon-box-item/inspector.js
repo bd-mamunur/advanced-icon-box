@@ -12,7 +12,7 @@ import {
 	SelectControl,
 	TextControl,
 	CardDivider,
-	RangeControl,
+	TextareaControl,
 } from '@wordpress/components';
 
 /**
@@ -27,35 +27,89 @@ const { GRID_COLUMNS } = Constants;
 
 import objAttributes from './attributes';
 
+const headingTagOptions = [
+	{ label: 'h1', value: 'h1' },
+	{ label: 'h2', value: 'h2' },
+	{ label: 'h3', value: 'h3' },
+	{ label: 'h4', value: 'h4' },
+	{ label: 'h5', value: 'h5' },
+	{ label: 'h6', value: 'h6' },
+	{ label: 'div', value: 'div' },
+	{ label: 'span', value: 'span' },
+	{ label: 'p', value: 'p' },
+];
+
 const Inspector = ({ attributes, setAttributes }) => {
 	const {
+		title,
+		headingTag,
 		titleColor,
 		titleHoverColor,
-		headingTag,
+		description,
+		descColor,
 		contentTag,
 		btnLabel,
+		alignment,
 		btnBgColor,
 		btnColor,
 		btnBgHovercolor,
 		btnHoverColor,
-		btnLinkObj,
 		icons,
+		btnLinkObj,
+		gridLine,
 	} = attributes;
 	const objAttrs = { attributes, setAttributes, objAttributes };
 
 	return (
 		<InspectorControls>
 			<PanelBody
-				title={__('Column Settings', 'advanced-icon-box')}
-				initialOpen={true}
+				title={__('Content', 'advanced-icon-box')}
+				initialOpen={false}
 			>
-				<ResRangleControl
-					label={__('Grid Columns', 'advanced-icon-box')}
-					controlName={GRID_COLUMNS}
-					objAttrs={objAttrs}
-					noUnits={false}
-					min={1}
-					max={4}
+				<TextControl
+					label={__('Title', 'advanced-icon-box')}
+					onChange={(value) =>
+						setAttributes({
+							title: value,
+						})
+					}
+					value={title}
+					placeholder={__('Enter title', 'advanced-icon-box')}
+				/>
+				<SelectControl
+					label={__('Title Tag', 'advanced-icon-box')}
+					value={headingTag}
+					onChange={(value) =>
+						setAttributes({
+							headingTag: value,
+						})
+					}
+					options={headingTagOptions}
+				/>
+				<CardDivider />
+				<TextareaControl
+					help={__(
+						'Enter description. Press Enter to create a new line.',
+						'advanced-icon-box'
+					)}
+					label={__('Description', 'advanced-icon-box')}
+					onChange={(text) =>
+						setAttributes({
+							description: text,
+						})
+					}
+					value={description}
+					placeholder={__('Enter description', 'advanced-icon-box')}
+				/>
+				<SelectControl
+					label={__('Description Tag', 'advanced-icon-box')}
+					value={contentTag}
+					onChange={(value) =>
+						setAttributes({
+							contentTag: value,
+						})
+					}
+					options={headingTagOptions}
 				/>
 			</PanelBody>
 
