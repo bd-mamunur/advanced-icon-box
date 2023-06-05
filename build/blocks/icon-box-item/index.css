@@ -1,1 +1,29 @@
-.wp-block-bdt-advanced-icon-box .block-editor-block-list__layout{grid-gap:2px;display:grid;grid-template-columns:repeat(3,1fr);justify-content:center}
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/blocks/icon-box-item/editor.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+/*
+* Style Works for Editor Only
+*/
+.wp-block-bdt-advanced-icon-box .block-editor-block-list__layout {
+  display: grid;
+  justify-items: center;
+}
+
+.block-editor-link-control__field > .components-base-control__field {
+  width: 210px;
+}
+
+button.components-button.block-editor-link-control__search-item-action.has-icon {
+  margin-right: 117px;
+}
+
+button.components-button.is-primary {
+  margin: 5px;
+}
+
+.bdt-advanced-icon-box svg {
+  width: 25px;
+  height: 25px;
+}
+
+/*# sourceMappingURL=index.css.map*/

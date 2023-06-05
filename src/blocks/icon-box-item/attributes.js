@@ -24,6 +24,9 @@ const attributes = {
 	titleColor: {
 		type: 'string',
 	},
+	titleHoverColor: {
+		type: 'string',
+	},
 	description: {
 		type: 'string',
 	},
@@ -34,6 +37,7 @@ const attributes = {
 	alignment: {
 		type: 'string',
 	},
+
 	btnLinkObj: {
 		type: 'object',
 	},
@@ -47,14 +51,29 @@ const attributes = {
 	btnTarget: {
 		type: 'string',
 	},
-	btnbgcolor: {
+	btnBgColor: {
+		type: 'string',
+		default: '#fff',
+	},
+	btnColor: {
+		type: 'string',
+		default: '#ccc',
+	},
+	btnBgHovercolor: {
+		type: 'string',
+		default: ' #e6ffe6',
+	},
+	btnHoverColor: {
 		type: 'string',
 		default: '#ec0707',
 	},
-	btncolor: {
+	icons: {
 		type: 'string',
-		default: '#ec0707',
 	},
+	align: {
+		type: 'string',
+	},
+
 	...generateResRangleControlAttributes({
 		controlName: GRID_COLUMNS,
 		defaults: {

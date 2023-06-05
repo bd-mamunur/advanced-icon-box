@@ -5,16 +5,14 @@
 import { __ } from '@wordpress/i18n';
 import {
 	InspectorControls,
-	PanelColorSettings,
 	__experimentalLinkControl as LinkControl,
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
 	SelectControl,
 	TextControl,
-	RadioControl,
-	ColorPalette,
 	CardDivider,
+	RangeControl,
 } from '@wordpress/components';
 
 /**
@@ -23,7 +21,8 @@ import {
 import * as Constants from './constants';
 import * as Controls from '../../controls';
 
-const { ResRangleControl, ColorControl, TabPanelControl } = Controls;
+const { ResRangleControl, ColorControl, TabPanelControl, IconPickerControl } =
+	Controls;
 const { GRID_COLUMNS } = Constants;
 
 import objAttributes from './attributes';
@@ -31,38 +30,27 @@ import objAttributes from './attributes';
 const Inspector = ({ attributes, setAttributes }) => {
 	const {
 		titleColor,
-		descColor,
+		titleHoverColor,
 		headingTag,
 		contentTag,
-		alignment,
 		btnLabel,
-		btnLink,
-		btnTarget,
-		btnbgcolor, // btnBgColor + btnHoverBgColor
-		btncolor, // btnColor + btnHoverColor
+		btnBgColor,
+		btnColor,
+		btnBgHovercolor,
+		btnHoverColor,
 		btnLinkObj,
+		icons,
 	} = attributes;
 	const objAttrs = { attributes, setAttributes, objAttributes };
 
-	console.log(btnLinkObj);
-
 	return (
 		<InspectorControls>
-			<PanelBody title={__('Colors Settings', 'bdt-blocks')}>
-				<ColorControl
-					label={__('Text Color', 'bdt-blocks')}
-					color={btncolor}
-					onChange={(value) => {
-						setAttributes({ btncolor: value });
-					}}
-				/>
-			</PanelBody>
 			<PanelBody
-				title={__('Column Settings', 'bdt-blocks')}
-				initialOpen={false}
+				title={__('Column Settings', 'advanced-icon-box')}
+				initialOpen={true}
 			>
 				<ResRangleControl
-					label={__('Grid Columns', 'bdt-blocks')}
+					label={__('Grid Columns', 'advanced-icon-box')}
 					controlName={GRID_COLUMNS}
 					objAttrs={objAttrs}
 					noUnits={false}
@@ -71,25 +59,73 @@ const Inspector = ({ attributes, setAttributes }) => {
 				/>
 			</PanelBody>
 
-			<PanelBody title="Alignment Icon" initialOpen={false}>
-				<SelectControl
-					label="Alignment"
-					value={alignment}
-					__nextHasNoMarginBottom
-					options={[
-						{ label: 'left', value: 'left' },
-						{ label: 'center', value: 'center' },
-						{ label: 'rignt', value: 'right' },
+			<PanelBody
+				title={__('Icon Picker', 'advacned-icon-box')}
+				initialOpen={true}
+			>
+				<IconPickerControl
+					label="Icon Picker"
+					onHandle={(v) => setAttributes({ icons: v })}
+					icon={[
+						{
+							name: 'man',
+							value: '😎',
+						},
+						{
+							name: 'football',
+							value: '⚽',
+						},
+						{
+							name: 'star',
+							value: '😎',
+						},
+
+						{
+							name: 'settings',
+							value: (
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width={16}
+									height={16}
+									fill="currentColor"
+									className="bi bi-gear"
+									viewBox="0 0 16 16"
+								>
+									<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+									<path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+								</svg>
+							),
+						},
 					]}
-					onChange={(v) => {
-						setAttributes({ alignment: v });
-					}}
+					objAttrs={objAttrs}
 				/>
 			</PanelBody>
 
-			<PanelBody title="Title Tag" initialOpen={false}>
+			<PanelBody
+				title={__('Advanced Icon Settings', 'advanced-icon-box')}
+				initialOpen={true}
+			>
+				<IconPickerControl
+					label={__('Alignment', 'advanced-icon-box')}
+					onHandle={(v) => setAttributes({ alignment: v })}
+					className="btn-align"
+					variant="primary"
+					iconv=""
+					icon={[
+						{ name: 'editor-alignleft', value: 'left' },
+						{ name: 'editor-aligncenter', value: 'center' },
+						{ name: 'editor-alignleft', value: 'right' },
+					]}
+					objAttrs={objAttrs}
+				/>
+			</PanelBody>
+
+			<PanelBody
+				title={__('Title Tag', 'advanced-icon-box')}
+				initialOpen={true}
+			>
 				<SelectControl
-					label="HEADING TAG"
+					label={__('HEADING TAG', 'advanced-icon-box')}
 					value={headingTag}
 					options={[
 						{ label: 'h1', value: 'h1' },
@@ -103,10 +139,38 @@ const Inspector = ({ attributes, setAttributes }) => {
 						setAttributes({ headingTag: v });
 					}}
 				/>
+
+				<TabPanelControl
+					normalComponents={
+						<ColorControl
+							label={__('Color', 'advanced-icon-box')}
+							color={titleColor}
+							onChange={(colorValu) =>
+								setAttributes({
+									titleColor: colorValu,
+								})
+							}
+						/>
+					}
+					hoverComponents={
+						<ColorControl
+							label={__('Hover Color', 'advanced-icon-box')}
+							color={titleHoverColor}
+							onChange={(colorValu) =>
+								setAttributes({
+									titleHoverColor: colorValu,
+								})
+							}
+						/>
+					}
+				/>
 			</PanelBody>
-			<PanelBody title="Content Tag" initialOpen={false}>
+			<PanelBody
+				title={__('Content Tag', 'advanced-icon-box')}
+				initialOpen={false}
+			>
 				<SelectControl
-					label="CONTENT TAG"
+					label={__('CONTENT TAG', 'advanced-icon-box')}
 					value={contentTag}
 					options={[
 						{ label: 'p', value: 'p' },
@@ -120,9 +184,12 @@ const Inspector = ({ attributes, setAttributes }) => {
 				/>
 			</PanelBody>
 
-			<PanelBody title="Button Settings" initialOpen={false}>
+			<PanelBody
+				title={__('Button Settings', 'advanced-icon-box')}
+				initialOpen={false}
+			>
 				<TextControl
-					label={__('Button Label', 'bdt-blocks')}
+					label={__('Button Label', 'advanced-icon-box')}
 					value={btnLabel}
 					onChange={(v) => setAttributes({ btnLabel: v })}
 				/>
@@ -137,68 +204,56 @@ const Inspector = ({ attributes, setAttributes }) => {
 					]}
 					onChange={(data) => setAttributes({ btnLinkObj: data })}
 				/>
-				<TextControl
-					label="Button Link"
-					value={btnLink}
-					onChange={(v) => setAttributes({ btnLink: v })}
-				/>
 
-				<RadioControl
-					label="Target Tab"
-					help={`The type of the current Tab ${btnTarget}`}
-					selected={btnTarget}
-					options={[
-						{ label: 'New Tab', value: '_blank' },
-						{ label: 'Self Tab', value: '_self' },
-					]}
-					onChange={(option) => {
-						setAttributes({ btnTarget: option });
-					}}
-				/>
-				<CardDivider />
-
-				<h2>Button Bg Color</h2>
-
-				<ColorPalette
-					colors={[
-						{ name: 'red', color: '#f00' },
-						{ name: 'white', color: '#fff' },
-						{ name: 'blue', color: '#00f' },
-					]}
-					value={btnbgcolor}
-					onChange={(color) => setAttributes({ btnbgcolor: color })}
-				/>
-
-				<h2>Button Text Color</h2>
-				<ColorPalette
-					colors={[
-						{ name: 'red', color: '#f00' },
-						{ name: 'white', color: '#fff' },
-						{ name: 'blue', color: '#00f' },
-					]}
-					value={btncolor}
-					onChange={(color) => setAttributes({ btncolor: color })}
+				<TabPanelControl
+					normalComponents={
+						<>
+							<ColorControl
+								label={__(
+									'Background Color',
+									'advanced-icon-box'
+								)}
+								color={btnBgColor}
+								onChange={(colorValu) =>
+									setAttributes({ btnBgColor: colorValu })
+								}
+							/>
+							<CardDivider />
+							<ColorControl
+								label={__('Color', 'advanced-icon-box')}
+								color={btnColor}
+								onChange={(colorValu) =>
+									setAttributes({ btnColor: colorValu })
+								}
+							/>
+						</>
+					}
+					hoverComponents={
+						<>
+							<ColorControl
+								label={__(
+									'Bg Hover Color',
+									'advanced-icon-box'
+								)}
+								color={btnBgHovercolor}
+								onChange={(colorValu) =>
+									setAttributes({
+										btnBgHovercolor: colorValu,
+									})
+								}
+							/>
+							<CardDivider />
+							<ColorControl
+								label={__('Color', 'advanced-icon-box')}
+								color={btnHoverColor}
+								onChange={(colorValu) =>
+									setAttributes({ btnHoverColor: colorValu })
+								}
+							/>
+						</>
+					}
 				/>
 			</PanelBody>
-
-			<PanelColorSettings
-				title={__('Color Settings', 'bdt-blocks')}
-				initialOpen={false}
-				colorSettings={[
-					{
-						value: titleColor,
-						onChange: (value) =>
-							setAttributes({ titleColor: value }),
-						label: __('Title Color', 'bdt-blocks'),
-					},
-					{
-						value: descColor,
-						onChange: (value) =>
-							setAttributes({ descColor: value }),
-						label: __('Description Color', 'bdt-blocks'),
-					},
-				]}
-			/>
 		</InspectorControls>
 	);
 };
