@@ -8,9 +8,7 @@ export default function save({ attributes }) {
 				className: `${uniqueId}`,
 			})}
 		>
-			<div className="bdt-container">
-				<InnerBlocks.Content />
-			</div>
+			<InnerBlocks.Content />
 		</div>
 	);
 }

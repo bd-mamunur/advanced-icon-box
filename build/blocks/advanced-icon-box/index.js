@@ -116,9 +116,7 @@ function Edit(_ref) {
   } = _ref;
   const {
     uniqueId,
-    blockStyle,
-    titleColor,
-    descriptionColor
+    blockStyle
   } = attributes;
   useEffect(() => {
     if (!uniqueId) {
@@ -133,16 +131,31 @@ function Edit(_ref) {
     [`${GRID_COLUMNS}MobRange`]: columnMob
   } = attributes;
   const deskStyles = `
-		.${uniqueId} .block-editor-block-list__layout {
-			display: grid;
+		.${uniqueId} .block-editor-block-list__layout{
 			grid-template-columns: repeat(${columnDesk}, 1fr);
 		}
-		.${uniqueId} .bdt-description {
-			color: ${descriptionColor};
+	
+		.${uniqueId} .wp-block-bdt-advanced-icon-box {
+			grid-template-columns: repeat(${columnDesk},1fr);
 		}
+		
 	`;
-  const tabStyles = ``;
-  const mobStyles = ``;
+  const tabStyles = `	
+	.${uniqueId} .block-editor-block-list__layout {
+		grid-template-columns: repeat(${columnTab}, 1fr);
+	}
+	.${uniqueId} .wp-block-bdt-advanced-icon-box {
+		grid-template-columns: repeat(${columnTab},1fr);
+	}
+`;
+  const mobStyles = `
+		.${uniqueId} .block-editor-block-list__layout{
+			grid-template-columns: repeat(${columnMob}, 1fr)
+		}
+		.${uniqueId} .wp-block-bdt-advanced-icon-box {
+			grid-template-columns: repeat(1,1fr);
+		}
+		`;
   /**
    * Block All Styles
    */
@@ -168,13 +181,11 @@ function Edit(_ref) {
     setAttributes: setAttributes
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
     className: uniqueId
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bdt-advanced-container"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
     allowedBlocks: ['bdt/icon-box-item'],
     renderAppender: _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.ButtonBlockAppender,
     orientation: "horizontal"
-  }))));
+  })));
 }
 
 /***/ }),
@@ -314,9 +325,7 @@ function save(_ref) {
   } = attributes;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
     className: `${uniqueId}`
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bdt-container"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null)));
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null));
 }
 
 /***/ }),

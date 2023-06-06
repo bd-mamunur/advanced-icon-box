@@ -21,17 +21,13 @@
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  background: rgba(147, 255, 170, 0.15);
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-title {
   margin: 0 0 12px 0;
-  font-size: 25px;
   font-weight: 700;
   text-transform: capitalize;
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-desc {
-  font-size: 16px;
-  color: #87878a;
   line-height: 1.6;
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-link-btn {
@@ -71,8 +67,8 @@
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-item {
   padding: 10px;
-  width: 160px;
   margin: 5px;
+  word-break: break-all;
   overflow-wrap: break-word;
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box svg {

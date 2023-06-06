@@ -4,10 +4,10 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 import {} from '@wordpress/components';
 const { Fragment, useEffect } = wp.element;
 import * as Constants from './constants';
-const { GRID_COLUMNS } = Constants;
+const { GRID_COLUMNS, TITLE_FONTSIZE, DESCRIPTION_FONTSIZE } = Constants;
 
 //generator
-import { generateResRangleControlAttributes } from '../../generators';
+
 // editor style
 import './editor.scss';
 
@@ -26,6 +26,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		titleHoverColor,
 		description,
 		descColor,
+		descHoverColor,
+		bgColor,
+		bgHoverColor,
 		headingTag,
 		contentTag,
 		btnLabel,
@@ -36,7 +39,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		btnHoverColor,
 		icons,
 		// btnLinkObj,
-		gridLine,
 	} = attributes;
 
 	useEffect(() => {
@@ -44,25 +46,22 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			setAttributes({ uniqueId: `bdt-blocks-${clientId.slice(0, 8)}` });
 		}
 	}, []);
+
 	const {
-		deskRange: gridDesktop,
-		tabRange: gridTab,
-		mobRange: gridmob,
-	} = generateResRangleControlAttributes({
-		controlName: GRID_COLUMNS,
-		defaults: 3,
-	});
+		[`${TITLE_FONTSIZE}DeskRange`]: fontSizeDesk,
+		[`${TITLE_FONTSIZE}TabRange`]: fontSizeTab,
+		[`${TITLE_FONTSIZE}MobRange`]: fontSizeMob,
+	} = attributes;
+	const {
+		[`${DESCRIPTION_FONTSIZE}DeskRange`]: descFontSizeDesk,
+		[`${DESCRIPTION_FONTSIZE}TabRange`]: descFontSizeTab,
+		[`${DESCRIPTION_FONTSIZE}MobRange`]: descFontSizeMob,
+	} = attributes;
 
 	const deskStyles = `
-	${uniqueId} .bdt-advanced-container, .block-editor-block-list__layout,.wp-block-bdt-advanced-icon-box .bdt-container  {
-			grid-template-columns: repeat(${gridLine}, 1fr);
-			column-gap: 2px;
-			
-			
-		}
-	
 	 	.${uniqueId} .bdt-title {
 			color: ${titleColor};
+			font-size: ${fontSizeDesk}px;
 		 }
 		 
 		 .${uniqueId} .bdt-title:hover {
@@ -71,8 +70,18 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		
 	 	.${uniqueId} .bdt-desc {
 			 color: ${descColor};
+			 font-size: ${descFontSizeDesk}px;
 		
 		 }
+		 .${uniqueId} .bdt-desc:hover {
+			color: ${descHoverColor};
+			}
+			.${uniqueId} .bdt-item  {
+				background: ${bgColor};
+			}
+			.${uniqueId} .bdt-item:hover  {
+				background: ${bgHoverColor};
+		}
 			.${uniqueId} .bdt-icon-wrap {
 			 text-align: ${alignment};
 		
@@ -118,7 +127,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			setAttributes({ blockStyle: blockStyleCss });
 		}
 	}, [attributes]);
-	console.log(deskStyles);
+
 	return (
 		<Fragment>
 			<style>{`${softMinifyCssStrings(blockStyleCss)}`}</style>
@@ -132,11 +141,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					<div className="bdt-advanced-icon-box bdt-avnaced-icon-box-style-1">
 						<div className="bdt-item">
 							<div className="bdt-icon-wrap">
-								{icons && (
-									<span role="img" aria-label="sheep">
-										{icons}
-									</span>
-								)}
+								{icons && icons}
 							</div>
 							<div className="bdt-body-content">
 								<div className="bdt-title">

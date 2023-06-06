@@ -17,7 +17,9 @@ const {
   generateResRangleControlAttributes
 } = _generators__WEBPACK_IMPORTED_MODULE_1__;
 const {
-  GRID_COLUMNS
+  GRID_COLUMNS,
+  TITLE_FONTSIZE,
+  DESCRIPTION_FONTSIZE
 } = _constants__WEBPACK_IMPORTED_MODULE_0__;
 const attributes = {
   uniqueId: {
@@ -47,6 +49,15 @@ const attributes = {
   descColor: {
     type: 'string'
   },
+  descHoverColor: {
+    type: 'string'
+  },
+  bgColor: {
+    type: 'string'
+  },
+  bgHoverColor: {
+    type: 'string'
+  },
   alignment: {
     type: 'string'
   },
@@ -56,12 +67,6 @@ const attributes = {
   btnLabel: {
     type: 'string',
     default: 'Button'
-  },
-  btnLink: {
-    type: 'string'
-  },
-  btnTarget: {
-    type: 'string'
   },
   btnBgColor: {
     type: 'string',
@@ -92,6 +97,22 @@ const attributes = {
       [`${GRID_COLUMNS}TabRange`]: 2,
       [`${GRID_COLUMNS}MobRange`]: 1
     }
+  }),
+  ...generateResRangleControlAttributes({
+    controlName: TITLE_FONTSIZE,
+    defaults: {
+      [`${TITLE_FONTSIZE}DeskRange`]: 40,
+      [`${TITLE_FONTSIZE}TabRange`]: 15,
+      [`${TITLE_FONTSIZE}MobRange`]: 10
+    }
+  }),
+  ...generateResRangleControlAttributes({
+    controlName: DESCRIPTION_FONTSIZE,
+    defaults: {
+      [`${DESCRIPTION_FONTSIZE}DeskRange`]: 25,
+      [`${DESCRIPTION_FONTSIZE}TabRange`]: 12,
+      [`${DESCRIPTION_FONTSIZE}MobRange`]: 10
+    }
   })
 };
 /* harmony default export */ __webpack_exports__["default"] = (attributes);
@@ -106,9 +127,13 @@ const attributes = {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "GRID_COLUMNS": function() { return /* binding */ GRID_COLUMNS; }
+/* harmony export */   "GRID_COLUMNS": function() { return /* binding */ GRID_COLUMNS; },
+/* harmony export */   "TITLE_FONTSIZE": function() { return /* binding */ TITLE_FONTSIZE; },
+/* harmony export */   "DESCRIPTION_FONTSIZE": function() { return /* binding */ DESCRIPTION_FONTSIZE; }
 /* harmony export */ });
 const GRID_COLUMNS = 'gridColumns';
+const TITLE_FONTSIZE = 'titlefontsize';
+const DESCRIPTION_FONTSIZE = 'descriptionfontsize';
 
 /***/ }),
 
@@ -131,10 +156,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants */ "./src/blocks/icon-box-item/constants/index.js");
-/* harmony import */ var _generators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../generators */ "./src/generators/index.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/icon-box-item/editor.scss");
-/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./inspector */ "./src/blocks/icon-box-item/inspector.js");
-/* harmony import */ var _helper_softminify__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../helper/softminify */ "./src/helper/softminify.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/icon-box-item/editor.scss");
+/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./inspector */ "./src/blocks/icon-box-item/inspector.js");
+/* harmony import */ var _helper_softminify__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../helper/softminify */ "./src/helper/softminify.js");
 
 
 /* eslint-disable no-console */
@@ -147,10 +171,11 @@ const {
 } = wp.element;
 
 const {
-  GRID_COLUMNS
+  GRID_COLUMNS,
+  TITLE_FONTSIZE,
+  DESCRIPTION_FONTSIZE
 } = _constants__WEBPACK_IMPORTED_MODULE_4__; //generator
-
- // editor style
+// editor style
 
 
 /**
@@ -173,6 +198,9 @@ function Edit(_ref) {
     titleHoverColor,
     description,
     descColor,
+    descHoverColor,
+    bgColor,
+    bgHoverColor,
     headingTag,
     contentTag,
     btnLabel,
@@ -181,9 +209,8 @@ function Edit(_ref) {
     btnColor,
     btnBgHovercolor,
     btnHoverColor,
-    icons,
-    // btnLinkObj,
-    gridLine
+    icons // btnLinkObj,
+
   } = attributes;
   useEffect(() => {
     if (!uniqueId) {
@@ -193,23 +220,19 @@ function Edit(_ref) {
     }
   }, []);
   const {
-    deskRange: gridDesktop,
-    tabRange: gridTab,
-    mobRange: gridmob
-  } = (0,_generators__WEBPACK_IMPORTED_MODULE_5__.generateResRangleControlAttributes)({
-    controlName: GRID_COLUMNS,
-    defaults: 3
-  });
+    [`${TITLE_FONTSIZE}DeskRange`]: fontSizeDesk,
+    [`${TITLE_FONTSIZE}TabRange`]: fontSizeTab,
+    [`${TITLE_FONTSIZE}MobRange`]: fontSizeMob
+  } = attributes;
+  const {
+    [`${DESCRIPTION_FONTSIZE}DeskRange`]: descFontSizeDesk,
+    [`${DESCRIPTION_FONTSIZE}TabRange`]: descFontSizeTab,
+    [`${DESCRIPTION_FONTSIZE}MobRange`]: descFontSizeMob
+  } = attributes;
   const deskStyles = `
-	${uniqueId} .bdt-advanced-container, .block-editor-block-list__layout,.wp-block-bdt-advanced-icon-box .bdt-container  {
-			grid-template-columns: repeat(${gridLine}, 1fr);
-			column-gap: 2px;
-			
-			
-		}
-	
 	 	.${uniqueId} .bdt-title {
 			color: ${titleColor};
+			font-size: ${fontSizeDesk}px;
 		 }
 		 
 		 .${uniqueId} .bdt-title:hover {
@@ -218,8 +241,18 @@ function Edit(_ref) {
 		
 	 	.${uniqueId} .bdt-desc {
 			 color: ${descColor};
+			 font-size: ${descFontSizeDesk}px;
 		
 		 }
+		 .${uniqueId} .bdt-desc:hover {
+			color: ${descHoverColor};
+			}
+			.${uniqueId} .bdt-item  {
+				background: ${bgColor};
+			}
+			.${uniqueId} .bdt-item:hover  {
+				background: ${bgHoverColor};
+		}
 			.${uniqueId} .bdt-icon-wrap {
 			 text-align: ${alignment};
 		
@@ -266,8 +299,7 @@ function Edit(_ref) {
       });
     }
   }, [attributes]);
-  console.log(deskStyles);
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `${(0,_helper_softminify__WEBPACK_IMPORTED_MODULE_8__.softMinifyCssStrings)(blockStyleCss)}`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `${(0,_helper_softminify__WEBPACK_IMPORTED_MODULE_7__.softMinifyCssStrings)(blockStyleCss)}`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_6__["default"], {
     attributes: attributes,
     setAttributes: setAttributes
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
@@ -280,10 +312,7 @@ function Edit(_ref) {
     className: "bdt-item"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-icon-wrap"
-  }, icons && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    role: "img",
-    "aria-label": "sheep"
-  }, icons)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, icons && icons), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-body-content"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-title"
@@ -399,7 +428,9 @@ const {
   IconPickerControl
 } = _controls__WEBPACK_IMPORTED_MODULE_5__;
 const {
-  GRID_COLUMNS
+  GRID_COLUMNS,
+  TITLE_FONTSIZE,
+  DESCRIPTION_FONTSIZE
 } = _constants__WEBPACK_IMPORTED_MODULE_4__;
 
 const headingTagOptions = [{
@@ -443,7 +474,10 @@ const Inspector = _ref => {
     titleHoverColor,
     description,
     descColor,
+    descHoverColor,
     contentTag,
+    bgColor,
+    bgHoverColor,
     btnLabel,
     alignment,
     btnBgColor,
@@ -461,7 +495,7 @@ const Inspector = _ref => {
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content', 'advanced-icon-box'),
-    initialOpen: false
+    initialOpen: true
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Title', 'advanced-icon-box'),
     onChange: value => setAttributes({
@@ -476,6 +510,28 @@ const Inspector = _ref => {
       headingTag: value
     }),
     options: headingTagOptions
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ResRangleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Title Size', 'advanced-icon-box'),
+    controlName: TITLE_FONTSIZE,
+    objAttrs: objAttrs,
+    noUnits: false,
+    max: 22,
+    min: 5
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
+    normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
+      color: titleColor,
+      onChange: colorValu => setAttributes({
+        titleColor: colorValu
+      })
+    }),
+    hoverComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hover Color', 'advanced-icon-box'),
+      color: titleHoverColor,
+      onChange: colorValu => setAttributes({
+        titleHoverColor: colorValu
+      })
+    })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter description. Press Enter to create a new line.', 'advanced-icon-box'),
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description', 'advanced-icon-box'),
@@ -491,6 +547,43 @@ const Inspector = _ref => {
       contentTag: value
     }),
     options: headingTagOptions
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ResRangleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description Size', 'advanced-icon-box'),
+    controlName: DESCRIPTION_FONTSIZE,
+    objAttrs: objAttrs,
+    noUnits: false,
+    max: 22,
+    min: 5
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
+    normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description color', 'advanced-icon-box'),
+      color: "#87878a",
+      onChange: desValu => setAttributes({
+        descColor: desValu
+      })
+    }),
+    hoverComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hover Color', 'advanced-icon-box'),
+      color: "#bfc2c7",
+      onChange: deshoValue => setAttributes({
+        descHoverColor: deshoValue
+      })
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
+    normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background color', 'advanced-icon-box'),
+      color: "#6d99e3",
+      onChange: colorValue => setAttributes({
+        bgColor: colorValue
+      })
+    }),
+    hoverComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hover Color', 'advanced-icon-box'),
+      color: "#2b3d5c",
+      onChange: hoverColor => setAttributes({
+        bgHoverColor: hoverColor
+      })
+    })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Picker', 'advacned-icon-box'),
     initialOpen: true
@@ -500,34 +593,17 @@ const Inspector = _ref => {
       icons: v
     }),
     icon: [{
-      name: 'man',
-      value: '😎'
+      name: 'setting',
+      value: '⚙️'
     }, {
-      name: 'football',
-      value: '⚽'
-    }, {
-      name: 'star',
-      value: '😎'
+      name: 'network',
+      value: '🌐'
     }, {
       name: 'settings',
-      value: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
-        xmlns: "http://www.w3.org/2000/svg",
-        width: 16,
-        height: 16,
-        fill: "currentColor",
-        className: "bi bi-gear",
-        viewBox: "0 0 16 16"
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-        d: "M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"
-      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
-        d: "M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"
-      }))
+      value: '🌎'
     }],
     objAttrs: objAttrs
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Advanced Icon Settings', 'advanced-icon-box'),
-    initialOpen: true
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(IconPickerControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(IconPickerControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Alignment', 'advanced-icon-box'),
     onHandle: v => setAttributes({
       alignment: v
@@ -547,75 +623,6 @@ const Inspector = _ref => {
     }],
     objAttrs: objAttrs
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Title Tag', 'advanced-icon-box'),
-    initialOpen: true
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('HEADING TAG', 'advanced-icon-box'),
-    value: headingTag,
-    options: [{
-      label: 'h1',
-      value: 'h1'
-    }, {
-      label: 'h2',
-      value: 'h2'
-    }, {
-      label: 'h3',
-      value: 'h3'
-    }, {
-      label: 'h4',
-      value: 'h4'
-    }, {
-      label: 'h5',
-      value: 'h5'
-    }, {
-      label: 'h6',
-      value: 'h6'
-    }],
-    onChange: v => {
-      setAttributes({
-        headingTag: v
-      });
-    }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
-    normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
-      color: titleColor,
-      onChange: colorValu => setAttributes({
-        titleColor: colorValu
-      })
-    }),
-    hoverComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hover Color', 'advanced-icon-box'),
-      color: titleHoverColor,
-      onChange: colorValu => setAttributes({
-        titleHoverColor: colorValu
-      })
-    })
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Tag', 'advanced-icon-box'),
-    initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('CONTENT TAG', 'advanced-icon-box'),
-    value: contentTag,
-    options: [{
-      label: 'p',
-      value: 'p'
-    }, {
-      label: 'span',
-      value: 'span'
-    }, {
-      label: 'div',
-      value: 'div'
-    }, {
-      label: 'h1',
-      value: 'h1'
-    }],
-    onChange: v => {
-      setAttributes({
-        contentTag: v
-      });
-    }
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Settings', 'advanced-icon-box'),
     initialOpen: false
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
@@ -634,33 +641,6 @@ const Inspector = _ref => {
     onChange: data => setAttributes({
       btnLinkObj: data
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
-    normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background Color', 'advanced-icon-box'),
-      color: btnBgColor,
-      onChange: colorValu => setAttributes({
-        btnBgColor: colorValu
-      })
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
-      color: btnColor,
-      onChange: colorValu => setAttributes({
-        btnColor: colorValu
-      })
-    })),
-    hoverComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Bg Hover Color', 'advanced-icon-box'),
-      color: btnBgHovercolor,
-      onChange: colorValu => setAttributes({
-        btnBgHovercolor: colorValu
-      })
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
-      color: btnHoverColor,
-      onChange: colorValu => setAttributes({
-        btnHoverColor: colorValu
-      })
-    }))
   })));
 };
 
@@ -708,10 +688,7 @@ function save(_ref) {
     className: "bdt-item"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-icon-wrap"
-  }, icons && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    role: "img",
-    "aria-label": "sheep"
-  }, icons)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, icons && icons), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-body-content"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-title"

@@ -22,11 +22,7 @@ export default function save({ attributes }) {
 					<div className="bdt-advanced-icon-box bdt-avnaced-icon-box-style-1">
 						<div className="bdt-item">
 							<div className="bdt-icon-wrap">
-								{icons && (
-									<span role="img" aria-label="sheep">
-										{icons}
-									</span>
-								)}
+								{icons && icons}
 							</div>
 							<div className="bdt-body-content">
 								<div className="bdt-title">
