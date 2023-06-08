@@ -13,6 +13,7 @@ import {
 	TextControl,
 	CardDivider,
 	TextareaControl,
+	RangeControl,
 } from '@wordpress/components';
 
 /**
@@ -23,7 +24,7 @@ import * as Controls from '../../controls';
 
 const { ResRangleControl, ColorControl, TabPanelControl, IconPickerControl } =
 	Controls;
-const { GRID_COLUMNS, TITLE_FONTSIZE, DESCRIPTION_FONTSIZE } = Constants;
+const { TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE } = Constants;
 
 import objAttributes from './attributes';
 
@@ -52,6 +53,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 		bgColor,
 		bgHoverColor,
 		btnLabel,
+		btnRadius,
 		alignment,
 		btnBgColor,
 		btnColor,
@@ -59,7 +61,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 		btnHoverColor,
 		icons,
 		btnLinkObj,
-		gridLine,
 	} = attributes;
 	const objAttrs = { attributes, setAttributes, objAttributes };
 
@@ -158,7 +159,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					normalComponents={
 						<ColorControl
 							label={__('Description color', 'advanced-icon-box')}
-							color="#87878a"
+							color={descColor}
 							onChange={(desValu) =>
 								setAttributes({ descColor: desValu })
 							}
@@ -167,19 +168,24 @@ const Inspector = ({ attributes, setAttributes }) => {
 					hoverComponents={
 						<ColorControl
 							label={__('Hover Color', 'advanced-icon-box')}
-							color="#bfc2c7"
+							color={descHoverColor}
 							onChange={(deshoValue) =>
 								setAttributes({ descHoverColor: deshoValue })
 							}
 						/>
 					}
 				/>
-				<CardDivider />
+			</PanelBody>
+
+			<PanelBody
+				title={__('Container', 'advanced-icon-box')}
+				initialOpen={true}
+			>
 				<TabPanelControl
 					normalComponents={
 						<ColorControl
 							label={__('Background color', 'advanced-icon-box')}
-							color="#6d99e3"
+							color={bgColor}
 							onChange={(colorValue) =>
 								setAttributes({ bgColor: colorValue })
 							}
@@ -188,7 +194,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					hoverComponents={
 						<ColorControl
 							label={__('Hover Color', 'advanced-icon-box')}
-							color="#2b3d5c"
+							color={bgHoverColor}
 							onChange={(hoverColor) =>
 								setAttributes({ bgHoverColor: hoverColor })
 							}
@@ -240,7 +246,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 			<PanelBody
 				title={__('Button Settings', 'advanced-icon-box')}
-				initialOpen={false}
+				initialOpen={true}
 			>
 				<TextControl
 					label={__('Button Label', 'advanced-icon-box')}
@@ -257,6 +263,79 @@ const Inspector = ({ attributes, setAttributes }) => {
 						},
 					]}
 					onChange={(data) => setAttributes({ btnLinkObj: data })}
+				/>
+				<CardDivider />
+				<ResRangleControl
+					label={__('Button Font Size', 'advanced-icon-box')}
+					controlName={BUTTON_FONTSIZE}
+					objAttrs={objAttrs}
+					noUnits={false}
+					max={30}
+					min={5}
+				/>
+
+				<RangeControl
+					label={__('Button Radius', 'advanced-icon-box')}
+					value={btnRadius}
+					onChange={(btnValue) =>
+						setAttributes({ btnRadius: btnValue })
+					}
+					min={2}
+					max={30}
+				/>
+
+				<CardDivider />
+				<TabPanelControl
+					normalComponents={
+						<>
+							<ColorControl
+								label={__(
+									'Button Text Color',
+									'advanced-icon-box'
+								)}
+								color={btnColor}
+								onChange={(textValue) =>
+									setAttributes({ btnColor: textValue })
+								}
+							/>
+							<ColorControl
+								label={__(
+									'Background color',
+									'advanced-icon-box'
+								)}
+								color={btnBgColor}
+								onChange={(btnValue) =>
+									setAttributes({ btnBgColor: btnValue })
+								}
+							/>
+						</>
+					}
+					hoverComponents={
+						<>
+							<ColorControl
+								label={__(
+									'Button Hover Color',
+									'advanced-icon-box'
+								)}
+								color={btnHoverColor}
+								onChange={(textValue) =>
+									setAttributes({ btnHoverColor: textValue })
+								}
+							/>
+							<ColorControl
+								label={__(
+									'Background Hover Color',
+									'advanced-icon-box'
+								)}
+								color={btnBgHovercolor}
+								onChange={(btnValue) =>
+									setAttributes({
+										btnBgHovercolor: btnValue,
+									})
+								}
+							/>
+						</>
+					}
 				/>
 			</PanelBody>
 		</InspectorControls>

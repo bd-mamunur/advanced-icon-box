@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-// import { __ } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 
 const { Fragment, useEffect } = wp.element;
@@ -36,7 +36,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			grid-template-columns: repeat(${columnDesk}, 1fr);
 		}
 	
-		.${uniqueId} .wp-block-bdt-advanced-icon-box {
+		.${uniqueId} .aib-content {
 			grid-template-columns: repeat(${columnDesk},1fr);
 		}
 		
@@ -45,7 +45,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	.${uniqueId} .block-editor-block-list__layout {
 		grid-template-columns: repeat(${columnTab}, 1fr);
 	}
-	.${uniqueId} .wp-block-bdt-advanced-icon-box {
+	.${uniqueId} .aib-content {
 		grid-template-columns: repeat(${columnTab},1fr);
 	}
 `;
@@ -53,8 +53,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		.${uniqueId} .block-editor-block-list__layout{
 			grid-template-columns: repeat(${columnMob}, 1fr)
 		}
-		.${uniqueId} .wp-block-bdt-advanced-icon-box {
-			grid-template-columns: repeat(1,1fr);
+		.${uniqueId} .aib-content {
+			grid-template-columns: repeat(${columnMob},1fr);
 		}
 		`;
 

@@ -8,7 +8,9 @@ export default function save({ attributes }) {
 				className: `${uniqueId}`,
 			})}
 		>
-			<InnerBlocks.Content />
+			<div className="aib-content">
+				<InnerBlocks.Content />
+			</div>
 		</div>
 	);
 }
