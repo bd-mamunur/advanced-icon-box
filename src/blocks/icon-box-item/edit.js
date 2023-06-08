@@ -16,6 +16,7 @@ import './editor.scss';
  */
 import Inspector from './inspector';
 import { softMinifyCssStrings } from '../../helper/softminify';
+import { DisplayIcon } from '../../controls';
 
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const {
@@ -37,6 +38,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		icons,
 		// btnLinkObj,
 		gridLine,
+		icon,
 	} = attributes;
 
 	useEffect(() => {
@@ -118,7 +120,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			setAttributes({ blockStyle: blockStyleCss });
 		}
 	}, [attributes]);
-	console.log(deskStyles);
+
 	return (
 		<Fragment>
 			<style>{`${softMinifyCssStrings(blockStyleCss)}`}</style>
@@ -132,11 +134,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					<div className="bdt-advanced-icon-box bdt-avnaced-icon-box-style-1">
 						<div className="bdt-item">
 							<div className="bdt-icon-wrap">
-								{icons && (
-									<span role="img" aria-label="sheep">
-										{icons}
-									</span>
-								)}
+								<DisplayIcon icon={icon} />
 							</div>
 							<div className="bdt-body-content">
 								<div className="bdt-title">

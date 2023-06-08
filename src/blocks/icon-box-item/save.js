@@ -1,5 +1,5 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
-
+import { DisplayIcon } from '../../controls';
 export default function save({ attributes }) {
 	const {
 		uniqueId,
@@ -10,6 +10,7 @@ export default function save({ attributes }) {
 		btnLabel,
 		btnLinkObj,
 		icons,
+		icon,
 	} = attributes;
 	return (
 		<>
@@ -22,11 +23,7 @@ export default function save({ attributes }) {
 					<div className="bdt-advanced-icon-box bdt-avnaced-icon-box-style-1">
 						<div className="bdt-item">
 							<div className="bdt-icon-wrap">
-								{icons && (
-									<span role="img" aria-label="sheep">
-										{icons}
-									</span>
-								)}
+								<DisplayIcon icon={icon} />
 							</div>
 							<div className="bdt-body-content">
 								<div className="bdt-title">

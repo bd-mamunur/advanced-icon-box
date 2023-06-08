@@ -6,11 +6,38 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/controls/res-rangle-control/style.scss ***!
   \*******************************************************************************************************************************************************************************************************************************************************************/
 
-/*!********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/controls/icon-picker-control/style.scss ***!
-  \********************************************************************************************************************************************************************************************************************************************************************/
-button.components-button.aib-icon.is-primary {
-  margin: 5px;
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/controls/iconpicker-control/style.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.bdt-icon-picker-panel {
+  width: 250px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.bdt-icon-picker-panel .search-field input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.bdt-icon-picker-panel .icons-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.bdt-icon-picker-panel button.components-button.icon-btn {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #e0e0e0;
+}
+.bdt-icon-picker-panel button.components-button.icon-btn.active {
+  background: #54c6ff;
+  border-color: #54c6ff;
+}
+.bdt-icon-picker-panel button.components-button.icon-btn.active svg {
+  fill: #fff;
+}
+.bdt-icon-picker-panel button.components-button.icon-btn svg {
+  height: 24px;
+  width: 100%;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

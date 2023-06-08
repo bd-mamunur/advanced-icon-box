@@ -1,0 +1,32 @@
+.bdt-icon-picker-panel {
+	width: 250px;
+	padding: 15px;
+	box-sizing: border-box;
+	.search-field input {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	.icons-list {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 10px;
+	}
+
+	button.components-button.icon-btn {
+		width: 100%;
+		height: 40px;
+		border: 1px solid #e0e0e0;
+		&.active {
+			background: #54c6ff;
+			border-color: #54c6ff;
+			svg {
+				fill: #fff;
+			}
+		}
+	}
+
+	button.components-button.icon-btn svg {
+		height: 24px;
+		width: 100%;
+	}
+}

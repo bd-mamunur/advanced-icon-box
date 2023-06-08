@@ -73,7 +73,9 @@ const attributes = {
 	align: {
 		type: 'string',
 	},
-
+	icon: {
+		type: 'string',
+	},
 	...generateResRangleControlAttributes({
 		controlName: GRID_COLUMNS,
 		defaults: {
