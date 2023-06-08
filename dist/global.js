@@ -15,7 +15,7 @@
   \*****************************/
 /***/ (() => {
 
-eval("// add resMode attributes to all blocks\nwp.hooks.addFilter(\n\t'blocks.registerBlockType',\n\t'bdt/attribute/resMode',\n\tfunction (settings, name) {\n\t\tif (name.includes('bdt/')) {\n\t\t\tsettings.attributes = {\n\t\t\t\t...settings.attributes,\n\t\t\t\tresMode: {\n\t\t\t\t\ttype: 'string',\n\t\t\t\t\tdefault: 'Desktop',\n\t\t\t\t},\n\t\t\t};\n\t\t}\n\t\treturn settings;\n\t}\n);\n\n\n//# sourceURL=webpack://gutenberg-boilerplate/./src/global/index.js?");
+eval("// add resMode attributes to all blocks\r\nwp.hooks.addFilter(\r\n\t'blocks.registerBlockType',\r\n\t'bdt/attribute/resMode',\r\n\tfunction (settings, name) {\r\n\t\tif (name.includes('bdt/')) {\r\n\t\t\tsettings.attributes = {\r\n\t\t\t\t...settings.attributes,\r\n\t\t\t\tresMode: {\r\n\t\t\t\t\ttype: 'string',\r\n\t\t\t\t\tdefault: 'Desktop',\r\n\t\t\t\t},\r\n\t\t\t};\r\n\t\t}\r\n\t\treturn settings;\r\n\t}\r\n);\r\n\n\n//# sourceURL=webpack://gutenberg-boilerplate/./src/global/index.js?");
 
 /***/ })
 

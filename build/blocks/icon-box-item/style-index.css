@@ -21,17 +21,13 @@
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  background: rgba(147, 255, 170, 0.15);
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-title {
-  margin: 0 0 12px 0;
-  font-size: 25px;
+  margin: 0 0 0 0;
   font-weight: 700;
   text-transform: capitalize;
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-desc {
-  font-size: 16px;
-  color: #87878a;
   line-height: 1.6;
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-link-btn {
@@ -40,7 +36,6 @@
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-link-btn a,
 .wp-block-bdt-advanced-icon-box .button {
   text-decoration: none;
-  font-size: 14px;
   border: 1px solid #32de23;
   padding: 10px 15px;
   display: inline-block;
@@ -54,7 +49,7 @@
   height: 25px;
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-icon-wrap {
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-body-content,
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-icon-wrap {
@@ -71,8 +66,8 @@
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-item {
   padding: 10px;
-  width: 160px;
   margin: 5px;
+  word-break: break-all;
   overflow-wrap: break-word;
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box svg {

@@ -3,7 +3,8 @@ import * as generators from '../../generators';
 
 const { generateResRangleControlAttributes } = generators;
 
-const { GRID_COLUMNS } = constants;
+const { GRID_COLUMNS, TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE } =
+	constants;
 
 const attributes = {
 	uniqueId: {
@@ -14,6 +15,7 @@ const attributes = {
 	},
 	title: {
 		type: 'string',
+		default: 18,
 	},
 	headingTag: {
 		type: 'string',
@@ -33,7 +35,15 @@ const attributes = {
 	descColor: {
 		type: 'string',
 	},
-
+	descHoverColor: {
+		type: 'string',
+	},
+	bgColor: {
+		type: 'string',
+	},
+	bgHoverColor: {
+		type: 'string',
+	},
 	alignment: {
 		type: 'string',
 	},
@@ -45,10 +55,7 @@ const attributes = {
 		type: 'string',
 		default: 'Button',
 	},
-	btnLink: {
-		type: 'string',
-	},
-	btnTarget: {
+	btnRadius: {
 		type: 'string',
 	},
 	btnBgColor: {
@@ -61,7 +68,7 @@ const attributes = {
 	},
 	btnBgHovercolor: {
 		type: 'string',
-		default: ' #e6ffe6',
+		default: '#e6ffe6',
 	},
 	btnHoverColor: {
 		type: 'string',
@@ -82,6 +89,32 @@ const attributes = {
 			[`${GRID_COLUMNS}DeskRange`]: 3,
 			[`${GRID_COLUMNS}TabRange`]: 2,
 			[`${GRID_COLUMNS}MobRange`]: 1,
+		},
+	}),
+
+	...generateResRangleControlAttributes({
+		controlName: TITLE_FONTSIZE,
+		defaults: {
+			[`${TITLE_FONTSIZE}DeskRange`]: 20,
+			[`${TITLE_FONTSIZE}TabRange`]: 15,
+			[`${TITLE_FONTSIZE}MobRange`]: 10,
+		},
+	}),
+
+	...generateResRangleControlAttributes({
+		controlName: DESCRIPTION_FONTSIZE,
+		defaults: {
+			[`${DESCRIPTION_FONTSIZE}DeskRange`]: 14,
+			[`${DESCRIPTION_FONTSIZE}TabRange`]: 12,
+			[`${DESCRIPTION_FONTSIZE}MobRange`]: 10,
+		},
+	}),
+	...generateResRangleControlAttributes({
+		controlName: BUTTON_FONTSIZE,
+		defaults: {
+			[`${BUTTON_FONTSIZE}DeskRange`]: 14,
+			[`${BUTTON_FONTSIZE}TabRange`]: 12,
+			[`${BUTTON_FONTSIZE}MobRange`]: 10,
 		},
 	}),
 };

@@ -1,12 +1,23 @@
 /*!*************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/blocks/icon-box-item/editor.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap);
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/blocks/icon-box-item/editor.scss (1) ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
 /*
 * Style Works for Editor Only
 */
 .wp-block-bdt-advanced-icon-box .block-editor-block-list__layout {
   display: grid;
   justify-items: center;
+}
+
+label {
+  font-family: "Raleway", sans-serif;
+  text-transform: capitalize !important;
+  font-size: 13px !important;
+  font-weight: 600;
 }
 
 .block-editor-link-control__field > .components-base-control__field {

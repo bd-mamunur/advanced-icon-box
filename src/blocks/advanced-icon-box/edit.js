@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-// import { __ } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 
 const { Fragment, useEffect } = wp.element;
@@ -17,7 +17,7 @@ import Inspector from './inspector';
 import { softMinifyCssStrings } from '../../helper/softminify';
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-	const { uniqueId, blockStyle, titleColor, descriptionColor } = attributes;
+	const { uniqueId, blockStyle } = attributes;
 
 	useEffect(() => {
 		if (!uniqueId) {
@@ -32,16 +32,31 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	} = attributes;
 
 	const deskStyles = `
-		.${uniqueId} .block-editor-block-list__layout {
-			display: grid;
+		.${uniqueId} .block-editor-block-list__layout{
 			grid-template-columns: repeat(${columnDesk}, 1fr);
 		}
-		.${uniqueId} .bdt-description {
-			color: ${descriptionColor};
+	
+		.${uniqueId} .aib-content {
+			grid-template-columns: repeat(${columnDesk},1fr);
 		}
+		
 	`;
-	const tabStyles = ``;
-	const mobStyles = ``;
+	const tabStyles = `	
+	.${uniqueId} .block-editor-block-list__layout {
+		grid-template-columns: repeat(${columnTab}, 1fr);
+	}
+	.${uniqueId} .aib-content {
+		grid-template-columns: repeat(${columnTab},1fr);
+	}
+`;
+	const mobStyles = `
+		.${uniqueId} .block-editor-block-list__layout{
+			grid-template-columns: repeat(${columnMob}, 1fr)
+		}
+		.${uniqueId} .aib-content {
+			grid-template-columns: repeat(${columnMob},1fr);
+		}
+		`;
 
 	/**
 	 * Block All Styles
@@ -71,13 +86,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					className: uniqueId,
 				})}
 			>
-				<div className="bdt-advanced-container">
-					<InnerBlocks
-						allowedBlocks={['bdt/icon-box-item']}
-						renderAppender={InnerBlocks.ButtonBlockAppender}
-						orientation="horizontal"
-					/>
-				</div>
+				<InnerBlocks
+					allowedBlocks={['bdt/icon-box-item']}
+					renderAppender={InnerBlocks.ButtonBlockAppender}
+					orientation="horizontal"
+				/>
 			</div>
 		</Fragment>
 	);

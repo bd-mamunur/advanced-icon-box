@@ -41,28 +41,20 @@
 
 	.bdt-advanced-icon-box .bdt-item {
 		border: 1px solid rgba(247, 247, 247, 0.829);
-		// padding: 30px;
 		transition: border 0.3s ease;
 		position: relative;
 		overflow: hidden;
 		border-radius: 10px;
-		background: rgba(147, 255, 170, 0.15);
+		// background: rgba(147, 255, 170, 0.15);
 	}
 
-	// .bdt-advanced-icon-box .bdt-item:hover {
-	// 	border-color: #32de23;
-	// }
-
 	.bdt-advanced-icon-box .bdt-title {
-		margin: 0 0 12px 0;
-		font-size: 25px;
+		margin: 0 0 0 0;
 		font-weight: 700;
 		text-transform: capitalize;
 	}
 
 	.bdt-advanced-icon-box .bdt-desc {
-		font-size: 16px;
-		color: #87878a;
 		line-height: 1.6;
 	}
 
@@ -73,7 +65,7 @@
 	.bdt-advanced-icon-box .bdt-link-btn a,
 	.button {
 		text-decoration: none;
-		font-size: 14px;
+		// font-size: 14px;
 		border: 1px solid #32de23;
 		padding: 10px 15px;
 		display: inline-block;
@@ -89,7 +81,7 @@
 	}
 
 	.bdt-advanced-icon-box .bdt-icon-wrap {
-		margin-bottom: 20px;
+		margin-bottom: 8px;
 	}
 
 	.bdt-advanced-icon-box .bdt-body-content,
@@ -114,8 +106,8 @@
 
 	.bdt-advanced-icon-box .bdt-item {
 		padding: 10px;
-		width: 160px;
 		margin: 5px;
+		word-break: break-all;
 		overflow-wrap: break-word;
 	}
 

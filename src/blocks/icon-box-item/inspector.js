@@ -13,6 +13,7 @@ import {
 	TextControl,
 	CardDivider,
 	TextareaControl,
+	RangeControl,
 } from '@wordpress/components';
 
 /**
@@ -23,7 +24,7 @@ import * as Controls from '../../controls';
 
 const { ResRangleControl, ColorControl, TabPanelControl, IconPickerControl } =
 	Controls;
-const { GRID_COLUMNS } = Constants;
+const { TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE } = Constants;
 
 import objAttributes from './attributes';
 
@@ -47,8 +48,12 @@ const Inspector = ({ attributes, setAttributes }) => {
 		titleHoverColor,
 		description,
 		descColor,
+		descHoverColor,
 		contentTag,
+		bgColor,
+		bgHoverColor,
 		btnLabel,
+		btnRadius,
 		alignment,
 		btnBgColor,
 		btnColor,
@@ -67,7 +72,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 		<InspectorControls>
 			<PanelBody
 				title={__('Content', 'advanced-icon-box')}
-				initialOpen={false}
+				initialOpen={true}
 			>
 				<TextControl
 					label={__('Title', 'advanced-icon-box')}
@@ -88,6 +93,38 @@ const Inspector = ({ attributes, setAttributes }) => {
 						})
 					}
 					options={headingTagOptions}
+				/>
+				<ResRangleControl
+					label={__('Title Size', 'advanced-icon-box')}
+					controlName={TITLE_FONTSIZE}
+					objAttrs={objAttrs}
+					noUnits={false}
+					max={22}
+					min={5}
+				/>
+				<TabPanelControl
+					normalComponents={
+						<ColorControl
+							label={__('Color', 'advanced-icon-box')}
+							color={titleColor}
+							onChange={(colorValu) =>
+								setAttributes({
+									titleColor: colorValu,
+								})
+							}
+						/>
+					}
+					hoverComponents={
+						<ColorControl
+							label={__('Hover Color', 'advanced-icon-box')}
+							color={titleHoverColor}
+							onChange={(colorValu) =>
+								setAttributes({
+									titleHoverColor: colorValu,
+								})
+							}
+						/>
+					}
 				/>
 				<CardDivider />
 				<TextareaControl
@@ -114,6 +151,60 @@ const Inspector = ({ attributes, setAttributes }) => {
 					}
 					options={headingTagOptions}
 				/>
+				<ResRangleControl
+					label={__('Description Size', 'advanced-icon-box')}
+					controlName={DESCRIPTION_FONTSIZE}
+					objAttrs={objAttrs}
+					noUnits={false}
+					max={22}
+					min={5}
+				/>
+				<TabPanelControl
+					normalComponents={
+						<ColorControl
+							label={__('Description color', 'advanced-icon-box')}
+							color={descColor}
+							onChange={(desValu) =>
+								setAttributes({ descColor: desValu })
+							}
+						/>
+					}
+					hoverComponents={
+						<ColorControl
+							label={__('Hover Color', 'advanced-icon-box')}
+							color={descHoverColor}
+							onChange={(deshoValue) =>
+								setAttributes({ descHoverColor: deshoValue })
+							}
+						/>
+					}
+				/>
+			</PanelBody>
+
+			<PanelBody
+				title={__('Container', 'advanced-icon-box')}
+				initialOpen={true}
+			>
+				<TabPanelControl
+					normalComponents={
+						<ColorControl
+							label={__('Background color', 'advanced-icon-box')}
+							color={bgColor}
+							onChange={(colorValue) =>
+								setAttributes({ bgColor: colorValue })
+							}
+						/>
+					}
+					hoverComponents={
+						<ColorControl
+							label={__('Hover Color', 'advanced-icon-box')}
+							color={bgHoverColor}
+							onChange={(hoverColor) =>
+								setAttributes({ bgHoverColor: hoverColor })
+							}
+						/>
+					}
+				/>
 			</PanelBody>
 
 			<PanelBody
@@ -125,12 +216,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					value={icon}
 					onChange={(value) => setAttributes({ icon: value })}
 				/>
-			</PanelBody>
-
-			<PanelBody
-				title={__('Advanced Icon Settings', 'advanced-icon-box')}
-				initialOpen={true}
-			>
+				<CardDivider />
 				<IconPickerControl
 					label={__('Alignment', 'advanced-icon-box')}
 					onHandle={(v) => setAttributes({ alignment: v })}
@@ -147,72 +233,8 @@ const Inspector = ({ attributes, setAttributes }) => {
 			</PanelBody>
 
 			<PanelBody
-				title={__('Title Tag', 'advanced-icon-box')}
-				initialOpen={true}
-			>
-				<SelectControl
-					label={__('HEADING TAG', 'advanced-icon-box')}
-					value={headingTag}
-					options={[
-						{ label: 'h1', value: 'h1' },
-						{ label: 'h2', value: 'h2' },
-						{ label: 'h3', value: 'h3' },
-						{ label: 'h4', value: 'h4' },
-						{ label: 'h5', value: 'h5' },
-						{ label: 'h6', value: 'h6' },
-					]}
-					onChange={(v) => {
-						setAttributes({ headingTag: v });
-					}}
-				/>
-
-				<TabPanelControl
-					normalComponents={
-						<ColorControl
-							label={__('Color', 'advanced-icon-box')}
-							color={titleColor}
-							onChange={(colorValu) =>
-								setAttributes({
-									titleColor: colorValu,
-								})
-							}
-						/>
-					}
-					hoverComponents={
-						<ColorControl
-							label={__('Hover Color', 'advanced-icon-box')}
-							color={titleHoverColor}
-							onChange={(colorValu) =>
-								setAttributes({
-									titleHoverColor: colorValu,
-								})
-							}
-						/>
-					}
-				/>
-			</PanelBody>
-			<PanelBody
-				title={__('Content Tag', 'advanced-icon-box')}
-				initialOpen={false}
-			>
-				<SelectControl
-					label={__('CONTENT TAG', 'advanced-icon-box')}
-					value={contentTag}
-					options={[
-						{ label: 'p', value: 'p' },
-						{ label: 'span', value: 'span' },
-						{ label: 'div', value: 'div' },
-						{ label: 'h1', value: 'h1' },
-					]}
-					onChange={(v) => {
-						setAttributes({ contentTag: v });
-					}}
-				/>
-			</PanelBody>
-
-			<PanelBody
 				title={__('Button Settings', 'advanced-icon-box')}
-				initialOpen={false}
+				initialOpen={true}
 			>
 				<TextControl
 					label={__('Button Label', 'advanced-icon-box')}
@@ -230,26 +252,48 @@ const Inspector = ({ attributes, setAttributes }) => {
 					]}
 					onChange={(data) => setAttributes({ btnLinkObj: data })}
 				/>
+				<CardDivider />
+				<ResRangleControl
+					label={__('Button Font Size', 'advanced-icon-box')}
+					controlName={BUTTON_FONTSIZE}
+					objAttrs={objAttrs}
+					noUnits={false}
+					max={30}
+					min={5}
+				/>
 
+				<RangeControl
+					label={__('Button Radius', 'advanced-icon-box')}
+					value={btnRadius}
+					onChange={(btnValue) =>
+						setAttributes({ btnRadius: btnValue })
+					}
+					min={2}
+					max={30}
+				/>
+
+				<CardDivider />
 				<TabPanelControl
 					normalComponents={
 						<>
 							<ColorControl
 								label={__(
-									'Background Color',
+									'Button Text Color',
+									'advanced-icon-box'
+								)}
+								color={btnColor}
+								onChange={(textValue) =>
+									setAttributes({ btnColor: textValue })
+								}
+							/>
+							<ColorControl
+								label={__(
+									'Background color',
 									'advanced-icon-box'
 								)}
 								color={btnBgColor}
-								onChange={(colorValu) =>
-									setAttributes({ btnBgColor: colorValu })
-								}
-							/>
-							<CardDivider />
-							<ColorControl
-								label={__('Color', 'advanced-icon-box')}
-								color={btnColor}
-								onChange={(colorValu) =>
-									setAttributes({ btnColor: colorValu })
+								onChange={(btnValue) =>
+									setAttributes({ btnBgColor: btnValue })
 								}
 							/>
 						</>
@@ -258,22 +302,24 @@ const Inspector = ({ attributes, setAttributes }) => {
 						<>
 							<ColorControl
 								label={__(
-									'Bg Hover Color',
+									'Button Hover Color',
+									'advanced-icon-box'
+								)}
+								color={btnHoverColor}
+								onChange={(textValue) =>
+									setAttributes({ btnHoverColor: textValue })
+								}
+							/>
+							<ColorControl
+								label={__(
+									'Background Hover Color',
 									'advanced-icon-box'
 								)}
 								color={btnBgHovercolor}
-								onChange={(colorValu) =>
+								onChange={(btnValue) =>
 									setAttributes({
-										btnBgHovercolor: colorValu,
+										btnBgHovercolor: btnValue,
 									})
-								}
-							/>
-							<CardDivider />
-							<ColorControl
-								label={__('Color', 'advanced-icon-box')}
-								color={btnHoverColor}
-								onChange={(colorValu) =>
-									setAttributes({ btnHoverColor: colorValu })
 								}
 							/>
 						</>
