@@ -22,8 +22,13 @@ import {
 import * as Constants from './constants';
 import * as Controls from '../../controls';
 
-const { ResRangleControl, ColorControl, TabPanelControl, IconPickerControl } =
-	Controls;
+const {
+	ResRangleControl,
+	ColorControl,
+	TabPanelControl,
+	IconPickerControl,
+	SelectPickerControl,
+} = Controls;
 const { TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE } = Constants;
 
 import objAttributes from './attributes';
@@ -39,15 +44,23 @@ const headingTagOptions = [
 	{ label: 'span', value: 'span' },
 	{ label: 'p', value: 'p' },
 ];
+const alignIconOption = [
+	{ name: 'editor-alignleft', value: 'left' },
+	{ name: 'editor-aligncenter', value: 'center' },
+	{ name: 'editor-alignright', value: 'right' },
+];
 
 const Inspector = ({ attributes, setAttributes }) => {
 	const {
 		title,
+		titleAlign,
 		headingTag,
 		titleColor,
 		titleHoverColor,
 		description,
 		descColor,
+		descAlign,
+		descCase,
 		descHoverColor,
 		contentTag,
 		bgColor,
@@ -55,24 +68,47 @@ const Inspector = ({ attributes, setAttributes }) => {
 		btnLabel,
 		btnRadius,
 		alignment,
+		btnAlign,
+		titleCase,
 		btnBgColor,
 		btnColor,
 		btnBgHovercolor,
 		btnHoverColor,
-		icons,
 		btnLinkObj,
-		gridLine,
 		icon,
 	} = attributes;
 	const objAttrs = { attributes, setAttributes, objAttributes };
 
-	console.log(icon);
-
 	return (
 		<InspectorControls>
 			<PanelBody
-				title={__('Content', 'advanced-icon-box')}
+				title={__('General', 'advanced-icon-box')}
 				initialOpen={true}
+			>
+				<TabPanelControl
+					normalComponents={
+						<ColorControl
+							label={__('Background color', 'advanced-icon-box')}
+							color={bgColor}
+							onChange={(colorValue) =>
+								setAttributes({ bgColor: colorValue })
+							}
+						/>
+					}
+					hoverComponents={
+						<ColorControl
+							label={__('Hover Color', 'advanced-icon-box')}
+							color={bgHoverColor}
+							onChange={(hoverColor) =>
+								setAttributes({ bgHoverColor: hoverColor })
+							}
+						/>
+					}
+				/>
+			</PanelBody>
+			<PanelBody
+				title={__('Title Section', 'advanced-icon-box')}
+				initialOpen={false}
 			>
 				<TextControl
 					label={__('Title', 'advanced-icon-box')}
@@ -102,6 +138,28 @@ const Inspector = ({ attributes, setAttributes }) => {
 					max={22}
 					min={5}
 				/>
+
+				<SelectControl
+					label="Title Case Style"
+					value={titleCase}
+					options={[
+						{ label: 'Lowercase', value: 'lowercase' },
+						{ label: 'Capitalize', value: 'capitalize' },
+						{ label: 'Uppercase', value: 'uppercase' },
+					]}
+					onChange={(value) =>
+						setAttributes({
+							titleCase: value,
+						})
+					}
+				/>
+				<SelectPickerControl
+					label={__('Title Alignment', 'advanced-icon-box')}
+					onchange={(v) => setAttributes({ titleAlign: v })}
+					className="btn-align"
+					variant="secondary"
+					icon={alignIconOption}
+				/>
 				<TabPanelControl
 					normalComponents={
 						<ColorControl
@@ -126,7 +184,12 @@ const Inspector = ({ attributes, setAttributes }) => {
 						/>
 					}
 				/>
-				<CardDivider />
+			</PanelBody>
+
+			<PanelBody
+				title={__('Content', 'advanced-icon-box')}
+				initialOpen={true}
+			>
 				<TextareaControl
 					help={__(
 						'Enter description. Press Enter to create a new line.',
@@ -159,6 +222,30 @@ const Inspector = ({ attributes, setAttributes }) => {
 					max={22}
 					min={5}
 				/>
+
+				<SelectControl
+					label="Description Case Style"
+					value={descCase}
+					options={[
+						{ label: 'Lowercase', value: 'lowercase' },
+						{ label: 'Capitalize', value: 'capitalize' },
+						{ label: 'Uppercase', value: 'uppercase' },
+					]}
+					onChange={(value) =>
+						setAttributes({
+							descCase: value,
+						})
+					}
+				/>
+
+				<SelectPickerControl
+					label={__('Description Alignment', 'advanced-icon-box')}
+					onchange={(v) => setAttributes({ descAlign: v })}
+					className="btn-align"
+					variant="secondary"
+					iconv=""
+					icon={alignIconOption}
+				/>
 				<TabPanelControl
 					normalComponents={
 						<ColorControl
@@ -182,53 +269,22 @@ const Inspector = ({ attributes, setAttributes }) => {
 			</PanelBody>
 
 			<PanelBody
-				title={__('Container', 'advanced-icon-box')}
-				initialOpen={true}
-			>
-				<TabPanelControl
-					normalComponents={
-						<ColorControl
-							label={__('Background color', 'advanced-icon-box')}
-							color={bgColor}
-							onChange={(colorValue) =>
-								setAttributes({ bgColor: colorValue })
-							}
-						/>
-					}
-					hoverComponents={
-						<ColorControl
-							label={__('Hover Color', 'advanced-icon-box')}
-							color={bgHoverColor}
-							onChange={(hoverColor) =>
-								setAttributes({ bgHoverColor: hoverColor })
-							}
-						/>
-					}
-				/>
-			</PanelBody>
-
-			<PanelBody
 				title={__('Icon Picker', 'advacned-icon-box')}
 				initialOpen={true}
 			>
 				<IconPickerControl
-					label={__('Select My Icon', 'advanced-icon-box')}
+					label={__('Select Icon', 'advanced-icon-box')}
 					value={icon}
 					onChange={(value) => setAttributes({ icon: value })}
 				/>
 				<CardDivider />
-				<IconPickerControl
-					label={__('Alignment', 'advanced-icon-box')}
-					onHandle={(v) => setAttributes({ alignment: v })}
+				<SelectPickerControl
+					label={__('Icon Alignment', 'advanced-icon-box')}
+					onchange={(v) => setAttributes({ alignment: v })}
 					className="btn-align"
-					variant="primary"
+					variant="secondary"
 					iconv=""
-					icon={[
-						{ name: 'editor-alignleft', value: 'left' },
-						{ name: 'editor-aligncenter', value: 'center' },
-						{ name: 'editor-alignleft', value: 'right' },
-					]}
-					objAttrs={objAttrs}
+					icon={alignIconOption}
 				/>
 			</PanelBody>
 
@@ -252,6 +308,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					]}
 					onChange={(data) => setAttributes({ btnLinkObj: data })}
 				/>
+
 				<CardDivider />
 				<ResRangleControl
 					label={__('Button Font Size', 'advanced-icon-box')}
@@ -271,7 +328,13 @@ const Inspector = ({ attributes, setAttributes }) => {
 					min={2}
 					max={30}
 				/>
-
+				<SelectPickerControl
+					label={__('Button Alignment', 'advanced-icon-box')}
+					onchange={(v) => setAttributes({ btnAlign: v })}
+					className="btn-align"
+					variant="secondary"
+					icon={alignIconOption}
+				/>
 				<CardDivider />
 				<TabPanelControl
 					normalComponents={

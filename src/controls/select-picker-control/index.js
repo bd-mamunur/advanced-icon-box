@@ -1,9 +1,7 @@
 import { Button } from '@wordpress/components';
 import './style.scss';
-const IconPickerControl = ({ label, icon, onHandle, className, variant }) => {
-	// const { attributes, setAttributes } = objAttrs;
-	// const { icons } = attributes;
-
+<style></style>;
+const IconPickerControl = ({ label, icon, onchange, className, variant }) => {
 	return (
 		<div className="aib-containter">
 			<div className="aib-label">{label}</div>
@@ -11,10 +9,11 @@ const IconPickerControl = ({ label, icon, onHandle, className, variant }) => {
 			{icon &&
 				icon.map((item, i) => (
 					<Button
-						onClick={() => onHandle(item.value)}
+						onClick={() => onchange(item.value)}
 						className={className}
 						key={i}
 						variant={variant}
+						icon={item.name}
 					>
 						<span
 							role="img"

@@ -23,6 +23,12 @@ const attributes = {
 	contentTag: {
 		type: 'string',
 	},
+	titleAlign: {
+		type: 'string',
+	},
+	titleCase: {
+		type: 'string',
+	},
 	titleColor: {
 		type: 'string',
 	},
@@ -36,6 +42,12 @@ const attributes = {
 		type: 'string',
 	},
 	descHoverColor: {
+		type: 'string',
+	},
+	descAlign: {
+		type: 'string',
+	},
+	descCase: {
 		type: 'string',
 	},
 	bgColor: {
@@ -54,6 +66,10 @@ const attributes = {
 	btnLabel: {
 		type: 'string',
 		default: 'Button',
+	},
+	btnAlign: {
+		type: 'string',
+		default: 'left',
 	},
 	btnRadius: {
 		type: 'string',
@@ -74,9 +90,7 @@ const attributes = {
 		type: 'string',
 		default: '#ec0707',
 	},
-	icons: {
-		type: 'string',
-	},
+
 	align: {
 		type: 'string',
 	},

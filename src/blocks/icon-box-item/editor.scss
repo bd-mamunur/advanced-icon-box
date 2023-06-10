@@ -10,15 +10,6 @@
 }
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
 
-//label css
-
-label {
-	font-family: "Raleway", sans-serif;
-	text-transform: capitalize !important;
-	font-size: 13px !important;
-	font-weight: 600;
-}
-
 //inspect controll
 .block-editor-link-control__field > .components-base-control__field {
 	width: 210px;
@@ -28,13 +19,11 @@ button.components-button.block-editor-link-control__search-item-action.has-icon 
 	margin-right: 117px;
 }
 
-button.components-button.is-primary {
-	margin: 5px;
+button.components-button {
+	margin: 2px;
 }
 
 .bdt-advanced-icon-box svg {
 	width: 25px;
 	height: 25px;
 }
-
-//icon alignment

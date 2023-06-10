@@ -9,7 +9,6 @@ export default function save({ attributes }) {
 		contentTag,
 		btnLabel,
 		btnLinkObj,
-		icons,
 		icon,
 	} = attributes;
 	return (
@@ -39,7 +38,7 @@ export default function save({ attributes }) {
 									/>
 								</div>
 								{btnLinkObj && btnLinkObj.url && (
-									<div className="bdt-link-btn">
+									<div className="bdt-link-btn" id="btn-link">
 										<a
 											href={
 												btnLinkObj &&

@@ -13,13 +13,6 @@
   justify-items: center;
 }
 
-label {
-  font-family: "Raleway", sans-serif;
-  text-transform: capitalize !important;
-  font-size: 13px !important;
-  font-weight: 600;
-}
-
 .block-editor-link-control__field > .components-base-control__field {
   width: 210px;
 }
@@ -28,8 +21,8 @@ button.components-button.block-editor-link-control__search-item-action.has-icon 
   margin-right: 117px;
 }
 
-button.components-button.is-primary {
-  margin: 5px;
+button.components-button {
+  margin: 2px;
 }
 
 .bdt-advanced-icon-box svg {
