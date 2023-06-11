@@ -71,9 +71,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	} = attributes;
 
 	const deskStyles = `
-
+		${titleColor ? `.${uniqueId} .bdt-title { color: ${titleColor}; }` : ''}
 	 	.${uniqueId} .bdt-title {
-			color: ${titleColor};
 			font-size: ${fontSizeDesk}px !important;
 			text-align: ${titleAlign};
 			text-transform: ${titleCase} !important;
@@ -295,21 +294,26 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								<DisplayIcon icon={icon} />
 							</div>
 							<div className="bdt-body-content">
-								<div className="bdt-title">
-									<RichText
-										tagName={headingTag}
-										value={title}
-										placeholder="Title"
-										onChange={(v) =>
-											setAttributes({ title: v })
-										}
-									/>
-								</div>
+								<RichText
+									className="bdt-title"
+									tagName={headingTag}
+									value={title}
+									placeholder={__(
+										'Title',
+										'advanced-icon-box'
+									)}
+									onChange={(v) =>
+										setAttributes({ title: v })
+									}
+								/>
 								<div className="bdt-desc">
 									<RichText
 										tagName={contentTag}
 										value={description}
-										placeholder="Description Here"
+										placeholder={__(
+											'Description',
+											'advanced-icon-box'
+										)}
 										onChange={(v) =>
 											setAttributes({ description: v })
 										}
@@ -324,7 +328,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 											setAttributes({ btnLabel: value })
 										}
 										placeholder={__(
-											'Button Label',
+											'Label',
 											'advanced-icon-box'
 										)}
 									/>

@@ -14,6 +14,9 @@ import {
 	CardDivider,
 	TextareaControl,
 	RangeControl,
+	ButtonGroup,
+	Button,
+	BaseControl,
 } from '@wordpress/components';
 
 /**
@@ -32,6 +35,7 @@ const {
 const { TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE } = Constants;
 
 import objAttributes from './attributes';
+import AlignmentControl from '../../controls/alignment-control';
 
 const headingTagOptions = [
 	{ label: 'h1', value: 'h1' },
@@ -328,12 +332,15 @@ const Inspector = ({ attributes, setAttributes }) => {
 					min={2}
 					max={30}
 				/>
-				<SelectPickerControl
+				<AlignmentControl
 					label={__('Button Alignment', 'advanced-icon-box')}
-					onchange={(v) => setAttributes({ btnAlign: v })}
-					className="btn-align"
-					variant="secondary"
-					icon={alignIconOption}
+					value={btnAlign}
+					onChange={(value) =>
+						setAttributes({
+							btnAlign: value,
+						})
+					}
+					options={alignIconOption}
 				/>
 				<CardDivider />
 				<TabPanelControl

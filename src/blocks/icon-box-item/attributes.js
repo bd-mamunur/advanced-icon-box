@@ -19,9 +19,11 @@ const attributes = {
 	},
 	headingTag: {
 		type: 'string',
+		default: 'h3',
 	},
 	contentTag: {
 		type: 'string',
+		default: 'p',
 	},
 	titleAlign: {
 		type: 'string',
@@ -65,7 +67,6 @@ const attributes = {
 	},
 	btnLabel: {
 		type: 'string',
-		default: 'Button',
 	},
 	btnAlign: {
 		type: 'string',

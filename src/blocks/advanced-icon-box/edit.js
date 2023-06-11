@@ -88,7 +88,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			>
 				<InnerBlocks
 					allowedBlocks={['bdt/icon-box-item']}
-					renderAppender={InnerBlocks.ButtonBlockAppender}
+					template={[
+						['bdt/icon-box-item'],
+						['bdt/icon-box-item'],
+						['bdt/icon-box-item'],
+					]}
+					renderAppender={() => <InnerBlocks.ButtonBlockAppender />}
 					orientation="horizontal"
 				/>
 			</div>
