@@ -92,29 +92,24 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		 }
 		 .${uniqueId} .bdt-desc:hover {
 			color: ${descHoverColor};
-			}
-			.${uniqueId} .bdt-item  {
-				background: ${bgColor};
-			}
-			.${uniqueId} .bdt-item:hover  {
-				background: ${bgHoverColor};
-				}
-			.${uniqueId} .bdt-icon-wrap {
-			 	text-align: ${alignment} !important;
-				}
-	
-			.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
-				
-				text-align: ${iconAlign} !important;
-				
-			    }
-				.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-				    border-radius : ${iconRadius.top} ${iconRadius.right} ${
-		iconRadius.buttom
-	} ${iconRadius.left} !important;
-
-					
-				}
+		}
+		.${uniqueId} .bdt-item  {
+			background: ${bgColor};
+		}
+		.${uniqueId} .bdt-item:hover  {
+			background: ${bgHoverColor};
+		}
+		.${uniqueId} .bdt-icon-wrap {
+			text-align: ${alignment} !important;
+		}
+		.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
+			text-align: ${iconAlign} !important;
+		}
+		.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
+			border-radius : ${iconRadius.top} ${iconRadius.right} ${iconRadius.bottom} ${
+		iconRadius.left
+	} !important;
+		}
 
 				.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 					color: ${btnColor};
