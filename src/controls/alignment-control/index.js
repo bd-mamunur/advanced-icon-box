@@ -9,6 +9,7 @@ import './style.scss';
 
 const AlignmentControl = ({ label, value, instanceId, options, onChange }) => {
 	const id = `btn-group-${instanceId}`;
+
 	return (
 		<BaseControl className="bdt-alignment" id={id} label={label}>
 			<ButtonGroup className="btn-group" id={id}>
@@ -19,11 +20,11 @@ const AlignmentControl = ({ label, value, instanceId, options, onChange }) => {
 								key={index}
 								icon={item.name}
 								variant={
-									value === item.name
+									value === item.value
 										? 'primary'
 										: 'secondary'
 								}
-								onClick={() => onChange(item.name)}
+								onClick={() => onChange(item.value)}
 							/>
 						);
 					})}

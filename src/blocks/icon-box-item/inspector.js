@@ -14,6 +14,7 @@ import {
 	CardDivider,
 	TextareaControl,
 	RangeControl,
+	__experimentalBoxControl as BoxControl,
 	ButtonGroup,
 	Button,
 	BaseControl,
@@ -56,9 +57,12 @@ const alignIconOption = [
 
 const Inspector = ({ attributes, setAttributes }) => {
 	const {
+		iconRadius,
 		title,
 		titleAlign,
 		headingTag,
+		titleBgColor,
+		titleRadius,
 		titleColor,
 		titleHoverColor,
 		description,
@@ -69,6 +73,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 		contentTag,
 		bgColor,
 		bgHoverColor,
+		iconAlign,
 		btnLabel,
 		btnRadius,
 		alignment,
@@ -157,13 +162,19 @@ const Inspector = ({ attributes, setAttributes }) => {
 						})
 					}
 				/>
+
 				<SelectPickerControl
 					label={__('Title Alignment', 'advanced-icon-box')}
 					onchange={(v) => setAttributes({ titleAlign: v })}
 					className="btn-align"
-					variant="secondary"
-					icon={alignIconOption}
+					value={titleAlign}
+					icon={[
+						{ name: 'editor-alignleft', value: 'left' },
+						{ name: 'editor-aligncenter', value: 'center' },
+						{ name: 'editor-alignright', value: 'right' },
+					]}
 				/>
+				<CardDivider />
 				<TabPanelControl
 					normalComponents={
 						<ColorControl
@@ -282,13 +293,24 @@ const Inspector = ({ attributes, setAttributes }) => {
 					onChange={(value) => setAttributes({ icon: value })}
 				/>
 				<CardDivider />
-				<SelectPickerControl
+				<BoxControl
+					label={__('Border Radius', 'advanced-icon-box')}
+					values={iconRadius}
+					onChange={(v) => setAttributes({ iconRadius: v })}
+				/>
+				<AlignmentControl
 					label={__('Icon Alignment', 'advanced-icon-box')}
-					onchange={(v) => setAttributes({ alignment: v })}
-					className="btn-align"
-					variant="secondary"
-					iconv=""
-					icon={alignIconOption}
+					value={iconAlign}
+					onChange={(value) =>
+						setAttributes({
+							iconAlign: value,
+						})
+					}
+					options={[
+						{ name: 'editor-alignleft', value: 'left' },
+						{ name: 'editor-aligncenter', value: 'center' },
+						{ name: 'editor-alignright', value: 'right' },
+					]}
 				/>
 			</PanelBody>
 
@@ -302,7 +324,10 @@ const Inspector = ({ attributes, setAttributes }) => {
 					onChange={(v) => setAttributes({ btnLabel: v })}
 				/>
 				<LinkControl
-					searchInputPlaceholder="Search here..."
+					searchInputPlaceholder={__(
+						'Link Here..',
+						'advanced-icon-box'
+					)}
 					value={btnLinkObj}
 					settings={[
 						{

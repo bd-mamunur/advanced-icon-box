@@ -33,6 +33,12 @@ const attributes = {
     type: 'string',
     default: 18
   },
+  titleRadius: {
+    type: 'string'
+  },
+  titleBgColor: {
+    type: 'string'
+  },
   headingTag: {
     type: 'string',
     default: 'h3'
@@ -69,13 +75,23 @@ const attributes = {
     type: 'string'
   },
   bgColor: {
-    type: 'string'
+    type: 'string',
+    default: '#EFFFF2'
   },
   bgHoverColor: {
     type: 'string'
   },
   alignment: {
     type: 'string'
+  },
+  iconRadius: {
+    type: 'object',
+    default: {
+      top: '10px',
+      left: '10px',
+      buttom: '10px',
+      right: '10px'
+    }
   },
   btnLinkObj: {
     type: 'object'
@@ -185,17 +201,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants */ "./src/blocks/icon-box-item/constants/index.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/icon-box-item/editor.scss");
-/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./inspector */ "./src/blocks/icon-box-item/inspector.js");
-/* harmony import */ var _helper_softminify__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../helper/softminify */ "./src/helper/softminify.js");
-/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../controls */ "./src/controls/index.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./src/blocks/icon-box-item/constants/index.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/icon-box-item/editor.scss");
+/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./inspector */ "./src/blocks/icon-box-item/inspector.js");
+/* harmony import */ var _helper_softminify__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helper/softminify */ "./src/helper/softminify.js");
+/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../controls */ "./src/controls/index.js");
 
 
 /* eslint-disable no-console */
-
 
 
 const {
@@ -207,7 +220,7 @@ const {
   TITLE_FONTSIZE,
   DESCRIPTION_FONTSIZE,
   BUTTON_FONTSIZE
-} = _constants__WEBPACK_IMPORTED_MODULE_4__; //generator
+} = _constants__WEBPACK_IMPORTED_MODULE_3__; //generator
 // editor style
 
 
@@ -227,6 +240,7 @@ function Edit(_ref) {
   const {
     uniqueId,
     blockStyle,
+    iconRadius,
     title,
     titleAlign,
     titleCase,
@@ -241,6 +255,7 @@ function Edit(_ref) {
     bgHoverColor,
     headingTag,
     contentTag,
+    iconAlign,
     btnLabel,
     btnRadius,
     alignment,
@@ -285,7 +300,7 @@ function Edit(_ref) {
 			color: ${titleHoverColor};
 		 }
 		
-	 	.${uniqueId} .bdt-desc {
+	 	.${uniqueId} .bdt-desc .bdt-desc-size{
 			 color: ${descColor};
 			 font-size: ${descFontSizeDesk}px;
 			 text-align: ${descAlign};
@@ -302,13 +317,23 @@ function Edit(_ref) {
 				background: ${bgHoverColor};
 				}
 			.${uniqueId} .bdt-icon-wrap {
-			 	text-align: ${alignment};
+			 	text-align: ${alignment} !important;
+				}
+	
+			.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
+				
+				text-align: ${iconAlign} !important;
+				
+			    }
+				.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
+				    border-radius : ${iconRadius.top} ${iconRadius.right} ${iconRadius.buttom} ${iconRadius.left} !important;
+
+					
 				}
 
-			
 				.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 					color: ${btnColor};
-					 background-color: ${btnBgColor};
+					background-color: ${btnBgColor};
 					font-size: ${btnFontSizeDesk}px;
 					border-radius: ${btnRadius}px;
 			
@@ -347,7 +372,7 @@ function Edit(_ref) {
 		color: ${titleHoverColor};
 	 }
 	
-	 .${uniqueId} .bdt-desc {
+	 .${uniqueId} .bdt-desc .bdt-desc-size {
 		 color: ${descColor};
 		 font-size: ${descFontSizeTab}px;
 		 text-align: ${descAlign};
@@ -408,7 +433,7 @@ function Edit(_ref) {
 		color: ${titleHoverColor};
 	 }
 	
-	 .${uniqueId} .bdt-desc {
+	 .${uniqueId} .bdt-desc .bdt-desc-size{
 		 color: ${descColor};
 		 font-size: ${descFontSizeMob}px;
 		 text-align: ${descAlign};
@@ -479,8 +504,7 @@ function Edit(_ref) {
       });
     }
   }, [attributes]);
-  console.log(btnAlign);
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `${(0,_helper_softminify__WEBPACK_IMPORTED_MODULE_7__.softMinifyCssStrings)(blockStyleCss)}`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `${(0,_helper_softminify__WEBPACK_IMPORTED_MODULE_6__.softMinifyCssStrings)(blockStyleCss)}`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_5__["default"], {
     attributes: attributes,
     setAttributes: setAttributes
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
@@ -493,9 +517,11 @@ function Edit(_ref) {
     className: "bdt-item"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-icon-wrap"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls__WEBPACK_IMPORTED_MODULE_8__.DisplayIcon, {
+  }, icon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bdt-icon-bg bdt-svg"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls__WEBPACK_IMPORTED_MODULE_7__.DisplayIcon, {
     icon: icon
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-body-content"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     className: "bdt-title",
@@ -508,6 +534,7 @@ function Edit(_ref) {
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-desc"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    className: "bdt-desc-size",
     tagName: contentTag,
     value: description,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description', 'advanced-icon-box'),
@@ -664,9 +691,12 @@ const Inspector = _ref => {
     setAttributes
   } = _ref;
   const {
+    iconRadius,
     title,
     titleAlign,
     headingTag,
+    titleBgColor,
+    titleRadius,
     titleColor,
     titleHoverColor,
     description,
@@ -677,6 +707,7 @@ const Inspector = _ref => {
     contentTag,
     bgColor,
     bgHoverColor,
+    iconAlign,
     btnLabel,
     btnRadius,
     alignment,
@@ -758,9 +789,18 @@ const Inspector = _ref => {
       titleAlign: v
     }),
     className: "btn-align",
-    variant: "secondary",
-    icon: alignIconOption
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
+    value: titleAlign,
+    icon: [{
+      name: 'editor-alignleft',
+      value: 'left'
+    }, {
+      name: 'editor-aligncenter',
+      value: 'center'
+    }, {
+      name: 'editor-alignright',
+      value: 'right'
+    }]
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
     normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
       color: titleColor,
@@ -849,15 +889,28 @@ const Inspector = _ref => {
     onChange: value => setAttributes({
       icon: value
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectPickerControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalBoxControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border Radius', 'advanced-icon-box'),
+    values: iconRadius,
+    onChange: v => setAttributes({
+      iconRadius: v
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_alignment_control__WEBPACK_IMPORTED_MODULE_7__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Alignment', 'advanced-icon-box'),
-    onchange: v => setAttributes({
-      alignment: v
+    value: iconAlign,
+    onChange: value => setAttributes({
+      iconAlign: value
     }),
-    className: "btn-align",
-    variant: "secondary",
-    iconv: "",
-    icon: alignIconOption
+    options: [{
+      name: 'editor-alignleft',
+      value: 'left'
+    }, {
+      name: 'editor-aligncenter',
+      value: 'center'
+    }, {
+      name: 'editor-alignright',
+      value: 'right'
+    }]
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Settings', 'advanced-icon-box'),
     initialOpen: true
@@ -868,7 +921,7 @@ const Inspector = _ref => {
       btnLabel: v
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.__experimentalLinkControl, {
-    searchInputPlaceholder: "Search here...",
+    searchInputPlaceholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Link Here..', 'advanced-icon-box'),
     value: btnLinkObj,
     settings: [{
       id: 'openInNewTab',
@@ -975,16 +1028,17 @@ function save(_ref) {
     className: "bdt-item"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-icon-wrap"
+  }, icon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "bdt-icon-bg"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls__WEBPACK_IMPORTED_MODULE_2__.DisplayIcon, {
     icon: icon
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-body-content"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bdt-title"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+    className: "bdt-title",
     tagName: headingTag,
     value: title
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-desc"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
     tagName: contentTag,
@@ -1047,8 +1101,8 @@ const AlignmentControl = _ref => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
       key: index,
       icon: item.name,
-      variant: value === item.name ? 'primary' : 'secondary',
-      onClick: () => onChange(item.name)
+      variant: value === item.value ? 'primary' : 'secondary',
+      onClick: () => onChange(item.value)
     });
   })));
 };
@@ -1442,7 +1496,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null);
 
 const IconPickerControl = _ref => {
   let {
@@ -1450,23 +1503,25 @@ const IconPickerControl = _ref => {
     icon,
     onchange,
     className,
-    variant
+    value
   } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "aib-containter"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "aib-label"
-  }, label), icon && icon.map((item, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+  }, label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "aib-icon-wrap"
+  }, icon && icon.map((item, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
     onClick: () => onchange(item.value),
     className: className,
     key: i,
-    variant: variant,
+    variant: value === item.value ? 'primary' : 'secondary',
     icon: item.name
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     role: "img",
     "aria-label": "sheep",
     className: "iconValue"
-  }, item.value))));
+  }, item.value)))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (IconPickerControl);

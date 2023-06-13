@@ -17,7 +17,7 @@ import Inspector from './inspector';
 import { softMinifyCssStrings } from '../../helper/softminify';
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-	const { uniqueId, blockStyle } = attributes;
+	const { uniqueId, blockStyle, columGap } = attributes;
 
 	useEffect(() => {
 		if (!uniqueId) {
@@ -34,27 +34,33 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const deskStyles = `
 		.${uniqueId} .block-editor-block-list__layout{
 			grid-template-columns: repeat(${columnDesk}, 1fr);
+			gap: ${columGap}px;
 		}
 	
 		.${uniqueId} .aib-content {
 			grid-template-columns: repeat(${columnDesk},1fr);
+			gap: ${columGap}px;
 		}
 		
 	`;
 	const tabStyles = `	
 	.${uniqueId} .block-editor-block-list__layout {
 		grid-template-columns: repeat(${columnTab}, 1fr);
+		gap: ${columGap}px;
 	}
 	.${uniqueId} .aib-content {
 		grid-template-columns: repeat(${columnTab},1fr);
+		gap: ${columGap}px;
 	}
 `;
 	const mobStyles = `
 		.${uniqueId} .block-editor-block-list__layout{
 			grid-template-columns: repeat(${columnMob}, 1fr)
+			gap: ${columGap}px;
 		}
 		.${uniqueId} .aib-content {
 			grid-template-columns: repeat(${columnMob},1fr);
+			gap: ${columGap}px;
 		}
 		`;
 

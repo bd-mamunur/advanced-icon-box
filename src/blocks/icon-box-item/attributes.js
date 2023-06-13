@@ -17,6 +17,12 @@ const attributes = {
 		type: 'string',
 		default: 18,
 	},
+	titleRadius: {
+		type: 'string',
+	},
+	titleBgColor: {
+		type: 'string',
+	},
 	headingTag: {
 		type: 'string',
 		default: 'h3',
@@ -54,6 +60,7 @@ const attributes = {
 	},
 	bgColor: {
 		type: 'string',
+		default: '#EFFFF2',
 	},
 	bgHoverColor: {
 		type: 'string',
@@ -61,7 +68,15 @@ const attributes = {
 	alignment: {
 		type: 'string',
 	},
-
+	iconRadius: {
+		type: 'object',
+		default: {
+			top: '10px',
+			left: '10px',
+			buttom: '10px',
+			right: '10px',
+		},
+	},
 	btnLinkObj: {
 		type: 'object',
 	},

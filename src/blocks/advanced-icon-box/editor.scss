@@ -18,3 +18,12 @@
 }
 
 // Inspector Controls style
+
+.components-base-control__field {
+	.res-btn {
+		button {
+			width: 25px;
+			height: 25px;
+		}
+	}
+}

@@ -22,15 +22,18 @@ export default function save({ attributes }) {
 					<div className="bdt-advanced-icon-box bdt-avnaced-icon-box-style-1">
 						<div className="bdt-item">
 							<div className="bdt-icon-wrap">
-								<DisplayIcon icon={icon} />
+								{icon && (
+									<div className="bdt-icon-bg">
+										<DisplayIcon icon={icon} />
+									</div>
+								)}
 							</div>
 							<div className="bdt-body-content">
-								<div className="bdt-title">
-									<RichText.Content
-										tagName={headingTag}
-										value={title}
-									/>
-								</div>
+								<RichText.Content
+									className="bdt-title"
+									tagName={headingTag}
+									value={title}
+								/>
 								<div className="bdt-desc">
 									<RichText.Content
 										tagName={contentTag}

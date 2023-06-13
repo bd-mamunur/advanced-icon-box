@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
-import {} from '@wordpress/components';
 const { Fragment, useEffect } = wp.element;
 import * as Constants from './constants';
 const { TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE } = Constants;
@@ -22,6 +21,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const {
 		uniqueId,
 		blockStyle,
+		iconRadius,
 		title,
 		titleAlign,
 		titleCase,
@@ -36,6 +36,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		bgHoverColor,
 		headingTag,
 		contentTag,
+		iconAlign,
 		btnLabel,
 		btnRadius,
 		alignment,
@@ -82,7 +83,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			color: ${titleHoverColor};
 		 }
 		
-	 	.${uniqueId} .bdt-desc {
+	 	.${uniqueId} .bdt-desc .bdt-desc-size{
 			 color: ${descColor};
 			 font-size: ${descFontSizeDesk}px;
 			 text-align: ${descAlign};
@@ -99,13 +100,25 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				background: ${bgHoverColor};
 				}
 			.${uniqueId} .bdt-icon-wrap {
-			 	text-align: ${alignment};
+			 	text-align: ${alignment} !important;
+				}
+	
+			.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
+				
+				text-align: ${iconAlign} !important;
+				
+			    }
+				.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
+				    border-radius : ${iconRadius.top} ${iconRadius.right} ${
+		iconRadius.buttom
+	} ${iconRadius.left} !important;
+
+					
 				}
 
-			
 				.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 					color: ${btnColor};
-					 background-color: ${btnBgColor};
+					background-color: ${btnBgColor};
 					font-size: ${btnFontSizeDesk}px;
 					border-radius: ${btnRadius}px;
 			
@@ -145,7 +158,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		color: ${titleHoverColor};
 	 }
 	
-	 .${uniqueId} .bdt-desc {
+	 .${uniqueId} .bdt-desc .bdt-desc-size {
 		 color: ${descColor};
 		 font-size: ${descFontSizeTab}px;
 		 text-align: ${descAlign};
@@ -207,7 +220,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		color: ${titleHoverColor};
 	 }
 	
-	 .${uniqueId} .bdt-desc {
+	 .${uniqueId} .bdt-desc .bdt-desc-size{
 		 color: ${descColor};
 		 font-size: ${descFontSizeMob}px;
 		 text-align: ${descAlign};
@@ -277,7 +290,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			setAttributes({ blockStyle: blockStyleCss });
 		}
 	}, [attributes]);
-	console.log(btnAlign);
+
 	return (
 		<Fragment>
 			<style>{`${softMinifyCssStrings(blockStyleCss)}`}</style>
@@ -291,7 +304,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					<div className="bdt-advanced-icon-box bdt-avnaced-icon-box-style-1">
 						<div className="bdt-item">
 							<div className="bdt-icon-wrap">
-								<DisplayIcon icon={icon} />
+								{icon && (
+									<div className="bdt-icon-bg bdt-svg">
+										<DisplayIcon icon={icon} />
+									</div>
+								)}
 							</div>
 							<div className="bdt-body-content">
 								<RichText
@@ -308,6 +325,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								/>
 								<div className="bdt-desc">
 									<RichText
+										className="bdt-desc-size"
 										tagName={contentTag}
 										value={description}
 										placeholder={__(

@@ -12,7 +12,9 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
-
+	columGap: {
+		type: 'string',
+	},
 	...generateResRangleControlAttributes({
 		controlName: GRID_COLUMNS,
 		defaults: {

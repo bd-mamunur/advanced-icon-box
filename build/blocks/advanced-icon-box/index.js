@@ -26,6 +26,9 @@ const attributes = {
   blockStyle: {
     type: 'object'
   },
+  columGap: {
+    type: 'string'
+  },
   ...generateResRangleControlAttributes({
     controlName: GRID_COLUMNS,
     defaults: {
@@ -102,7 +105,8 @@ function Edit(_ref) {
   } = _ref;
   const {
     uniqueId,
-    blockStyle
+    blockStyle,
+    columGap
   } = attributes;
   useEffect(() => {
     if (!uniqueId) {
@@ -119,27 +123,33 @@ function Edit(_ref) {
   const deskStyles = `
 		.${uniqueId} .block-editor-block-list__layout{
 			grid-template-columns: repeat(${columnDesk}, 1fr);
+			gap: ${columGap}px;
 		}
 	
 		.${uniqueId} .aib-content {
 			grid-template-columns: repeat(${columnDesk},1fr);
+			gap: ${columGap}px;
 		}
 		
 	`;
   const tabStyles = `	
 	.${uniqueId} .block-editor-block-list__layout {
 		grid-template-columns: repeat(${columnTab}, 1fr);
+		gap: ${columGap}px;
 	}
 	.${uniqueId} .aib-content {
 		grid-template-columns: repeat(${columnTab},1fr);
+		gap: ${columGap}px;
 	}
 `;
   const mobStyles = `
 		.${uniqueId} .block-editor-block-list__layout{
 			grid-template-columns: repeat(${columnMob}, 1fr)
+			gap: ${columGap}px;
 		}
 		.${uniqueId} .aib-content {
 			grid-template-columns: repeat(${columnMob},1fr);
+			gap: ${columGap}px;
 		}
 		`;
   /**
@@ -245,7 +255,6 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
- // import {} from '@wordpress/components';
 
 
 
@@ -270,6 +279,9 @@ const Inspector = _ref => {
     setAttributes,
     objAttributes: _attributes__WEBPACK_IMPORTED_MODULE_6__["default"]
   };
+  const {
+    columGap
+  } = attributes;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Column Settings', 'advanced-icon-box'),
     initialOpen: true
@@ -279,7 +291,15 @@ const Inspector = _ref => {
     objAttrs: objAttrs,
     noUnits: true,
     min: 1,
-    max: 4
+    max: 10
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Columns Gap'),
+    value: columGap,
+    onChange: column => setAttributes({
+      columGap: column
+    }),
+    min: 0,
+    max: 30
   })));
 };
 
@@ -363,8 +383,8 @@ const AlignmentControl = _ref => {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
       key: index,
       icon: item.name,
-      variant: value === item.name ? 'primary' : 'secondary',
-      onClick: () => onChange(item.name)
+      variant: value === item.value ? 'primary' : 'secondary',
+      onClick: () => onChange(item.value)
     });
   })));
 };
@@ -758,7 +778,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null);
 
 const IconPickerControl = _ref => {
   let {
@@ -766,23 +785,25 @@ const IconPickerControl = _ref => {
     icon,
     onchange,
     className,
-    variant
+    value
   } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "aib-containter"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "aib-label"
-  }, label), icon && icon.map((item, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+  }, label), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "aib-icon-wrap"
+  }, icon && icon.map((item, i) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
     onClick: () => onchange(item.value),
     className: className,
     key: i,
-    variant: variant,
+    variant: value === item.value ? 'primary' : 'secondary',
     icon: item.name
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     role: "img",
     "aria-label": "sheep",
     className: "iconValue"
-  }, item.value))));
+  }, item.value)))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (IconPickerControl);

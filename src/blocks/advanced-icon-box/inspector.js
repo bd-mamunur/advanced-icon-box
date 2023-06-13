@@ -3,8 +3,8 @@
  */
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody } from '@wordpress/components';
-// import {} from '@wordpress/components';
+import { PanelBody, CardDivider, RangeControl } from '@wordpress/components';
+
 import * as Constants from './constants';
 import * as Controls from '../../controls';
 
@@ -18,6 +18,7 @@ import objAttributes from './attributes';
 
 const Inspector = ({ attributes, setAttributes }) => {
 	const objAttrs = { attributes, setAttributes, objAttributes };
+	const { columGap } = attributes;
 	return (
 		<InspectorControls>
 			<PanelBody
@@ -30,7 +31,16 @@ const Inspector = ({ attributes, setAttributes }) => {
 					objAttrs={objAttrs}
 					noUnits={true}
 					min={1}
-					max={4}
+					max={10}
+				/>
+
+				<CardDivider />
+				<RangeControl
+					label={__('Columns Gap')}
+					value={columGap}
+					onChange={(column) => setAttributes({ columGap: column })}
+					min={0}
+					max={30}
 				/>
 			</PanelBody>
 		</InspectorControls>

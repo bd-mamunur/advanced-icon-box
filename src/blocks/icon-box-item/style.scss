@@ -19,6 +19,19 @@
 		overflow: hidden;
 		border-radius: 10px;
 	}
+	.bdt-advanced-icon-box .bdt-icon-bg {
+		display: inline-block;
+		position: absolute;
+		padding: 10px;
+		top: -10px;
+		left: -11px;
+		right: -11px;
+	}
+
+	.bdt-advanced-icon-box .bdt-icon-bg svg {
+		background: #32de23;
+		padding: 10px;
+	}
 
 	.bdt-advanced-icon-box .bdt-title {
 		margin: 0 0 0 0;
@@ -52,9 +65,14 @@
 	}
 
 	.bdt-advanced-icon-box .bdt-body-content,
-	.bdt-advanced-icon-box .bdt-icon-wrap {
+	.bdt-advanced-icon-box {
 		z-index: 1;
-		position: relative;
+	}
+	.bdt-icon-wrap {
+		width: 100%;
+	}
+	.bdt-body-content {
+		margin-top: 71px;
 	}
 
 	.bdt-advanced-icon-box .bdt-hover-icon svg {
