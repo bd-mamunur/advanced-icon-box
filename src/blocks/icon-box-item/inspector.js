@@ -15,9 +15,6 @@ import {
 	TextareaControl,
 	RangeControl,
 	__experimentalBoxControl as BoxControl,
-	ButtonGroup,
-	Button,
-	BaseControl,
 } from '@wordpress/components';
 
 /**
@@ -26,13 +23,8 @@ import {
 import * as Constants from './constants';
 import * as Controls from '../../controls';
 
-const {
-	ResRangleControl,
-	ColorControl,
-	TabPanelControl,
-	IconPickerControl,
-	SelectPickerControl,
-} = Controls;
+const { ResRangleControl, ColorControl, TabPanelControl, IconPickerControl } =
+	Controls;
 const { TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE } = Constants;
 
 import objAttributes from './attributes';
@@ -61,8 +53,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 		title,
 		titleAlign,
 		headingTag,
-		titleBgColor,
-		titleRadius,
 		titleColor,
 		titleHoverColor,
 		description,
@@ -76,7 +66,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 		iconAlign,
 		btnLabel,
 		btnRadius,
-		alignment,
 		btnAlign,
 		titleCase,
 		btnBgColor,
@@ -85,11 +74,31 @@ const Inspector = ({ attributes, setAttributes }) => {
 		btnHoverColor,
 		btnLinkObj,
 		icon,
+		preset,
 	} = attributes;
 	const objAttrs = { attributes, setAttributes, objAttributes };
-
+	console.log(preset);
 	return (
 		<InspectorControls>
+			<PanelBody
+				title={__('Preset', 'advanced-icon-box')}
+				initialOpen={true}
+			>
+				<SelectControl
+					label={__('Preset Style', 'advance-icon-box')}
+					value={preset}
+					options={[
+						{ label: 'Preset 1', value: 'presetOne' },
+						{ label: 'Preset 2', value: 'presetTwo' },
+						{ label: 'Preset 3', value: 'presetThree' },
+						{ label: 'Preset 4', value: 'presetFour' },
+					]}
+					onChange={(v) => {
+						setAttributes({ preset: v });
+					}}
+				/>
+			</PanelBody>
+
 			<PanelBody
 				title={__('General', 'advanced-icon-box')}
 				initialOpen={true}
@@ -99,18 +108,16 @@ const Inspector = ({ attributes, setAttributes }) => {
 						<ColorControl
 							label={__('Background color', 'advanced-icon-box')}
 							color={bgColor}
-							onChange={(colorValue) =>
-								setAttributes({ bgColor: colorValue })
-							}
+							colorName="bgColor"
+							onChange={setAttributes}
 						/>
 					}
 					hoverComponents={
 						<ColorControl
 							label={__('Hover Color', 'advanced-icon-box')}
 							color={bgHoverColor}
-							onChange={(hoverColor) =>
-								setAttributes({ bgHoverColor: hoverColor })
-							}
+							colorName="bgHoverColor"
+							onChange={setAttributes}
 						/>
 					}
 				/>
@@ -163,12 +170,15 @@ const Inspector = ({ attributes, setAttributes }) => {
 					}
 				/>
 
-				<SelectPickerControl
+				<AlignmentControl
 					label={__('Title Alignment', 'advanced-icon-box')}
-					onchange={(v) => setAttributes({ titleAlign: v })}
-					className="btn-align"
 					value={titleAlign}
-					icon={[
+					onChange={(value) =>
+						setAttributes({
+							titleAlign: value,
+						})
+					}
+					options={[
 						{ name: 'editor-alignleft', value: 'left' },
 						{ name: 'editor-aligncenter', value: 'center' },
 						{ name: 'editor-alignright', value: 'right' },
@@ -180,22 +190,16 @@ const Inspector = ({ attributes, setAttributes }) => {
 						<ColorControl
 							label={__('Color', 'advanced-icon-box')}
 							color={titleColor}
-							onChange={(colorValu) =>
-								setAttributes({
-									titleColor: colorValu,
-								})
-							}
+							colorName="titleColor"
+							onChange={setAttributes}
 						/>
 					}
 					hoverComponents={
 						<ColorControl
 							label={__('Hover Color', 'advanced-icon-box')}
 							color={titleHoverColor}
-							onChange={(colorValu) =>
-								setAttributes({
-									titleHoverColor: colorValu,
-								})
-							}
+							colorName="titleHoverColor"
+							onChange={setAttributes}
 						/>
 					}
 				/>
@@ -253,31 +257,35 @@ const Inspector = ({ attributes, setAttributes }) => {
 					}
 				/>
 
-				<SelectPickerControl
+				<AlignmentControl
 					label={__('Description Alignment', 'advanced-icon-box')}
-					onchange={(v) => setAttributes({ descAlign: v })}
-					className="btn-align"
-					variant="secondary"
-					iconv=""
-					icon={alignIconOption}
+					value={descAlign}
+					onChange={(value) =>
+						setAttributes({
+							descAlign: value,
+						})
+					}
+					options={[
+						{ name: 'editor-alignleft', value: 'left' },
+						{ name: 'editor-aligncenter', value: 'center' },
+						{ name: 'editor-alignright', value: 'right' },
+					]}
 				/>
 				<TabPanelControl
 					normalComponents={
 						<ColorControl
 							label={__('Description color', 'advanced-icon-box')}
 							color={descColor}
-							onChange={(desValu) =>
-								setAttributes({ descColor: desValu })
-							}
+							colorName="descColor"
+							onChange={setAttributes}
 						/>
 					}
 					hoverComponents={
 						<ColorControl
 							label={__('Hover Color', 'advanced-icon-box')}
 							color={descHoverColor}
-							onChange={(deshoValue) =>
-								setAttributes({ descHoverColor: deshoValue })
-							}
+							colorName="descHoverColor"
+							onChange={setAttributes}
 						/>
 					}
 				/>
@@ -377,9 +385,8 @@ const Inspector = ({ attributes, setAttributes }) => {
 									'advanced-icon-box'
 								)}
 								color={btnColor}
-								onChange={(textValue) =>
-									setAttributes({ btnColor: textValue })
-								}
+								colorName="btnColor"
+								onChange={setAttributes}
 							/>
 							<ColorControl
 								label={__(
@@ -387,9 +394,8 @@ const Inspector = ({ attributes, setAttributes }) => {
 									'advanced-icon-box'
 								)}
 								color={btnBgColor}
-								onChange={(btnValue) =>
-									setAttributes({ btnBgColor: btnValue })
-								}
+								colorName="btnBgColor"
+								onChange={setAttributes}
 							/>
 						</>
 					}
@@ -401,9 +407,8 @@ const Inspector = ({ attributes, setAttributes }) => {
 									'advanced-icon-box'
 								)}
 								color={btnHoverColor}
-								onChange={(textValue) =>
-									setAttributes({ btnHoverColor: textValue })
-								}
+								colorName="btnHoverColor"
+								onChange={setAttributes}
 							/>
 							<ColorControl
 								label={__(
@@ -411,11 +416,8 @@ const Inspector = ({ attributes, setAttributes }) => {
 									'advanced-icon-box'
 								)}
 								color={btnBgHovercolor}
-								onChange={(btnValue) =>
-									setAttributes({
-										btnBgHovercolor: btnValue,
-									})
-								}
+								colorName="btnBgHovercolor"
+								onChange={setAttributes}
 							/>
 						</>
 					}

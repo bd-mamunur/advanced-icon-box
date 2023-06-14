@@ -144,7 +144,7 @@ function Edit(_ref) {
 `;
   const mobStyles = `
 		.${uniqueId} .block-editor-block-list__layout{
-			grid-template-columns: repeat(${columnMob}, 1fr)
+			grid-template-columns: repeat(${columnMob}, 1fr);
 			gap: ${columGap}px;
 		}
 		.${uniqueId} .aib-content {
@@ -422,7 +422,8 @@ const ColorControl = _ref => {
   let {
     label,
     color,
-    onChange
+    onChange,
+    colorName
   } = _ref;
   const [showColorPanel, setShowColorPanel] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -438,7 +439,7 @@ const ColorControl = _ref => {
     gap: 0
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexBlock, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
     id: "color-control",
-    label: label ? label : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'bdt-review-blocks')
+    label: label ? label : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
     className: "bdt-color-control",
     onClick: () => setShowColorPanel(true)
@@ -452,9 +453,16 @@ const ColorControl = _ref => {
     color: color,
     disableAlpha: false,
     onChangeComplete: value => {
-      onChange(value.hex);
+      onChange({
+        [colorName]: value.hex
+      });
     }
-  })))));
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    className: "bdt-clear-btn",
+    onClick: () => onChange({
+      [colorName]: ''
+    })
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Clear', 'advanced-icon-box')))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ColorControl);

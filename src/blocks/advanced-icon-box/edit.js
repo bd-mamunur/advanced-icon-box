@@ -55,7 +55,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 `;
 	const mobStyles = `
 		.${uniqueId} .block-editor-block-list__layout{
-			grid-template-columns: repeat(${columnMob}, 1fr)
+			grid-template-columns: repeat(${columnMob}, 1fr);
 			gap: ${columGap}px;
 		}
 		.${uniqueId} .aib-content {

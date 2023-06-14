@@ -18,7 +18,7 @@ import { useState } from '@wordpress/element';
  * Color Control
  */
 
-const ColorControl = ({ label, color, onChange }) => {
+const ColorControl = ({ label, color, onChange, colorName }) => {
 	const [showColorPanel, setShowColorPanel] = useState(false);
 	return (
 		<div className="bdt-color-control-wrapper">
@@ -38,7 +38,7 @@ const ColorControl = ({ label, color, onChange }) => {
 				<FlexBlock>
 					<BaseControl
 						id="color-control"
-						label={label ? label : __('Color', 'bdt-review-blocks')}
+						label={label ? label : __('Color', 'advanced-icon-box')}
 					/>
 				</FlexBlock>
 				<FlexItem>
@@ -60,10 +60,17 @@ const ColorControl = ({ label, color, onChange }) => {
 								color={color}
 								disableAlpha={false}
 								onChangeComplete={(value) => {
-									onChange(value.hex);
+									onChange({ [colorName]: value.hex });
 								}}
 							/>
 						</BaseControl>
+
+						<Button
+							className="bdt-clear-btn"
+							onClick={() => onChange({ [colorName]: '' })}
+						>
+							{__('Clear', 'advanced-icon-box')}
+						</Button>
 					</Popover>
 				)}
 			</Flex>

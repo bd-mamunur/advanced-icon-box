@@ -21,6 +21,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const {
 		uniqueId,
 		blockStyle,
+		preset,
 		iconRadius,
 		title,
 		titleAlign,
@@ -39,7 +40,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		iconAlign,
 		btnLabel,
 		btnRadius,
-		alignment,
 		btnAlign,
 		btnBgColor,
 		btnColor,
@@ -72,78 +72,78 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	} = attributes;
 
 	const deskStyles = `
-		${titleColor ? `.${uniqueId} .bdt-title { color: ${titleColor}; }` : ''}
-	 	.${uniqueId} .bdt-title {
-			font-size: ${fontSizeDesk}px !important;
-			text-align: ${titleAlign};
-			text-transform: ${titleCase} !important;
+	 ${titleColor ? `.${uniqueId} .bdt-title { color: ${titleColor}; }` : ''}
+	  .${uniqueId} .bdt-title {
+		 font-size: ${fontSizeDesk}px !important;
+		 text-align: ${titleAlign};
+		 text-transform: ${titleCase} !important;
+	  }
+	  
+	 .${uniqueId} .bdt-title:hover {
+		 color: ${titleHoverColor};
+	  }
+	 
+	  .${uniqueId} .bdt-desc .bdt-desc-size{
+		  color: ${descColor};
+		  font-size: ${descFontSizeDesk}px;
+		  text-align: ${descAlign};
+		  text-transform: ${descCase}
+	 
+	  }
+	 .${uniqueId} .bdt-desc:hover {
+		 color: ${descHoverColor};
+		 }
+	 .${uniqueId} .bdt-item  {
+			 background: ${bgColor};
+		 }
+	 .${uniqueId} .bdt-item:hover  {
+			 background: ${bgHoverColor};
+			 }
+		 
+ 
+	 .${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
+			 
+			 text-align: ${iconAlign ? iconAlign : '0'} !important;
+			 
+			 }
+	 .${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
+			  border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
+		iconRadius.right ? iconRadius.right : '0'
+	}
+	 ${iconRadius.bottom ? iconRadius.bottom : '0'} ${
+		iconRadius.left ? iconRadius.left : '0'
+	} !important;
+	  }
+
+	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
+		 color: ${btnColor};
+		 background-color: ${btnBgColor};
+		 font-size: ${btnFontSizeDesk}px;
+		 border-radius: ${btnRadius}px;
+		 
 		 }
 		 
-		 .${uniqueId} .bdt-title:hover {
-			color: ${titleHoverColor};
-		 }
-		
-	 	.${uniqueId} .bdt-desc .bdt-desc-size{
-			 color: ${descColor};
-			 font-size: ${descFontSizeDesk}px;
-			 text-align: ${descAlign};
-			 text-transform: ${descCase}
-		
-		 }
-		 .${uniqueId} .bdt-desc:hover {
-			color: ${descHoverColor};
-			}
-			.${uniqueId} .bdt-item  {
-				background: ${bgColor};
-			}
-			.${uniqueId} .bdt-item:hover  {
-				background: ${bgHoverColor};
-				}
-			.${uniqueId} .bdt-icon-wrap {
-			 	text-align: ${alignment} !important;
-				}
-	
-			.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
-				
-				text-align: ${iconAlign} !important;
-				
-			    }
-				.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-				    border-radius : ${iconRadius.top} ${iconRadius.right} ${
-		iconRadius.buttom
-	} ${iconRadius.left} !important;
-
-					
-				}
-
-				.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
-					color: ${btnColor};
-					background-color: ${btnBgColor};
-					font-size: ${btnFontSizeDesk}px;
-					border-radius: ${btnRadius}px;
-			
-				 }
-			
-				 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
-					color: ${btnColor};
-					 background-color: ${btnBgColor};
-					 font-size: ${btnFontSizeDesk}px;
-					 border-radius: ${btnRadius}px;
-			
-				 }
-				 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
-					color: ${btnHoverColor};
-					 background-color: ${btnBgHovercolor};
-				 }
-				 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
-					color: ${btnHoverColor};
-					 background-color: ${btnBgHovercolor};
-				 }
-		
-		.${uniqueId} #btn-link {
-			text-align : ${btnAlign}
-		}
+	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
+		 color: ${btnColor};
+		 background-color: ${btnBgColor};
+		 font-size: ${btnFontSizeDesk}px;
+		 border-radius: ${btnRadius}px;
 		 
+			  }
+	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
+		 color: ${btnHoverColor};
+		 background-color: ${btnBgHovercolor};
+	 }
+	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
+		 color: ${btnHoverColor};
+		 background-color: ${btnBgHovercolor};
+		 }
+	 
+	 .${uniqueId} #btn-link {
+		 text-align : ${btnAlign}
+	 }
+		
+		
 
 	`;
 
@@ -154,60 +154,58 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		text-transform: ${titleCase} !important;
 	 }
 	 
-	 .${uniqueId} .bdt-title:hover {
-		color: ${titleHoverColor};
-	 }
+	 	.${uniqueId} .bdt-title:hover {
+			color: ${titleHoverColor};
+	  	 }
 	
-	 .${uniqueId} .bdt-desc .bdt-desc-size {
+	 	.${uniqueId} .bdt-desc .bdt-desc-size {
 		 color: ${descColor};
 		 font-size: ${descFontSizeTab}px;
 		 text-align: ${descAlign};
 		 text-transform: ${descCase}
 	
-	 }
-	 .${uniqueId} .bdt-desc:hover {
-		color: ${descHoverColor};
-		}
-		.${uniqueId} .bdt-item  {
-			background: ${bgColor};
-		}
-		.${uniqueId} .bdt-item:hover  {
-			background: ${bgHoverColor};
-			}
-		.${uniqueId} .bdt-icon-wrap {
-			 text-align: ${alignment};
-			}
+	    }
+	   .${uniqueId} .bdt-desc:hover {
+		    color: ${descHoverColor};
+		    }
+		 	.${uniqueId} .bdt-item  {
+				background: ${bgColor};
+		    }
+			.${uniqueId} .bdt-item:hover  {
+				background: ${bgHoverColor};
+		     }
+		
 
 		
-			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
+	    .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 				color: ${btnColor};
-				 background-color: ${btnBgColor};
+				background-color: ${btnBgColor};
 				font-size: ${btnFontSizeTab}px;
 				border-radius: ${btnRadius}px;
 		
 			 }
 		
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
+			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
 				color: ${btnColor};
 				 background-color: ${btnBgColor};
 				 font-size: ${btnFontSizeTab}px;
 				 border-radius: ${btnRadius}px;
 		
 			 }
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
+			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
 				color: ${btnHoverColor};
 				 background-color: ${btnBgHovercolor};
 			 }
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
+			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
 				color: ${btnHoverColor};
 				 background-color: ${btnBgHovercolor};
 			 }
 	
-			 .${uniqueId} #btn-link {
+			.${uniqueId} #btn-link {
 				text-align : ${btnAlign}
 			}
 
-		}`;
+		`;
 
 	const mobStyles = `	.${uniqueId} .bdt-title {
 			color: ${titleColor};
@@ -216,18 +214,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			text-transform: ${titleCase} !important;
 		}
 	 
-	 .${uniqueId} .bdt-title:hover {
-		color: ${titleHoverColor};
-	 }
+	    .${uniqueId} .bdt-title:hover {
+				color: ${titleHoverColor};
+	      		}
 	
-	 .${uniqueId} .bdt-desc .bdt-desc-size{
-		 color: ${descColor};
-		 font-size: ${descFontSizeMob}px;
-		 text-align: ${descAlign};
-		 text-transform: ${descCase}
-	
-	 }
-	 .${uniqueId} .bdt-desc:hover {
+		.${uniqueId} .bdt-desc .bdt-desc-size{
+				color: ${descColor};
+				font-size: ${descFontSizeMob}px;
+				text-align: ${descAlign};
+				text-transform: ${descCase}
+			 }
+	 	.${uniqueId} .bdt-desc:hover {
 		color: ${descHoverColor};
 		}
 		.${uniqueId} .bdt-item  {
@@ -235,39 +232,33 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		}
 		.${uniqueId} .bdt-item:hover  {
 			background: ${bgHoverColor};
-			}
-		.${uniqueId} .bdt-icon-wrap {
-			 text-align: ${alignment};
-			}
-
+		}
 		
-			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
+
+		.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 				color: ${btnColor};
 				 background-color: ${btnBgColor};
 				font-size: ${btnFontSizeMob}px;
 				border-radius: ${btnRadius}px;
-				
+		}
 		
-			 }
-		
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
+		.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
 				 color: ${btnColor};
 				 background-color: ${btnBgColor};
 				 font-size: ${btnFontSizeMob}px;
 				 border-radius: ${btnRadius}px;
-				  
-		
+
 			 }
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
+		.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
 				color: ${btnHoverColor};
 				 background-color: ${btnBgHovercolor};
 			 }
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
-				color: ${btnHoverColor};
+	    .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
+				 color: ${btnHoverColor};
 				 background-color: ${btnBgHovercolor};
 			 }
 	
-			 .${uniqueId} #btn-link {
+		.${uniqueId} #btn-link {
 				text-align : ${btnAlign}
 			}
 		`;
@@ -333,7 +324,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 											'advanced-icon-box'
 										)}
 										onChange={(v) =>
-											setAttributes({ description: v })
+											setAttributes({
+												description: v,
+											})
 										}
 									/>
 								</div>
@@ -343,7 +336,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 										tagName="span"
 										value={btnLabel}
 										onChange={(value) =>
-											setAttributes({ btnLabel: value })
+											setAttributes({
+												btnLabel: value,
+											})
 										}
 										placeholder={__(
 											'Label',

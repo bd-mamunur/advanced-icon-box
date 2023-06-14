@@ -68,13 +68,16 @@ const attributes = {
 	alignment: {
 		type: 'string',
 	},
+	iconAlign: {
+		type: 'string',
+	},
 	iconRadius: {
 		type: 'object',
 		default: {
-			top: '10px',
-			left: '10px',
-			buttom: '10px',
-			right: '10px',
+			top: '0px',
+			left: '0px',
+			bottom: '0px',
+			right: '0px',
 		},
 	},
 	btnLinkObj: {
@@ -111,6 +114,9 @@ const attributes = {
 		type: 'string',
 	},
 	icon: {
+		type: 'string',
+	},
+	preset: {
 		type: 'string',
 	},
 	...generateResRangleControlAttributes({

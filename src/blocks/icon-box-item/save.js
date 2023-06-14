@@ -23,7 +23,7 @@ export default function save({ attributes }) {
 						<div className="bdt-item">
 							<div className="bdt-icon-wrap">
 								{icon && (
-									<div className="bdt-icon-bg">
+									<div className="bdt-icon-bg bdt-svg">
 										<DisplayIcon icon={icon} />
 									</div>
 								)}

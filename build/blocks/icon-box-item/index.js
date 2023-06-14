@@ -84,13 +84,16 @@ const attributes = {
   alignment: {
     type: 'string'
   },
+  iconAlign: {
+    type: 'string'
+  },
   iconRadius: {
     type: 'object',
     default: {
-      top: '10px',
-      left: '10px',
-      buttom: '10px',
-      right: '10px'
+      top: '0px',
+      left: '0px',
+      bottom: '0px',
+      right: '0px'
     }
   },
   btnLinkObj: {
@@ -126,6 +129,9 @@ const attributes = {
     type: 'string'
   },
   icon: {
+    type: 'string'
+  },
+  preset: {
     type: 'string'
   },
   ...generateResRangleControlAttributes({
@@ -240,6 +246,7 @@ function Edit(_ref) {
   const {
     uniqueId,
     blockStyle,
+    preset,
     iconRadius,
     title,
     titleAlign,
@@ -258,7 +265,6 @@ function Edit(_ref) {
     iconAlign,
     btnLabel,
     btnRadius,
-    alignment,
     btnAlign,
     btnBgColor,
     btnColor,
@@ -289,76 +295,74 @@ function Edit(_ref) {
     [`${BUTTON_FONTSIZE}MobRange`]: btnFontSizeMob
   } = attributes;
   const deskStyles = `
-		${titleColor ? `.${uniqueId} .bdt-title { color: ${titleColor}; }` : ''}
-	 	.${uniqueId} .bdt-title {
-			font-size: ${fontSizeDesk}px !important;
-			text-align: ${titleAlign};
-			text-transform: ${titleCase} !important;
+	 ${titleColor ? `.${uniqueId} .bdt-title { color: ${titleColor}; }` : ''}
+	  .${uniqueId} .bdt-title {
+		 font-size: ${fontSizeDesk}px !important;
+		 text-align: ${titleAlign};
+		 text-transform: ${titleCase} !important;
+	  }
+	  
+	 .${uniqueId} .bdt-title:hover {
+		 color: ${titleHoverColor};
+	  }
+	 
+	  .${uniqueId} .bdt-desc .bdt-desc-size{
+		  color: ${descColor};
+		  font-size: ${descFontSizeDesk}px;
+		  text-align: ${descAlign};
+		  text-transform: ${descCase}
+	 
+	  }
+	 .${uniqueId} .bdt-desc:hover {
+		 color: ${descHoverColor};
+		 }
+	 .${uniqueId} .bdt-item  {
+			 background: ${bgColor};
+		 }
+	 .${uniqueId} .bdt-item:hover  {
+			 background: ${bgHoverColor};
+			 }
+		 
+ 
+	 .${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
+			 
+			 text-align: ${iconAlign ? iconAlign : '0'} !important;
+			 
+			 }
+	 .${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
+			  border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'}
+	 ${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'} !important;
+	  }
+
+	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
+		 color: ${btnColor};
+		 background-color: ${btnBgColor};
+		 font-size: ${btnFontSizeDesk}px;
+		 border-radius: ${btnRadius}px;
+		 
 		 }
 		 
-		 .${uniqueId} .bdt-title:hover {
-			color: ${titleHoverColor};
-		 }
-		
-	 	.${uniqueId} .bdt-desc .bdt-desc-size{
-			 color: ${descColor};
-			 font-size: ${descFontSizeDesk}px;
-			 text-align: ${descAlign};
-			 text-transform: ${descCase}
-		
-		 }
-		 .${uniqueId} .bdt-desc:hover {
-			color: ${descHoverColor};
-			}
-			.${uniqueId} .bdt-item  {
-				background: ${bgColor};
-			}
-			.${uniqueId} .bdt-item:hover  {
-				background: ${bgHoverColor};
-				}
-			.${uniqueId} .bdt-icon-wrap {
-			 	text-align: ${alignment} !important;
-				}
-	
-			.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
-				
-				text-align: ${iconAlign} !important;
-				
-			    }
-				.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-				    border-radius : ${iconRadius.top} ${iconRadius.right} ${iconRadius.buttom} ${iconRadius.left} !important;
-
-					
-				}
-
-				.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
-					color: ${btnColor};
-					background-color: ${btnBgColor};
-					font-size: ${btnFontSizeDesk}px;
-					border-radius: ${btnRadius}px;
-			
-				 }
-			
-				 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
-					color: ${btnColor};
-					 background-color: ${btnBgColor};
-					 font-size: ${btnFontSizeDesk}px;
-					 border-radius: ${btnRadius}px;
-			
-				 }
-				 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
-					color: ${btnHoverColor};
-					 background-color: ${btnBgHovercolor};
-				 }
-				 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
-					color: ${btnHoverColor};
-					 background-color: ${btnBgHovercolor};
-				 }
-		
-		.${uniqueId} #btn-link {
-			text-align : ${btnAlign}
-		}
+	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
+		 color: ${btnColor};
+		 background-color: ${btnBgColor};
+		 font-size: ${btnFontSizeDesk}px;
+		 border-radius: ${btnRadius}px;
 		 
+			  }
+	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
+		 color: ${btnHoverColor};
+		 background-color: ${btnBgHovercolor};
+	 }
+	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
+		 color: ${btnHoverColor};
+		 background-color: ${btnBgHovercolor};
+		 }
+	 
+	 .${uniqueId} #btn-link {
+		 text-align : ${btnAlign}
+	 }
+		
+		
 
 	`;
   const tabStyles = `	.${uniqueId} .bdt-title {
@@ -368,60 +372,58 @@ function Edit(_ref) {
 		text-transform: ${titleCase} !important;
 	 }
 	 
-	 .${uniqueId} .bdt-title:hover {
-		color: ${titleHoverColor};
-	 }
+	 	.${uniqueId} .bdt-title:hover {
+			color: ${titleHoverColor};
+	  	 }
 	
-	 .${uniqueId} .bdt-desc .bdt-desc-size {
+	 	.${uniqueId} .bdt-desc .bdt-desc-size {
 		 color: ${descColor};
 		 font-size: ${descFontSizeTab}px;
 		 text-align: ${descAlign};
 		 text-transform: ${descCase}
 	
-	 }
-	 .${uniqueId} .bdt-desc:hover {
-		color: ${descHoverColor};
-		}
-		.${uniqueId} .bdt-item  {
-			background: ${bgColor};
-		}
-		.${uniqueId} .bdt-item:hover  {
-			background: ${bgHoverColor};
-			}
-		.${uniqueId} .bdt-icon-wrap {
-			 text-align: ${alignment};
-			}
+	    }
+	   .${uniqueId} .bdt-desc:hover {
+		    color: ${descHoverColor};
+		    }
+		 	.${uniqueId} .bdt-item  {
+				background: ${bgColor};
+		    }
+			.${uniqueId} .bdt-item:hover  {
+				background: ${bgHoverColor};
+		     }
+		
 
 		
-			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
+	    .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 				color: ${btnColor};
-				 background-color: ${btnBgColor};
+				background-color: ${btnBgColor};
 				font-size: ${btnFontSizeTab}px;
 				border-radius: ${btnRadius}px;
 		
 			 }
 		
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
+			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
 				color: ${btnColor};
 				 background-color: ${btnBgColor};
 				 font-size: ${btnFontSizeTab}px;
 				 border-radius: ${btnRadius}px;
 		
 			 }
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
+			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
 				color: ${btnHoverColor};
 				 background-color: ${btnBgHovercolor};
 			 }
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
+			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
 				color: ${btnHoverColor};
 				 background-color: ${btnBgHovercolor};
 			 }
 	
-			 .${uniqueId} #btn-link {
+			.${uniqueId} #btn-link {
 				text-align : ${btnAlign}
 			}
 
-		}`;
+		`;
   const mobStyles = `	.${uniqueId} .bdt-title {
 			color: ${titleColor};
 			font-size: ${fontSizeMob}px !important;
@@ -429,18 +431,17 @@ function Edit(_ref) {
 			text-transform: ${titleCase} !important;
 		}
 	 
-	 .${uniqueId} .bdt-title:hover {
-		color: ${titleHoverColor};
-	 }
+	    .${uniqueId} .bdt-title:hover {
+				color: ${titleHoverColor};
+	      		}
 	
-	 .${uniqueId} .bdt-desc .bdt-desc-size{
-		 color: ${descColor};
-		 font-size: ${descFontSizeMob}px;
-		 text-align: ${descAlign};
-		 text-transform: ${descCase}
-	
-	 }
-	 .${uniqueId} .bdt-desc:hover {
+		.${uniqueId} .bdt-desc .bdt-desc-size{
+				color: ${descColor};
+				font-size: ${descFontSizeMob}px;
+				text-align: ${descAlign};
+				text-transform: ${descCase}
+			 }
+	 	.${uniqueId} .bdt-desc:hover {
 		color: ${descHoverColor};
 		}
 		.${uniqueId} .bdt-item  {
@@ -448,39 +449,33 @@ function Edit(_ref) {
 		}
 		.${uniqueId} .bdt-item:hover  {
 			background: ${bgHoverColor};
-			}
-		.${uniqueId} .bdt-icon-wrap {
-			 text-align: ${alignment};
-			}
-
+		}
 		
-			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
+
+		.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 				color: ${btnColor};
 				 background-color: ${btnBgColor};
 				font-size: ${btnFontSizeMob}px;
 				border-radius: ${btnRadius}px;
-				
+		}
 		
-			 }
-		
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
+		.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
 				 color: ${btnColor};
 				 background-color: ${btnBgColor};
 				 font-size: ${btnFontSizeMob}px;
 				 border-radius: ${btnRadius}px;
-				  
-		
+
 			 }
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
+		.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
 				color: ${btnHoverColor};
 				 background-color: ${btnBgHovercolor};
 			 }
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
-				color: ${btnHoverColor};
+	    .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
+				 color: ${btnHoverColor};
 				 background-color: ${btnBgHovercolor};
 			 }
 	
-			 .${uniqueId} #btn-link {
+		.${uniqueId} #btn-link {
 				text-align : ${btnAlign}
 			}
 		`;
@@ -636,8 +631,7 @@ const {
   ResRangleControl,
   ColorControl,
   TabPanelControl,
-  IconPickerControl,
-  SelectPickerControl
+  IconPickerControl
 } = _controls__WEBPACK_IMPORTED_MODULE_5__;
 const {
   TITLE_FONTSIZE,
@@ -695,8 +689,6 @@ const Inspector = _ref => {
     title,
     titleAlign,
     headingTag,
-    titleBgColor,
-    titleRadius,
     titleColor,
     titleHoverColor,
     description,
@@ -710,7 +702,6 @@ const Inspector = _ref => {
     iconAlign,
     btnLabel,
     btnRadius,
-    alignment,
     btnAlign,
     titleCase,
     btnBgColor,
@@ -718,30 +709,54 @@ const Inspector = _ref => {
     btnBgHovercolor,
     btnHoverColor,
     btnLinkObj,
-    icon
+    icon,
+    preset
   } = attributes;
   const objAttrs = {
     attributes,
     setAttributes,
     objAttributes: _attributes__WEBPACK_IMPORTED_MODULE_6__["default"]
   };
+  console.log(preset);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preset', 'advanced-icon-box'),
+    initialOpen: true
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Preset Style', 'advance-icon-box'),
+    value: preset,
+    options: [{
+      label: 'Preset 1',
+      value: 'presetOne'
+    }, {
+      label: 'Preset 2',
+      value: 'presetTwo'
+    }, {
+      label: 'Preset 3',
+      value: 'presetThree'
+    }, {
+      label: 'Preset 4',
+      value: 'presetFour'
+    }],
+    onChange: v => {
+      setAttributes({
+        preset: v
+      });
+    }
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('General', 'advanced-icon-box'),
     initialOpen: true
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
     normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background color', 'advanced-icon-box'),
       color: bgColor,
-      onChange: colorValue => setAttributes({
-        bgColor: colorValue
-      })
+      colorName: "bgColor",
+      onChange: setAttributes
     }),
     hoverComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hover Color', 'advanced-icon-box'),
       color: bgHoverColor,
-      onChange: hoverColor => setAttributes({
-        bgHoverColor: hoverColor
-      })
+      colorName: "bgHoverColor",
+      onChange: setAttributes
     })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Title Section', 'advanced-icon-box'),
@@ -783,14 +798,13 @@ const Inspector = _ref => {
     onChange: value => setAttributes({
       titleCase: value
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectPickerControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_alignment_control__WEBPACK_IMPORTED_MODULE_7__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Title Alignment', 'advanced-icon-box'),
-    onchange: v => setAttributes({
-      titleAlign: v
-    }),
-    className: "btn-align",
     value: titleAlign,
-    icon: [{
+    onChange: value => setAttributes({
+      titleAlign: value
+    }),
+    options: [{
       name: 'editor-alignleft',
       value: 'left'
     }, {
@@ -804,16 +818,14 @@ const Inspector = _ref => {
     normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
       color: titleColor,
-      onChange: colorValu => setAttributes({
-        titleColor: colorValu
-      })
+      colorName: "titleColor",
+      onChange: setAttributes
     }),
     hoverComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hover Color', 'advanced-icon-box'),
       color: titleHoverColor,
-      onChange: colorValu => setAttributes({
-        titleHoverColor: colorValu
-      })
+      colorName: "titleHoverColor",
+      onChange: setAttributes
     })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content', 'advanced-icon-box'),
@@ -856,29 +868,34 @@ const Inspector = _ref => {
     onChange: value => setAttributes({
       descCase: value
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(SelectPickerControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_alignment_control__WEBPACK_IMPORTED_MODULE_7__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description Alignment', 'advanced-icon-box'),
-    onchange: v => setAttributes({
-      descAlign: v
+    value: descAlign,
+    onChange: value => setAttributes({
+      descAlign: value
     }),
-    className: "btn-align",
-    variant: "secondary",
-    iconv: "",
-    icon: alignIconOption
+    options: [{
+      name: 'editor-alignleft',
+      value: 'left'
+    }, {
+      name: 'editor-aligncenter',
+      value: 'center'
+    }, {
+      name: 'editor-alignright',
+      value: 'right'
+    }]
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
     normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description color', 'advanced-icon-box'),
       color: descColor,
-      onChange: desValu => setAttributes({
-        descColor: desValu
-      })
+      colorName: "descColor",
+      onChange: setAttributes
     }),
     hoverComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hover Color', 'advanced-icon-box'),
       color: descHoverColor,
-      onChange: deshoValue => setAttributes({
-        descHoverColor: deshoValue
-      })
+      colorName: "descHoverColor",
+      onChange: setAttributes
     })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Picker', 'advacned-icon-box'),
@@ -956,28 +973,24 @@ const Inspector = _ref => {
     normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Text Color', 'advanced-icon-box'),
       color: btnColor,
-      onChange: textValue => setAttributes({
-        btnColor: textValue
-      })
+      colorName: "btnColor",
+      onChange: setAttributes
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background color', 'advanced-icon-box'),
       color: btnBgColor,
-      onChange: btnValue => setAttributes({
-        btnBgColor: btnValue
-      })
+      colorName: "btnBgColor",
+      onChange: setAttributes
     })),
     hoverComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Hover Color', 'advanced-icon-box'),
       color: btnHoverColor,
-      onChange: textValue => setAttributes({
-        btnHoverColor: textValue
-      })
+      colorName: "btnHoverColor",
+      onChange: setAttributes
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background Hover Color', 'advanced-icon-box'),
       color: btnBgHovercolor,
-      onChange: btnValue => setAttributes({
-        btnBgHovercolor: btnValue
-      })
+      colorName: "btnBgHovercolor",
+      onChange: setAttributes
     }))
   })));
 };
@@ -1029,7 +1042,7 @@ function save(_ref) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-icon-wrap"
   }, icon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bdt-icon-bg"
+    className: "bdt-icon-bg bdt-svg"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls__WEBPACK_IMPORTED_MODULE_2__.DisplayIcon, {
     icon: icon
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -1140,7 +1153,8 @@ const ColorControl = _ref => {
   let {
     label,
     color,
-    onChange
+    onChange,
+    colorName
   } = _ref;
   const [showColorPanel, setShowColorPanel] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -1156,7 +1170,7 @@ const ColorControl = _ref => {
     gap: 0
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexBlock, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
     id: "color-control",
-    label: label ? label : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'bdt-review-blocks')
+    label: label ? label : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box')
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
     className: "bdt-color-control",
     onClick: () => setShowColorPanel(true)
@@ -1170,9 +1184,16 @@ const ColorControl = _ref => {
     color: color,
     disableAlpha: false,
     onChangeComplete: value => {
-      onChange(value.hex);
+      onChange({
+        [colorName]: value.hex
+      });
     }
-  })))));
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    className: "bdt-clear-btn",
+    onClick: () => onChange({
+      [colorName]: ''
+    })
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Clear', 'advanced-icon-box')))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ColorControl);
