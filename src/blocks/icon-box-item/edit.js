@@ -123,11 +123,73 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		 
 		 }
 		 
+<<<<<<< HEAD
 	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
 		 color: ${btnColor};
 		 background-color: ${btnBgColor};
 		 font-size: ${btnFontSizeDesk}px;
 		 border-radius: ${btnRadius}px;
+=======
+		 .${uniqueId} .bdt-title:hover {
+			color: ${titleHoverColor};
+		 }
+		
+	 	.${uniqueId} .bdt-desc .bdt-desc-size{
+			 color: ${descColor};
+			 font-size: ${descFontSizeDesk}px;
+			 text-align: ${descAlign};
+			 text-transform: ${descCase}
+		
+		 }
+		 .${uniqueId} .bdt-desc:hover {
+			color: ${descHoverColor};
+		}
+		.${uniqueId} .bdt-item  {
+			background: ${bgColor};
+		}
+		.${uniqueId} .bdt-item:hover  {
+			background: ${bgHoverColor};
+		}
+		.${uniqueId} .bdt-icon-wrap {
+			text-align: ${alignment} !important;
+		}
+		.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
+			text-align: ${iconAlign} !important;
+		}
+		.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
+			border-radius : ${iconRadius.top} ${iconRadius.right} ${iconRadius.bottom} ${
+		iconRadius.left
+	} !important;
+		}
+
+				.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
+					color: ${btnColor};
+					background-color: ${btnBgColor};
+					font-size: ${btnFontSizeDesk}px;
+					border-radius: ${btnRadius}px;
+			
+				 }
+			
+				 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
+					color: ${btnColor};
+					 background-color: ${btnBgColor};
+					 font-size: ${btnFontSizeDesk}px;
+					 border-radius: ${btnRadius}px;
+			
+				 }
+				 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
+					color: ${btnHoverColor};
+					 background-color: ${btnBgHovercolor};
+				 }
+				 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
+					color: ${btnHoverColor};
+					 background-color: ${btnBgHovercolor};
+				 }
+		
+		.${uniqueId} #btn-link {
+			text-align : ${btnAlign}
+		}
+>>>>>>> abb8fca476c681f939f871b5829ebf3b35259102
 		 
 			  }
 	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
