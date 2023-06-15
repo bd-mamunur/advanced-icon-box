@@ -3,7 +3,8 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 const { Fragment, useEffect } = wp.element;
 import * as Constants from './constants';
-const { TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE } = Constants;
+const { TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE, ICON_SIZE } =
+	Constants;
 
 //generator
 
@@ -46,6 +47,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		btnBgHovercolor,
 		btnHoverColor,
 		icon,
+		iconColor,
+		iconHoverColor,
 	} = attributes;
 
 	useEffect(() => {
@@ -70,6 +73,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		[`${BUTTON_FONTSIZE}TabRange`]: btnFontSizeTab,
 		[`${BUTTON_FONTSIZE}MobRange`]: btnFontSizeMob,
 	} = attributes;
+	const {
+		[`${ICON_SIZE}DeskRange`]: iconSizeDesk,
+		[`${ICON_SIZE}TabRange`]: iconSizeTab,
+		[`${ICON_SIZE}MobRange`]: iconSizeMob,
+	} = attributes;
 
 	const deskStyles = `
 	 ${titleColor ? `.${uniqueId} .bdt-title { color: ${titleColor}; }` : ''}
@@ -90,8 +98,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		  text-transform: ${descCase}
 	 
 	  }
-	 .${uniqueId} .bdt-desc:hover {
-		 color: ${descHoverColor};
+	 .${uniqueId} .bdt-desc #desc-hov:hover {
+		 color: ${descHoverColor} !important;
 		 }
 	 .${uniqueId} .bdt-item  {
 			 background: ${bgColor};
@@ -102,10 +110,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		 
  
 	 .${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
-			 
 			 text-align: ${iconAlign ? iconAlign : '0'} !important;
 			 
-			 }
+		}
 	 .${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
 			  border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
 		iconRadius.right ? iconRadius.right : '0'
@@ -113,8 +120,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	 ${iconRadius.bottom ? iconRadius.bottom : '0'} ${
 		iconRadius.left ? iconRadius.left : '0'
 	} !important;
+		width:${iconSizeDesk}px;
+		background:${iconColor} !important;
 	  }
-
+	  .${uniqueId} .bdt-advanced-icon-box .bdt-svg:hover svg{
+		background:${iconHoverColor} !important;
+	  }
 	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 		 color: ${btnColor};
 		 background-color: ${btnBgColor};
@@ -123,73 +134,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		 
 		 }
 		 
-<<<<<<< HEAD
 	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
 		 color: ${btnColor};
 		 background-color: ${btnBgColor};
 		 font-size: ${btnFontSizeDesk}px;
 		 border-radius: ${btnRadius}px;
-=======
-		 .${uniqueId} .bdt-title:hover {
-			color: ${titleHoverColor};
-		 }
-		
-	 	.${uniqueId} .bdt-desc .bdt-desc-size{
-			 color: ${descColor};
-			 font-size: ${descFontSizeDesk}px;
-			 text-align: ${descAlign};
-			 text-transform: ${descCase}
-		
-		 }
-		 .${uniqueId} .bdt-desc:hover {
-			color: ${descHoverColor};
-		}
-		.${uniqueId} .bdt-item  {
-			background: ${bgColor};
-		}
-		.${uniqueId} .bdt-item:hover  {
-			background: ${bgHoverColor};
-		}
-		.${uniqueId} .bdt-icon-wrap {
-			text-align: ${alignment} !important;
-		}
-		.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
-			text-align: ${iconAlign} !important;
-		}
-		.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-			border-radius : ${iconRadius.top} ${iconRadius.right} ${iconRadius.bottom} ${
-		iconRadius.left
-	} !important;
-		}
-
-				.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
-					color: ${btnColor};
-					background-color: ${btnBgColor};
-					font-size: ${btnFontSizeDesk}px;
-					border-radius: ${btnRadius}px;
-			
-				 }
-			
-				 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
-					color: ${btnColor};
-					 background-color: ${btnBgColor};
-					 font-size: ${btnFontSizeDesk}px;
-					 border-radius: ${btnRadius}px;
-			
-				 }
-				 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
-					color: ${btnHoverColor};
-					 background-color: ${btnBgHovercolor};
-				 }
-				 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
-					color: ${btnHoverColor};
-					 background-color: ${btnBgHovercolor};
-				 }
-		
-		.${uniqueId} #btn-link {
-			text-align : ${btnAlign}
-		}
->>>>>>> abb8fca476c681f939f871b5829ebf3b35259102
 		 
 			  }
 	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
@@ -379,6 +328,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								<div className="bdt-desc">
 									<RichText
 										className="bdt-desc-size"
+										id="desc-hov"
 										tagName={contentTag}
 										value={description}
 										placeholder={__(

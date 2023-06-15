@@ -25,7 +25,8 @@ import * as Controls from '../../controls';
 
 const { ResRangleControl, ColorControl, TabPanelControl, IconPickerControl } =
 	Controls;
-const { TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE } = Constants;
+const { TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE, ICON_SIZE } =
+	Constants;
 
 import objAttributes from './attributes';
 import AlignmentControl from '../../controls/alignment-control';
@@ -74,10 +75,12 @@ const Inspector = ({ attributes, setAttributes }) => {
 		btnHoverColor,
 		btnLinkObj,
 		icon,
+		iconColor,
+		iconHoverColor,
 		preset,
 	} = attributes;
 	const objAttrs = { attributes, setAttributes, objAttributes };
-	console.log(preset);
+	console.log();
 	return (
 		<InspectorControls>
 			<PanelBody
@@ -301,6 +304,15 @@ const Inspector = ({ attributes, setAttributes }) => {
 					onChange={(value) => setAttributes({ icon: value })}
 				/>
 				<CardDivider />
+				<ResRangleControl
+					label={__('icon Size', 'advanced-icon-box')}
+					controlName={ICON_SIZE}
+					objAttrs={objAttrs}
+					noUnits={false}
+					max={50}
+					min={5}
+				/>
+				<CardDivider />
 				<BoxControl
 					label={__('Border Radius', 'advanced-icon-box')}
 					values={iconRadius}
@@ -319,6 +331,28 @@ const Inspector = ({ attributes, setAttributes }) => {
 						{ name: 'editor-aligncenter', value: 'center' },
 						{ name: 'editor-alignright', value: 'right' },
 					]}
+				/>
+				<CardDivider />
+				<TabPanelControl
+					normalComponents={
+						<ColorControl
+							label={__(
+								'Icon Background color',
+								'advanced-icon-box'
+							)}
+							color={iconColor}
+							colorName="iconColor"
+							onChange={setAttributes}
+						/>
+					}
+					hoverComponents={
+						<ColorControl
+							label={__('Icon Hover Color', 'advanced-icon-box')}
+							color={iconHoverColor}
+							colorName="iconHoverColor"
+							onChange={setAttributes}
+						/>
+					}
 				/>
 			</PanelBody>
 

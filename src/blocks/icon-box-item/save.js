@@ -36,6 +36,7 @@ export default function save({ attributes }) {
 								/>
 								<div className="bdt-desc">
 									<RichText.Content
+										className="bdt-desc-size desc-hover"
 										tagName={contentTag}
 										value={description}
 									/>

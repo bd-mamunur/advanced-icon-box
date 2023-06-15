@@ -3,8 +3,13 @@ import * as generators from '../../generators';
 
 const { generateResRangleControlAttributes } = generators;
 
-const { GRID_COLUMNS, TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE } =
-	constants;
+const {
+	GRID_COLUMNS,
+	TITLE_FONTSIZE,
+	DESCRIPTION_FONTSIZE,
+	BUTTON_FONTSIZE,
+	ICON_SIZE,
+} = constants;
 
 const attributes = {
 	uniqueId: {
@@ -116,6 +121,12 @@ const attributes = {
 	icon: {
 		type: 'string',
 	},
+	iconColor: {
+		type: 'string',
+	},
+	iconHoverColor: {
+		type: 'string',
+	},
 	preset: {
 		type: 'string',
 	},
@@ -151,6 +162,14 @@ const attributes = {
 			[`${BUTTON_FONTSIZE}DeskRange`]: 14,
 			[`${BUTTON_FONTSIZE}TabRange`]: 12,
 			[`${BUTTON_FONTSIZE}MobRange`]: 10,
+		},
+	}),
+	...generateResRangleControlAttributes({
+		controlName: ICON_SIZE,
+		defaults: {
+			[`${ICON_SIZE}DeskRange`]: 30,
+			[`${ICON_SIZE}TabRange`]: 22,
+			[`${ICON_SIZE}MobRange`]: 10,
 		},
 	}),
 };
