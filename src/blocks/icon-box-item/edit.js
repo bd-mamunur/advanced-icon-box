@@ -78,7 +78,70 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		[`${ICON_SIZE}TabRange`]: iconSizeTab,
 		[`${ICON_SIZE}MobRange`]: iconSizeMob,
 	} = attributes;
+	/**
+	 * Presets Based Styles
+	 */
+	let presetStyles;
+	switch (preset) {
+		case 'style-1':
+			presetStyles = `
+			.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
+				text-align: ${iconAlign ? iconAlign : '0'} !important;
+				position: absolute;
+				top: -10px;
+				bottom: -10px;
+				left: -10px;
+				right: -10px;
+				
+		   }
+		 
 
+			.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
+				 border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
+				iconRadius.right ? iconRadius.right : '0'
+			}
+			${iconRadius.bottom ? iconRadius.bottom : '0'} ${
+				iconRadius.left ? iconRadius.left : '0'
+			} !important;
+			 width:${iconSizeDesk}px;
+		  	 background:${iconColor} !important;
+		 	}
+		 	.${uniqueId} .bdt-advanced-icon-box .bdt-svg:hover svg{
+		   		background:${iconHoverColor} !important;
+		 	}
+
+			.${uniqueId} .bdt-body-content {
+				margin-top: 65px;
+			}
+			
+			`;
+
+			break;
+		case 'style-2':
+			presetStyles = `
+
+			.${uniqueId} #bdt-item-box{
+				display: flex;
+				padding: 7px 10px;
+			}
+
+			`;
+			break;
+		case 'style-3':
+			presetStyles = `
+			.${uniqueId} #bdt-item-box{
+				display: flex;
+				padding:10px 7px;
+				flex-direction: row-reverse;
+
+			}
+			`;
+			break;
+		case 'style-4':
+			break;
+		default:
+			presetStyles = '';
+	}
 	const deskStyles = `
 	 ${titleColor ? `.${uniqueId} .bdt-title { color: ${titleColor}; }` : ''}
 	  .${uniqueId} .bdt-title {
@@ -103,29 +166,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		 }
 	 .${uniqueId} .bdt-item  {
 			 background: ${bgColor};
+			 
 		 }
 	 .${uniqueId} .bdt-item:hover  {
 			 background: ${bgHoverColor};
-			 }
-		 
- 
-	 .${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
-			 text-align: ${iconAlign ? iconAlign : '0'} !important;
-			 
 		}
-	 .${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-			  border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
-		iconRadius.right ? iconRadius.right : '0'
-	}
-	 ${iconRadius.bottom ? iconRadius.bottom : '0'} ${
-		iconRadius.left ? iconRadius.left : '0'
-	} !important;
-		width:${iconSizeDesk}px;
-		background:${iconColor} !important;
-	  }
-	  .${uniqueId} .bdt-advanced-icon-box .bdt-svg:hover svg{
-		background:${iconHoverColor} !important;
-	  }
+		 
+
 	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 		 color: ${btnColor};
 		 background-color: ${btnBgColor};
@@ -153,8 +200,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	 .${uniqueId} #btn-link {
 		 text-align : ${btnAlign}
 	 }
-		
-		
+     
+	${presetStyles}
 
 	`;
 
@@ -292,7 +339,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			setAttributes({ blockStyle: blockStyleCss });
 		}
 	}, [attributes]);
-
+	console.log(presetStyles);
 	return (
 		<Fragment>
 			<style>{`${softMinifyCssStrings(blockStyleCss)}`}</style>
@@ -304,7 +351,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			>
 				<div className="bdt-container">
 					<div className="bdt-advanced-icon-box bdt-avnaced-icon-box-style-1">
-						<div className="bdt-item">
+						<div className="bdt-item" id="bdt-item-box">
 							<div className="bdt-icon-wrap">
 								{icon && (
 									<div className="bdt-icon-bg bdt-svg">

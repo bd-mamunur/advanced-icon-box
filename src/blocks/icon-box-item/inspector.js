@@ -80,7 +80,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 		preset,
 	} = attributes;
 	const objAttrs = { attributes, setAttributes, objAttributes };
-	console.log();
+
 	return (
 		<InspectorControls>
 			<PanelBody
@@ -91,10 +91,10 @@ const Inspector = ({ attributes, setAttributes }) => {
 					label={__('Preset Style', 'advance-icon-box')}
 					value={preset}
 					options={[
-						{ label: 'Preset 1', value: 'presetOne' },
-						{ label: 'Preset 2', value: 'presetTwo' },
-						{ label: 'Preset 3', value: 'presetThree' },
-						{ label: 'Preset 4', value: 'presetFour' },
+						{ label: 'Preset 1', value: 'style-1' },
+						{ label: 'Preset 2', value: 'style-2' },
+						{ label: 'Preset 3', value: 'style-3' },
+						{ label: 'Preset 4', value: 'style-4' },
 					]}
 					onChange={(v) => {
 						setAttributes({ preset: v });

@@ -16,16 +16,12 @@
 		border: 1px solid rgba(247, 247, 247, 0.829);
 		transition: border 0.3s ease;
 		position: relative;
-		overflow: hidden;
+		// overflow: hidden;
 		border-radius: 10px;
 	}
 	.bdt-advanced-icon-box .bdt-icon-bg {
 		display: inline-block;
-		position: absolute;
 		padding: 10px;
-		top: -10px;
-		left: -11px;
-		right: -11px;
 	}
 
 	.bdt-advanced-icon-box .bdt-icon-bg svg {
@@ -68,12 +64,12 @@
 	.bdt-advanced-icon-box {
 		z-index: 1;
 	}
-	.bdt-icon-wrap {
-		width: 100%;
-	}
-	.bdt-body-content {
-		margin-top: 71px;
-	}
+	// .bdt-icon-wrap {
+	// 	width: 100%;
+	// }
+	// .bdt-body-content {
+	// 	margin-top: 71px;
+	// }
 
 	.bdt-advanced-icon-box .bdt-hover-icon svg {
 		width: 50px;
