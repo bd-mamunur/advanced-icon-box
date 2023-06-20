@@ -1,2 +1,32 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/blocks/icon-box-item/editor.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
 @import url(https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap);
-.wp-block-bdt-advanced-icon-box .block-editor-block-list__layout{display:grid;justify-items:center}.block-editor-link-control__field>.components-base-control__field{width:210px}button.components-button.block-editor-link-control__search-item-action.has-icon{margin-right:117px}button.components-button{margin:2px}.bdt-advanced-icon-box svg{height:25px;width:25px}
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/blocks/icon-box-item/editor.scss (1) ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
+/*
+* Style Works for Editor Only
+*/
+.wp-block-bdt-advanced-icon-box .block-editor-block-list__layout {
+  display: grid;
+  justify-items: center;
+}
+
+.components-tab-panel__tabs {
+  width: 100%;
+  justify-content: center;
+}
+.components-tab-panel__tabs .bdt-tab {
+  border: 1px solid #e0e0e0;
+  width: 100%;
+}
+.components-tab-panel__tabs .bdt-tab.active-tab {
+  background: #e0e0e0;
+}
+
+.block-editor-link-control {
+  min-width: 0px !important;
+}
+
+/*# sourceMappingURL=index.css.map*/
