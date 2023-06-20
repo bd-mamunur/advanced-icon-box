@@ -18,6 +18,21 @@ import Inspector from './inspector';
 import { softMinifyCssStrings } from '../../helper/softminify';
 import { DisplayIcon } from '../../controls';
 
+// function to convert object to css
+const convertToCss = (obj) => {
+	let cssResult;
+	Object.keys(obj).reduce((cssString, key) => {
+		// change key to css property
+		const cssProperty = key.replace(
+			/[A-Z]/g,
+			(match) => `-${match.toLowerCase()}`
+		);
+		cssResult = `${cssString}${cssProperty}:${obj[key]};`;
+		return cssResult;
+	}, '');
+	return cssResult;
+};
+
 export default function Edit({ attributes, setAttributes, clientId }) {
 	const {
 		uniqueId,
@@ -94,8 +109,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				right: -10px;
 				
 		   }
-		 
-
+	
 			.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
 				 border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
 				iconRadius.right ? iconRadius.right : '0'
@@ -142,14 +156,34 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		default:
 			presetStyles = '';
 	}
+
+	const bdtTitleStyles = {
+		...(fontSizeDesk !== undefined &&
+			fontSizeDesk !== '' && {
+				'font-size': fontSizeDesk + 'px',
+			}),
+		...(titleAlign !== undefined &&
+			titleAlign !== '' && {
+				'text-align': titleAlign,
+			}),
+		...(titleColor !== undefined &&
+			titleColor !== '' && {
+				color: titleColor,
+			}),
+		...(titleCase !== undefined &&
+			titleCase !== '' && {
+				'text-transform': titleCase,
+			}),
+	};
+
 	const deskStyles = `
-	 ${titleColor ? `.${uniqueId} .bdt-title { color: ${titleColor}; }` : ''}
-	  .${uniqueId} .bdt-title {
-		 font-size: ${fontSizeDesk}px !important;
-		 text-align: ${titleAlign};
-		 text-transform: ${titleCase} !important;
-	  }
 	  
+	${
+		Object.keys(bdtTitleStyles).length > 0
+			? `.${uniqueId} .bdt-title {${convertToCss(bdtTitleStyles)}}`
+			: ' '
+	}
+
 	 .${uniqueId} .bdt-title:hover {
 		 color: ${titleHoverColor};
 	  }
