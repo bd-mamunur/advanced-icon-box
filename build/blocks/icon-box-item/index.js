@@ -233,17 +233,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants */ "./src/blocks/icon-box-item/constants/index.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/icon-box-item/editor.scss");
-/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./inspector */ "./src/blocks/icon-box-item/inspector.js");
-/* harmony import */ var _helper_softminify__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../helper/softminify */ "./src/helper/softminify.js");
-/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../controls */ "./src/controls/index.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./src/blocks/icon-box-item/constants/index.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/icon-box-item/editor.scss");
+/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./inspector */ "./src/blocks/icon-box-item/inspector.js");
+/* harmony import */ var _helper_softminify__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helper/softminify */ "./src/helper/softminify.js");
+/* harmony import */ var _controls__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../controls */ "./src/controls/index.js");
 
 
 /* eslint-disable no-console */
-
 
 
 const {
@@ -256,7 +253,7 @@ const {
   DESCRIPTION_FONTSIZE,
   BUTTON_FONTSIZE,
   ICON_SIZE
-} = _constants__WEBPACK_IMPORTED_MODULE_4__; //generator
+} = _constants__WEBPACK_IMPORTED_MODULE_3__; //generator
 // editor style
 
 
@@ -345,7 +342,27 @@ function Edit(_ref) {
     [`${ICON_SIZE}DeskRange`]: iconSizeDesk,
     [`${ICON_SIZE}TabRange`]: iconSizeTab,
     [`${ICON_SIZE}MobRange`]: iconSizeMob
-  } = attributes;
+  } = attributes; // .${uniqueId} .bdt-title {
+  // 	color: ${titleColor};
+  // font-size: ${fontSizeTab}px !important;
+  // 	text-align: ${titleAlign};
+  // 	text-transform: ${titleCase} !important;
+  //  }
+  //description desktop
+  // .${uniqueId} .bdt-desc .bdt-desc-size{
+  // 	color: ${descColor};
+  // 	font-size: ${descFontSizeDesk}px;
+  // 	text-align: ${descAlign};
+  // 	text-transform: ${descCase}
+  // }
+  // mobile title style
+  // .${uniqueId} .bdt-title {
+  // 	color: ${titleColor};
+  // 	font-size: ${fontSizeMob}px !important;
+  // 	text-align: ${titleAlign};
+  // 	text-transform: ${titleCase} !important;
+  // }
+
   /**
    * Presets Based Styles
    */
@@ -422,6 +439,73 @@ function Edit(_ref) {
       'text-transform': titleCase
     })
   };
+  const bdtDscStyleDesk = { ...(descColor !== undefined && descColor !== '' && {
+      color: descColor
+    }),
+    ...(descFontSizeDesk !== undefined && descFontSizeDesk !== '' && {
+      'font-size': descFontSizeDesk + 'px'
+    }),
+    ...(descAlign !== undefined && descAlign !== '' && {
+      'text-align': descAlign
+    }),
+    ...(descCase !== undefined && descCase !== '' && {
+      'text-transform': descCase
+    })
+  }; //tab title style
+
+  const bdtTitleStyleTab = { ...(fontSizeTab !== undefined && fontSizeTab !== '' && {
+      'font-size': fontSizeTab + 'px'
+    }),
+    ...(titleAlign !== undefined && titleAlign !== '' && {
+      'text-align': titleAlign
+    }),
+    ...(titleColor !== undefined && titleColor !== '' && {
+      color: titleColor
+    }),
+    ...(titleCase !== undefined && titleCase !== '' && {
+      'text-transform': titleCase
+    })
+  };
+  const bdtDscStyleTab = { ...(descColor !== undefined && descColor !== '' && {
+      color: descColor
+    }),
+    ...(descFontSizeTab !== undefined && descFontSizeTab !== '' && {
+      'font-size': descFontSizeTab + 'px'
+    }),
+    ...(descAlign !== undefined && descAlign !== '' && {
+      'text-align': descAlign
+    }),
+    ...(descCase !== undefined && descCase !== '' && {
+      'text-transform': descCase
+    })
+  }; // mobile title style
+
+  const bdtTitleStyleMob = { ...(fontSizeMob !== undefined && fontSizeMob !== '' && {
+      'font-size': fontSizeMob + 'px'
+    }),
+    ...(titleAlign !== undefined && titleAlign !== '' && {
+      'text-align': titleAlign
+    }),
+    ...(titleColor !== undefined && titleColor !== '' && {
+      color: titleColor
+    }),
+    ...(titleCase !== undefined && titleCase !== '' && {
+      'text-transform': titleCase
+    })
+  };
+  const bdtDscStyleMob = { ...(descColor !== undefined && descColor !== '' && {
+      color: descColor
+    }),
+    ...(descFontSizeMob !== undefined && descFontSizeMob !== '' && {
+      'font-size': descFontSizeMob + 'px'
+    }),
+    ...(descAlign !== undefined && descAlign !== '' && {
+      'text-align': descAlign
+    }),
+    ...(descCase !== undefined && descCase !== '' && {
+      'text-transform': descCase
+    })
+  };
   const deskStyles = `
 	  
 	${Object.keys(bdtTitleStyles).length > 0 ? `.${uniqueId} .bdt-title {${convertToCss(bdtTitleStyles)}}` : ' '}
@@ -429,14 +513,8 @@ function Edit(_ref) {
 		color: ${titleHoverColor};
 	 }` : ''}
 	 
-	 
-	  .${uniqueId} .bdt-desc .bdt-desc-size{
-		  color: ${descColor};
-		  font-size: ${descFontSizeDesk}px;
-		  text-align: ${descAlign};
-		  text-transform: ${descCase}
-	 
-	  }
+	${Object.keys(bdtDscStyleDesk).length > 0 ? `.${uniqueId} .bdt-desc .bdt-desc-size {${convertToCss(bdtDscStyleDesk)}}` : ' '}
+	
 	  ${descHoverColor ? `.${uniqueId} .bdt-desc #desc-hov:hover {
 				color: ${descHoverColor} !important;
 		}` : ''}
@@ -498,24 +576,16 @@ function Edit(_ref) {
 
 	`;
   const tabStyles = `	
-	.${uniqueId} .bdt-title {
-		color: ${titleColor};
-		font-size: ${fontSizeTab}px !important;
-		text-align: ${titleAlign};
-		text-transform: ${titleCase} !important;
-	 }
+	${Object.keys(bdtTitleStyles).length > 0 ? `.${uniqueId} .bdt-title {${convertToCss(bdtTitleStyleTab)}}` : ' '}
 	 
 	 ${titleHoverColor ? `.${uniqueId} .bdt-title:hover {
 		color: ${titleHoverColor};
 	 }` : ''}
+
+		 
+	${Object.keys(bdtDscStyleTab).length > 0 ? `.${uniqueId} .bdt-desc .bdt-desc-size {${convertToCss(bdtDscStyleTab)}}` : ' '}
 	
-	 	.${uniqueId} .bdt-desc .bdt-desc-size {
-		 color: ${descColor};
-		 font-size: ${descFontSizeTab}px;
-		 text-align: ${descAlign};
-		 text-transform: ${descCase}
-	
-	    }
+	 
 		${descHoverColor ? `.${uniqueId} .bdt-desc #desc-hov:hover {
 				color: ${descHoverColor} !important;
 		}` : ''}
@@ -571,23 +641,16 @@ function Edit(_ref) {
 			}
 
 		`;
-  const mobStyles = `	.${uniqueId} .bdt-title {
-			color: ${titleColor};
-			font-size: ${fontSizeMob}px !important;
-			text-align: ${titleAlign};
-			text-transform: ${titleCase} !important;
-		}
+  const mobStyles = `
+	${Object.keys(bdtTitleStyleMob).length > 0 ? `.${uniqueId} .bdt-title {${convertToCss(bdtTitleStyleMob)}}` : ' '}	
 	 
 		${titleHoverColor ? `.${uniqueId} .bdt-title:hover {
 		color: ${titleHoverColor};
 	 }` : ''}
+
+		${Object.keys(bdtDscStyleMob).length > 0 ? `.${uniqueId} .bdt-desc .bdt-desc-size {${convertToCss(bdtDscStyleMob)}}` : ' '}
 	
-		.${uniqueId} .bdt-desc .bdt-desc-size{
-				color: ${descColor};
-				font-size: ${descFontSizeMob}px;
-				text-align: ${descAlign};
-				text-transform: ${descCase}
-			 }
+		
 			 ${descHoverColor ? `.${uniqueId} .bdt-desc #desc-hov:hover {
 					color: ${descHoverColor} !important;
 			}` : ''}
@@ -662,7 +725,7 @@ function Edit(_ref) {
     }
   }, [attributes]);
   console.log(alignIcon);
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `${(0,_helper_softminify__WEBPACK_IMPORTED_MODULE_7__.softMinifyCssStrings)(blockStyleCss)}`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `${(0,_helper_softminify__WEBPACK_IMPORTED_MODULE_6__.softMinifyCssStrings)(blockStyleCss)}`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_5__["default"], {
     attributes: attributes,
     setAttributes: setAttributes
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
@@ -678,7 +741,7 @@ function Edit(_ref) {
     className: "bdt-icon-wrap"
   }, icon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-icon-bg bdt-svg"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls__WEBPACK_IMPORTED_MODULE_8__.DisplayIcon, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls__WEBPACK_IMPORTED_MODULE_7__.DisplayIcon, {
     icon: icon
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-body-content"
@@ -1276,7 +1339,8 @@ function save(_ref) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-advanced-icon-box bdt-avnaced-icon-box-style-1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bdt-item"
+    className: "bdt-item",
+    id: "bdt-item-box"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-icon-wrap"
   }, icon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

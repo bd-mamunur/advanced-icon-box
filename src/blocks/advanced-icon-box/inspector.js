@@ -35,6 +35,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 				/>
 
 				<CardDivider />
+
 				<RangeControl
 					label={__('Columns Gap')}
 					value={columGap}

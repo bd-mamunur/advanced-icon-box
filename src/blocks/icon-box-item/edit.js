@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
-import { Flex, FlexBlock, FlexItem } from '@wordpress/components';
 const { Fragment, useEffect } = wp.element;
 
 import * as Constants from './constants';
@@ -98,6 +97,32 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		[`${ICON_SIZE}TabRange`]: iconSizeTab,
 		[`${ICON_SIZE}MobRange`]: iconSizeMob,
 	} = attributes;
+
+	// .${uniqueId} .bdt-title {
+	// 	color: ${titleColor};
+	// font-size: ${fontSizeTab}px !important;
+	// 	text-align: ${titleAlign};
+	// 	text-transform: ${titleCase} !important;
+	//  }
+
+	//description desktop
+
+	// .${uniqueId} .bdt-desc .bdt-desc-size{
+	// 	color: ${descColor};
+	// 	font-size: ${descFontSizeDesk}px;
+	// 	text-align: ${descAlign};
+	// 	text-transform: ${descCase}
+
+	// }
+
+	// mobile title style
+	// .${uniqueId} .bdt-title {
+	// 	color: ${titleColor};
+	// 	font-size: ${fontSizeMob}px !important;
+	// 	text-align: ${titleAlign};
+	// 	text-transform: ${titleCase} !important;
+	// }
+
 	/**
 	 * Presets Based Styles
 	 */
@@ -174,6 +199,101 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				'text-transform': titleCase,
 			}),
 	};
+	const bdtDscStyleDesk = {
+		...(descColor !== undefined &&
+			descColor !== '' && {
+				color: descColor,
+			}),
+		...(descFontSizeDesk !== undefined &&
+			descFontSizeDesk !== '' && {
+				'font-size': descFontSizeDesk + 'px',
+			}),
+		...(descAlign !== undefined &&
+			descAlign !== '' && {
+				'text-align': descAlign,
+			}),
+		...(descCase !== undefined &&
+			descCase !== '' && {
+				'text-transform': descCase,
+			}),
+	};
+	//tab title style
+	const bdtTitleStyleTab = {
+		...(fontSizeTab !== undefined &&
+			fontSizeTab !== '' && {
+				'font-size': fontSizeTab + 'px',
+			}),
+		...(titleAlign !== undefined &&
+			titleAlign !== '' && {
+				'text-align': titleAlign,
+			}),
+		...(titleColor !== undefined &&
+			titleColor !== '' && {
+				color: titleColor,
+			}),
+		...(titleCase !== undefined &&
+			titleCase !== '' && {
+				'text-transform': titleCase,
+			}),
+	};
+
+	const bdtDscStyleTab = {
+		...(descColor !== undefined &&
+			descColor !== '' && {
+				color: descColor,
+			}),
+		...(descFontSizeTab !== undefined &&
+			descFontSizeTab !== '' && {
+				'font-size': descFontSizeTab + 'px',
+			}),
+		...(descAlign !== undefined &&
+			descAlign !== '' && {
+				'text-align': descAlign,
+			}),
+		...(descCase !== undefined &&
+			descCase !== '' && {
+				'text-transform': descCase,
+			}),
+	};
+
+	// mobile title style
+	const bdtTitleStyleMob = {
+		...(fontSizeMob !== undefined &&
+			fontSizeMob !== '' && {
+				'font-size': fontSizeMob + 'px',
+			}),
+		...(titleAlign !== undefined &&
+			titleAlign !== '' && {
+				'text-align': titleAlign,
+			}),
+		...(titleColor !== undefined &&
+			titleColor !== '' && {
+				color: titleColor,
+			}),
+		...(titleCase !== undefined &&
+			titleCase !== '' && {
+				'text-transform': titleCase,
+			}),
+	};
+
+	const bdtDscStyleMob = {
+		...(descColor !== undefined &&
+			descColor !== '' && {
+				color: descColor,
+			}),
+		...(descFontSizeMob !== undefined &&
+			descFontSizeMob !== '' && {
+				'font-size': descFontSizeMob + 'px',
+			}),
+		...(descAlign !== undefined &&
+			descAlign !== '' && {
+				'text-align': descAlign,
+			}),
+		...(descCase !== undefined &&
+			descCase !== '' && {
+				'text-transform': descCase,
+			}),
+	};
 
 	const deskStyles = `
 	  
@@ -190,14 +310,14 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			: ''
 	}
 	 
-	 
-	  .${uniqueId} .bdt-desc .bdt-desc-size{
-		  color: ${descColor};
-		  font-size: ${descFontSizeDesk}px;
-		  text-align: ${descAlign};
-		  text-transform: ${descCase}
-	 
-	  }
+	${
+		Object.keys(bdtDscStyleDesk).length > 0
+			? `.${uniqueId} .bdt-desc .bdt-desc-size {${convertToCss(
+					bdtDscStyleDesk
+			  )}}`
+			: ' '
+	}
+	
 	  ${
 			descHoverColor
 				? `.${uniqueId} .bdt-desc #desc-hov:hover {
@@ -284,12 +404,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	`;
 
 	const tabStyles = `	
-	.${uniqueId} .bdt-title {
-		color: ${titleColor};
-		font-size: ${fontSizeTab}px !important;
-		text-align: ${titleAlign};
-		text-transform: ${titleCase} !important;
-	 }
+	${
+		Object.keys(bdtTitleStyles).length > 0
+			? `.${uniqueId} .bdt-title {${convertToCss(bdtTitleStyleTab)}}`
+			: ' '
+	}
 	 
 	 ${
 			titleHoverColor
@@ -298,14 +417,17 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	 }`
 				: ''
 		}
+
+		 
+	${
+		Object.keys(bdtDscStyleTab).length > 0
+			? `.${uniqueId} .bdt-desc .bdt-desc-size {${convertToCss(
+					bdtDscStyleTab
+			  )}}`
+			: ' '
+	}
 	
-	 	.${uniqueId} .bdt-desc .bdt-desc-size {
-		 color: ${descColor};
-		 font-size: ${descFontSizeTab}px;
-		 text-align: ${descAlign};
-		 text-transform: ${descCase}
-	
-	    }
+	 
 		${
 			descHoverColor
 				? `.${uniqueId} .bdt-desc #desc-hov:hover {
@@ -386,12 +508,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 		`;
 
-	const mobStyles = `	.${uniqueId} .bdt-title {
-			color: ${titleColor};
-			font-size: ${fontSizeMob}px !important;
-			text-align: ${titleAlign};
-			text-transform: ${titleCase} !important;
-		}
+	const mobStyles = `
+	${
+		Object.keys(bdtTitleStyleMob).length > 0
+			? `.${uniqueId} .bdt-title {${convertToCss(bdtTitleStyleMob)}}`
+			: ' '
+	}	
 	 
 		${
 			titleHoverColor
@@ -400,13 +522,16 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	 }`
 				: ''
 		}
+
+		${
+			Object.keys(bdtDscStyleMob).length > 0
+				? `.${uniqueId} .bdt-desc .bdt-desc-size {${convertToCss(
+						bdtDscStyleMob
+				  )}}`
+				: ' '
+		}
 	
-		.${uniqueId} .bdt-desc .bdt-desc-size{
-				color: ${descColor};
-				font-size: ${descFontSizeMob}px;
-				text-align: ${descAlign};
-				text-transform: ${descCase}
-			 }
+		
 			 ${
 					descHoverColor
 						? `.${uniqueId} .bdt-desc #desc-hov:hover {
