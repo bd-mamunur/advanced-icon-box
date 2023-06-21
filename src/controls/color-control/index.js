@@ -13,7 +13,7 @@ import {
 	Popover,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
-
+import './style.scss';
 /**
  * Color Control
  */

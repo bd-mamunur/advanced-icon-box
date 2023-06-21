@@ -425,10 +425,10 @@ function Edit(_ref) {
   const deskStyles = `
 	  
 	${Object.keys(bdtTitleStyles).length > 0 ? `.${uniqueId} .bdt-title {${convertToCss(bdtTitleStyles)}}` : ' '}
-
-	 .${uniqueId} .bdt-title:hover {
-		 color: ${titleHoverColor};
-	  }
+    ${titleHoverColor ? `.${uniqueId} .bdt-title:hover {
+		color: ${titleHoverColor};
+	 }` : ''}
+	 
 	 
 	  .${uniqueId} .bdt-desc .bdt-desc-size{
 		  color: ${descColor};
@@ -437,31 +437,33 @@ function Edit(_ref) {
 		  text-transform: ${descCase}
 	 
 	  }
-	 .${uniqueId} .bdt-desc #desc-hov:hover {
-		 color: ${descHoverColor} !important;
-		 }
-	.${uniqueId} .bdt-icon-wrap {
+	  ${descHoverColor ? `.${uniqueId} .bdt-desc #desc-hov:hover {
+				color: ${descHoverColor} !important;
+		}` : ''}
+	 
+	${preset === 'style-4' && alignIcon ? `.${uniqueId} .bdt-icon-wrap {
 			text-align:${alignIcon};
-		}
-	 	 
-	 .${uniqueId} .bdt-item  {
-			 background: ${bgColor};
+	}` : ''}	 
+    ${bgColor ? `.${uniqueId} .bdt-item  {
+		background: ${bgColor};
 			 
-		 }
-	 .${uniqueId} .bdt-item:hover  {
-			 background: ${bgHoverColor};
-		}
+	}` : ''}
+	
+	 
+	${bgHoverColor ? `.${uniqueId} .bdt-item:hover  {
+		background: ${bgHoverColor};
+   }` : ''}	
+	${iconHoverColor ? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg:hover {
+		background:${iconHoverColor};
+  	}` : ''}
 		
-	.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg:hover {
-			background:${iconHoverColor} !important;
-	  }	
 	.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
 				 border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'}
 			${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'} !important;
 			 width:${iconSizeDesk}px;
 			 height:${iconSizeDesk}px;
 		  	 background:${iconColor} ;
-		 	}
+	}
 	
 
 	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
@@ -495,16 +497,17 @@ function Edit(_ref) {
 	${presetStyles}
 
 	`;
-  const tabStyles = `	.${uniqueId} .bdt-title {
+  const tabStyles = `	
+	.${uniqueId} .bdt-title {
 		color: ${titleColor};
 		font-size: ${fontSizeTab}px !important;
 		text-align: ${titleAlign};
 		text-transform: ${titleCase} !important;
 	 }
 	 
-	 	.${uniqueId} .bdt-title:hover {
-			color: ${titleHoverColor};
-	  	 }
+	 ${titleHoverColor ? `.${uniqueId} .bdt-title:hover {
+		color: ${titleHoverColor};
+	 }` : ''}
 	
 	 	.${uniqueId} .bdt-desc .bdt-desc-size {
 		 color: ${descColor};
@@ -513,16 +516,30 @@ function Edit(_ref) {
 		 text-transform: ${descCase}
 	
 	    }
-	   .${uniqueId} .bdt-desc:hover {
-		    color: ${descHoverColor};
-		    }
-		 	.${uniqueId} .bdt-item  {
-				background: ${bgColor};
-		    }
-			.${uniqueId} .bdt-item:hover  {
-				background: ${bgHoverColor};
-		     }
+		${descHoverColor ? `.${uniqueId} .bdt-desc #desc-hov:hover {
+				color: ${descHoverColor} !important;
+		}` : ''}
+		${preset === 'style-4' && alignIcon ? `.${uniqueId} .bdt-icon-wrap {
+				text-align:${alignIcon};
+		}` : ''}
+		${bgColor ? `.${uniqueId} .bdt-item  {
+			background: ${bgColor};
+				 
+		}` : ''}
+		${bgHoverColor ? `.${uniqueId} .bdt-item:hover  {
+			background: ${bgHoverColor};
+	   }` : ''}
 		
+		${iconHoverColor ? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg:hover {
+			background:${iconHoverColor};
+		  }` : ''}
+		.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
+			border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'}
+	   ${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'} !important;
+		width:${iconSizeTab}px;
+		height:${iconSizeTab}px;
+		background:${iconColor} ;
+}
 
 		
 	    .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
@@ -561,9 +578,9 @@ function Edit(_ref) {
 			text-transform: ${titleCase} !important;
 		}
 	 
-	    .${uniqueId} .bdt-title:hover {
-			color: ${titleHoverColor};
-	    }
+		${titleHoverColor ? `.${uniqueId} .bdt-title:hover {
+		color: ${titleHoverColor};
+	 }` : ''}
 	
 		.${uniqueId} .bdt-desc .bdt-desc-size{
 				color: ${descColor};
@@ -571,16 +588,31 @@ function Edit(_ref) {
 				text-align: ${descAlign};
 				text-transform: ${descCase}
 			 }
-	 	.${uniqueId} .bdt-desc:hover {
-				color: ${descHoverColor};
-		}
-		.${uniqueId} .bdt-item  {
+			 ${descHoverColor ? `.${uniqueId} .bdt-desc #desc-hov:hover {
+					color: ${descHoverColor} !important;
+			}` : ''}
+			${preset === 'style-4' && alignIcon ? `.${uniqueId} .bdt-icon-wrap {
+						text-align:${alignIcon};
+				}` : ''}			
+			${bgColor ? `.${uniqueId} .bdt-item  {
 				background: ${bgColor};
-		}
+					 
+			}` : ''}
+			
 		.${uniqueId} .bdt-item:hover  {
 				background: ${bgHoverColor};
 		}
-		
+		${iconHoverColor ? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg:hover {
+			background:${iconHoverColor};
+		  }` : ''}
+		.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
+			border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'}
+	   ${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'} !important;
+		width:${iconSizeMob}px;
+		height:${iconSizeMob}px;
+		 background:${iconColor} ;
+}
+
 
 		.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 				color: ${btnColor};
@@ -1344,11 +1376,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./src/controls/color-control/style.scss");
 
 
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -2261,6 +2295,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************!*\
   !*** ./src/controls/alignment-control/style.scss ***!
   \***************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/controls/color-control/style.scss":
+/*!***********************************************!*\
+  !*** ./src/controls/color-control/style.scss ***!
+  \***********************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
