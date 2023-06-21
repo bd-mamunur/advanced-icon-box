@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { Flex, FlexBlock, FlexItem } from '@wordpress/components';
 const { Fragment, useEffect } = wp.element;
+
 import * as Constants from './constants';
 const { TITLE_FONTSIZE, DESCRIPTION_FONTSIZE, BUTTON_FONTSIZE, ICON_SIZE } =
 	Constants;
@@ -62,6 +64,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		btnBgHovercolor,
 		btnHoverColor,
 		icon,
+		iconTopBottom,
+		iconTopBottomR,
 		iconColor,
 		iconHoverColor,
 	} = attributes;
@@ -103,26 +107,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
 				text-align: ${iconAlign ? iconAlign : '0'} !important;
 				position: absolute;
-				top: -10px;
+				top: 0px;
 				bottom: -10px;
-				left: -10px;
+				left: 0px;
 				right: -10px;
 				
 		   }
 	
-			.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-				 border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
-				iconRadius.right ? iconRadius.right : '0'
-			}
-			${iconRadius.bottom ? iconRadius.bottom : '0'} ${
-				iconRadius.left ? iconRadius.left : '0'
-			} !important;
-			 width:${iconSizeDesk}px;
-		  	 background:${iconColor} !important;
-		 	}
-		 	.${uniqueId} .bdt-advanced-icon-box .bdt-svg:hover svg{
-		   		background:${iconHoverColor} !important;
-		 	}
 
 			.${uniqueId} .bdt-body-content {
 				margin-top: 65px;
@@ -137,6 +128,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			.${uniqueId} #bdt-item-box{
 				display: flex;
 				padding: 7px 10px;
+				align-items:${iconTopBottom};
+			}
+			.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
+				margin-right:10px;
 			}
 
 			`;
@@ -147,7 +142,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				display: flex;
 				padding:10px 7px;
 				flex-direction: row-reverse;
-
+				align-items:${iconTopBottomR}
+			}
+			.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
+				margin-left:10px;
 			}
 			`;
 			break;
@@ -198,6 +196,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	 .${uniqueId} .bdt-desc #desc-hov:hover {
 		 color: ${descHoverColor} !important;
 		 }
+	 	 
 	 .${uniqueId} .bdt-item  {
 			 background: ${bgColor};
 			 
@@ -205,7 +204,21 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	 .${uniqueId} .bdt-item:hover  {
 			 background: ${bgHoverColor};
 		}
-		 
+	.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg:hover {
+			background:${iconHoverColor} !important;
+	  }	
+	.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
+				 border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
+		iconRadius.right ? iconRadius.right : '0'
+	}
+			${iconRadius.bottom ? iconRadius.bottom : '0'} ${
+		iconRadius.left ? iconRadius.left : '0'
+	} !important;
+			 width:${iconSizeDesk}px;
+			 height:${iconSizeDesk}px;
+		  	 background:${iconColor} ;
+		 	}
+	
 
 	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 		 color: ${btnColor};

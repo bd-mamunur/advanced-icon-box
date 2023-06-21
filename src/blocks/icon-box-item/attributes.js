@@ -118,7 +118,16 @@ const attributes = {
 	align: {
 		type: 'string',
 	},
+	alignIcon: {
+		type: 'string',
+	},
 	icon: {
+		type: 'string',
+	},
+	iconTopBottom: {
+		type: 'string',
+	},
+	iconTopBottomR: {
 		type: 'string',
 	},
 	iconColor: {

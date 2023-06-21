@@ -75,6 +75,9 @@ const Inspector = ({ attributes, setAttributes }) => {
 		btnHoverColor,
 		btnLinkObj,
 		icon,
+		iconTopBottom,
+		iconTopBottomR,
+		alignIcon,
 		iconColor,
 		iconHoverColor,
 		preset,
@@ -318,20 +321,71 @@ const Inspector = ({ attributes, setAttributes }) => {
 					values={iconRadius}
 					onChange={(v) => setAttributes({ iconRadius: v })}
 				/>
-				<AlignmentControl
-					label={__('Icon Alignment', 'advanced-icon-box')}
-					value={iconAlign}
-					onChange={(value) =>
-						setAttributes({
-							iconAlign: value,
-						})
-					}
-					options={[
-						{ name: 'editor-alignleft', value: 'left' },
-						{ name: 'editor-aligncenter', value: 'center' },
-						{ name: 'editor-alignright', value: 'right' },
-					]}
-				/>
+				{preset === 'style-1' && (
+					<AlignmentControl
+						label={__('Icon Alignment', 'advanced-icon-box')}
+						value={iconAlign}
+						onChange={(value) =>
+							setAttributes({
+								iconAlign: value,
+							})
+						}
+						options={[
+							{ name: 'editor-alignleft', value: 'left' },
+							{ name: 'editor-aligncenter', value: 'center' },
+							{ name: 'editor-alignright', value: 'right' },
+						]}
+					/>
+				)}
+				{preset === 'style-2' && (
+					<AlignmentControl
+						label={__('Icon Alignment', 'advanced-icon-box')}
+						value={iconTopBottom}
+						onChange={(value) =>
+							setAttributes({
+								iconTopBottom: value,
+							})
+						}
+						options={[
+							{ name: 'editor-alignleft', value: 'normal' },
+							{ name: 'editor-aligncenter', value: 'center' },
+							{ name: 'editor-alignright', value: 'end' },
+						]}
+					/>
+				)}
+				{preset === 'style-3' && (
+					<AlignmentControl
+						label={__('Icon Alignment', 'advanced-icon-box')}
+						value={iconTopBottomR}
+						onChange={(value) =>
+							setAttributes({
+								iconTopBottomR: value,
+							})
+						}
+						options={[
+							{ name: 'editor-alignleft', value: 'normal' },
+							{ name: 'editor-aligncenter', value: 'center' },
+							{ name: 'editor-alignright', value: 'end' },
+						]}
+					/>
+				)}
+				{preset === 'style-4' && (
+					<AlignmentControl
+						label={__('Icon Alignment', 'advanced-icon-box')}
+						value={alignIcon}
+						onChange={(value) =>
+							setAttributes({
+								alignIcon: value,
+							})
+						}
+						options={[
+							{ name: 'editor-alignleft', value: 'left' },
+							{ name: 'editor-aligncenter', value: 'center' },
+							{ name: 'editor-alignright', value: 'right' },
+						]}
+					/>
+				)}
+
 				<CardDivider />
 				<TabPanelControl
 					normalComponents={
