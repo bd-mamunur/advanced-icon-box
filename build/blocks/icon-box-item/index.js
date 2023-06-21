@@ -315,6 +315,7 @@ function Edit(_ref) {
     icon,
     iconTopBottom,
     iconTopBottomR,
+    alignIcon,
     iconColor,
     iconHoverColor
   } = attributes;
@@ -439,6 +440,9 @@ function Edit(_ref) {
 	 .${uniqueId} .bdt-desc #desc-hov:hover {
 		 color: ${descHoverColor} !important;
 		 }
+	.${uniqueId} .bdt-icon-wrap {
+			text-align:${alignIcon};
+		}
 	 	 
 	 .${uniqueId} .bdt-item  {
 			 background: ${bgColor};
@@ -447,6 +451,7 @@ function Edit(_ref) {
 	 .${uniqueId} .bdt-item:hover  {
 			 background: ${bgHoverColor};
 		}
+		
 	.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg:hover {
 			background:${iconHoverColor} !important;
 	  }	
@@ -557,8 +562,8 @@ function Edit(_ref) {
 		}
 	 
 	    .${uniqueId} .bdt-title:hover {
-				color: ${titleHoverColor};
-	      		}
+			color: ${titleHoverColor};
+	    }
 	
 		.${uniqueId} .bdt-desc .bdt-desc-size{
 				color: ${descColor};
@@ -567,19 +572,19 @@ function Edit(_ref) {
 				text-transform: ${descCase}
 			 }
 	 	.${uniqueId} .bdt-desc:hover {
-		color: ${descHoverColor};
+				color: ${descHoverColor};
 		}
 		.${uniqueId} .bdt-item  {
-			background: ${bgColor};
+				background: ${bgColor};
 		}
 		.${uniqueId} .bdt-item:hover  {
-			background: ${bgHoverColor};
+				background: ${bgHoverColor};
 		}
 		
 
 		.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 				color: ${btnColor};
-				 background-color: ${btnBgColor};
+			    background-color: ${btnBgColor};
 				font-size: ${btnFontSizeMob}px;
 				border-radius: ${btnRadius}px;
 		}
@@ -624,7 +629,7 @@ function Edit(_ref) {
       });
     }
   }, [attributes]);
-  console.log(presetStyles);
+  console.log(alignIcon);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `${(0,_helper_softminify__WEBPACK_IMPORTED_MODULE_7__.softMinifyCssStrings)(blockStyleCss)}`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_6__["default"], {
     attributes: attributes,
     setAttributes: setAttributes

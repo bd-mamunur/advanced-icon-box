@@ -66,6 +66,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		icon,
 		iconTopBottom,
 		iconTopBottomR,
+		alignIcon,
 		iconColor,
 		iconHoverColor,
 	} = attributes;
@@ -196,6 +197,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	 .${uniqueId} .bdt-desc #desc-hov:hover {
 		 color: ${descHoverColor} !important;
 		 }
+	.${uniqueId} .bdt-icon-wrap {
+			text-align:${alignIcon};
+		}
 	 	 
 	 .${uniqueId} .bdt-item  {
 			 background: ${bgColor};
@@ -204,6 +208,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	 .${uniqueId} .bdt-item:hover  {
 			 background: ${bgHoverColor};
 		}
+		
 	.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg:hover {
 			background:${iconHoverColor} !important;
 	  }	
@@ -320,8 +325,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		}
 	 
 	    .${uniqueId} .bdt-title:hover {
-				color: ${titleHoverColor};
-	      		}
+			color: ${titleHoverColor};
+	    }
 	
 		.${uniqueId} .bdt-desc .bdt-desc-size{
 				color: ${descColor};
@@ -330,19 +335,19 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				text-transform: ${descCase}
 			 }
 	 	.${uniqueId} .bdt-desc:hover {
-		color: ${descHoverColor};
+				color: ${descHoverColor};
 		}
 		.${uniqueId} .bdt-item  {
-			background: ${bgColor};
+				background: ${bgColor};
 		}
 		.${uniqueId} .bdt-item:hover  {
-			background: ${bgHoverColor};
+				background: ${bgHoverColor};
 		}
 		
 
 		.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 				color: ${btnColor};
-				 background-color: ${btnBgColor};
+			    background-color: ${btnBgColor};
 				font-size: ${btnFontSizeMob}px;
 				border-radius: ${btnRadius}px;
 		}
@@ -386,7 +391,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			setAttributes({ blockStyle: blockStyleCss });
 		}
 	}, [attributes]);
-	console.log(presetStyles);
+	console.log(alignIcon);
 	return (
 		<Fragment>
 			<style>{`${softMinifyCssStrings(blockStyleCss)}`}</style>
