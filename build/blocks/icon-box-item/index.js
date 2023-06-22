@@ -126,9 +126,6 @@ const attributes = {
     type: 'string',
     default: '#ec0707'
   },
-  align: {
-    type: 'string'
-  },
   alignIcon: {
     type: 'string'
   },
@@ -163,7 +160,8 @@ const attributes = {
     defaults: {
       [`${TITLE_FONTSIZE}DeskRange`]: 20,
       [`${TITLE_FONTSIZE}TabRange`]: 15,
-      [`${TITLE_FONTSIZE}MobRange`]: 10
+      [`${TITLE_FONTSIZE}MobRange`]: 10,
+      [`${TITLE_FONTSIZE}Unit`]: 'px'
     }
   }),
   ...generateResRangleControlAttributes({
@@ -171,7 +169,8 @@ const attributes = {
     defaults: {
       [`${DESCRIPTION_FONTSIZE}DeskRange`]: 14,
       [`${DESCRIPTION_FONTSIZE}TabRange`]: 12,
-      [`${DESCRIPTION_FONTSIZE}MobRange`]: 10
+      [`${DESCRIPTION_FONTSIZE}MobRange`]: 10,
+      [`${DESCRIPTION_FONTSIZE}Unit`]: 'px'
     }
   }),
   ...generateResRangleControlAttributes({
@@ -179,7 +178,8 @@ const attributes = {
     defaults: {
       [`${BUTTON_FONTSIZE}DeskRange`]: 14,
       [`${BUTTON_FONTSIZE}TabRange`]: 12,
-      [`${BUTTON_FONTSIZE}MobRange`]: 10
+      [`${BUTTON_FONTSIZE}MobRange`]: 10,
+      [`${BUTTON_FONTSIZE}Unit`]: 'px'
     }
   }),
   ...generateResRangleControlAttributes({
@@ -187,7 +187,8 @@ const attributes = {
     defaults: {
       [`${ICON_SIZE}DeskRange`]: 30,
       [`${ICON_SIZE}TabRange`]: 22,
-      [`${ICON_SIZE}MobRange`]: 10
+      [`${ICON_SIZE}MobRange`]: 10,
+      [`${ICON_SIZE}Unit`]: 'px'
     }
   })
 };
@@ -326,66 +327,27 @@ function Edit(_ref) {
   const {
     [`${TITLE_FONTSIZE}DeskRange`]: fontSizeDesk,
     [`${TITLE_FONTSIZE}TabRange`]: fontSizeTab,
-    [`${TITLE_FONTSIZE}MobRange`]: fontSizeMob
+    [`${TITLE_FONTSIZE}MobRange`]: fontSizeMob,
+    [`${TITLE_FONTSIZE}Unit`]: titleUnit
   } = attributes;
   const {
     [`${DESCRIPTION_FONTSIZE}DeskRange`]: descFontSizeDesk,
     [`${DESCRIPTION_FONTSIZE}TabRange`]: descFontSizeTab,
-    [`${DESCRIPTION_FONTSIZE}MobRange`]: descFontSizeMob
+    [`${DESCRIPTION_FONTSIZE}MobRange`]: descFontSizeMob,
+    [`${DESCRIPTION_FONTSIZE}Unit`]: dscUnit
   } = attributes;
   const {
     [`${BUTTON_FONTSIZE}DeskRange`]: btnFontSizeDesk,
     [`${BUTTON_FONTSIZE}TabRange`]: btnFontSizeTab,
-    [`${BUTTON_FONTSIZE}MobRange`]: btnFontSizeMob
+    [`${BUTTON_FONTSIZE}MobRange`]: btnFontSizeMob,
+    [`${BUTTON_FONTSIZE}Unit`]: btnUnit
   } = attributes;
   const {
     [`${ICON_SIZE}DeskRange`]: iconSizeDesk,
     [`${ICON_SIZE}TabRange`]: iconSizeTab,
-    [`${ICON_SIZE}MobRange`]: iconSizeMob
-  } = attributes; // .${uniqueId} .bdt-title {
-  // 	color: ${titleColor};
-  // font-size: ${fontSizeTab}px !important;
-  // 	text-align: ${titleAlign};
-  // 	text-transform: ${titleCase} !important;
-  //  }
-  //description desktop
-  // .${uniqueId} .bdt-desc .bdt-desc-size{
-  // 	color: ${descColor};
-  // 	font-size: ${descFontSizeDesk}px;
-  // 	text-align: ${descAlign};
-  // 	text-transform: ${descCase}
-  // }
-  // 	.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-  // 		border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
-  // iconRadius.right ? iconRadius.right : '0'
-  // }
-  //    ${iconRadius.bottom ? iconRadius.bottom : '0'} ${
-  // iconRadius.left ? iconRadius.left : '0'
-  // } !important;
-  // 	width:${iconSizeDesk}px;
-  // 	height:${iconSizeDesk}px;
-  // 	  background:${iconColor} ;
-  // }
-  //desktop button span
-  // .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
-  // 	color: ${btnColor};
-  // 	background-color: ${btnBgColor};
-  // 	font-size: ${btnFontSizeDesk}px;
-  // 	border-radius: ${btnRadius}px;
-  // 	}
-  // deskTabMob btn hover
-  // .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
-  // 	color: ${btnHoverColor};
-  // 	background-color: ${btnBgHovercolor};
-  //  }
-  // mobile title style
-  // .${uniqueId} .bdt-title {
-  // 	color: ${titleColor};
-  // 	font-size: ${fontSizeMob}px !important;
-  // 	text-align: ${titleAlign};
-  // 	text-transform: ${titleCase} !important;
-  // }
-
+    [`${ICON_SIZE}MobRange`]: iconSizeMob,
+    [`${ICON_SIZE}Unit`]: iconUnit
+  } = attributes;
   /**
    * Presets Based Styles
    */
@@ -396,7 +358,7 @@ function Edit(_ref) {
     case 'style-1':
       presetStyles = `
 			.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
-				text-align: ${iconAlign ? iconAlign : '0'} !important;
+				text-align: ${iconAlign ? iconAlign : '0'} ;
 				position: absolute;
 				top: 0px;
 				bottom: -10px;
@@ -450,7 +412,7 @@ function Edit(_ref) {
   }
 
   const bdtTitleStyles = { ...(fontSizeDesk !== undefined && fontSizeDesk !== '' && {
-      'font-size': fontSizeDesk + 'px'
+      'font-size': fontSizeDesk + titleUnit
     }),
     ...(titleAlign !== undefined && titleAlign !== '' && {
       'text-align': titleAlign
@@ -466,10 +428,10 @@ function Edit(_ref) {
       borderRadius: `${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'} ${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'}`
     }),
     ...(iconSizeDesk !== undefined && iconSizeDesk !== '' && {
-      width: iconSizeDesk + 'px'
+      width: iconSizeDesk + iconUnit
     }),
     ...(iconSizeDesk !== undefined && iconSizeDesk !== '' && {
-      height: iconSizeDesk + 'px'
+      height: iconSizeDesk + iconUnit
     }),
     ...(iconColor !== undefined && iconColor !== '' && {
       backgroundColor: iconColor
@@ -479,7 +441,7 @@ function Edit(_ref) {
       color: descColor
     }),
     ...(descFontSizeDesk !== undefined && descFontSizeDesk !== '' && {
-      'font-size': descFontSizeDesk + 'px'
+      'font-size': descFontSizeDesk + dscUnit
     }),
     ...(descAlign !== undefined && descAlign !== '' && {
       'text-align': descAlign
@@ -495,7 +457,7 @@ function Edit(_ref) {
       backgroundColor: btnBgColor
     }),
     ...(btnFontSizeDesk !== undefined && btnFontSizeDesk !== '' && {
-      fontSize: btnFontSizeDesk + 'px'
+      fontSize: btnFontSizeDesk + btnUnit
     }),
     ...(btnRadius !== undefined && btnRadius !== '' && {
       borderRadius: btnRadius + 'px'
@@ -511,7 +473,7 @@ function Edit(_ref) {
   }; //tab title style
 
   const bdtTitleStyleTab = { ...(fontSizeTab !== undefined && fontSizeTab !== '' && {
-      'font-size': fontSizeTab + 'px'
+      'font-size': fontSizeTab + titleUnit
     }),
     ...(titleAlign !== undefined && titleAlign !== '' && {
       'text-align': titleAlign
@@ -528,10 +490,10 @@ function Edit(_ref) {
       borderRadius: `${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'} ${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'}`
     }),
     ...(iconSizeTab !== undefined && iconSizeTab !== '' && {
-      width: iconSizeTab + 'px'
+      width: iconSizeTab + iconUnit
     }),
     ...(iconSizeTab !== undefined && iconSizeTab !== '' && {
-      height: iconSizeTab + 'px'
+      height: iconSizeTab + iconUnit
     }),
     ...(iconColor !== undefined && iconColor !== '' && {
       backgroundColor: iconColor
@@ -541,7 +503,7 @@ function Edit(_ref) {
       color: descColor
     }),
     ...(descFontSizeTab !== undefined && descFontSizeTab !== '' && {
-      'font-size': descFontSizeTab + 'px'
+      'font-size': descFontSizeTab + dscUnit
     }),
     ...(descAlign !== undefined && descAlign !== '' && {
       'text-align': descAlign
@@ -557,7 +519,7 @@ function Edit(_ref) {
       backgroundColor: btnBgColor
     }),
     ...(btnFontSizeTab !== undefined && btnFontSizeTab !== '' && {
-      fontSize: btnFontSizeTab + 'px'
+      fontSize: btnFontSizeTab + btnUnit
     }),
     ...(btnRadius !== undefined && btnRadius !== '' && {
       borderRadius: btnRadius + 'px'
@@ -565,7 +527,7 @@ function Edit(_ref) {
   }; // mobile title style
 
   const bdtTitleStyleMob = { ...(fontSizeMob !== undefined && fontSizeMob !== '' && {
-      'font-size': fontSizeMob + 'px'
+      'font-size': fontSizeMob + titleUnit
     }),
     ...(titleAlign !== undefined && titleAlign !== '' && {
       'text-align': titleAlign
@@ -582,10 +544,10 @@ function Edit(_ref) {
       borderRadius: `${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'} ${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'}`
     }),
     ...(iconSizeMob !== undefined && iconSizeMob !== '' && {
-      width: iconSizeMob + 'px'
+      width: iconSizeMob + iconUnit
     }),
     ...(iconSizeMob !== undefined && iconSizeMob !== '' && {
-      height: iconSizeMob + 'px'
+      height: iconSizeMob + iconUnit
     }),
     ...(iconColor !== undefined && iconColor !== '' && {
       backgroundColor: iconColor
@@ -595,7 +557,7 @@ function Edit(_ref) {
       color: descColor
     }),
     ...(descFontSizeMob !== undefined && descFontSizeMob !== '' && {
-      'font-size': descFontSizeMob + 'px'
+      'font-size': descFontSizeMob + dscUnit
     }),
     ...(descAlign !== undefined && descAlign !== '' && {
       'text-align': descAlign
@@ -611,7 +573,7 @@ function Edit(_ref) {
       backgroundColor: btnBgColor
     }),
     ...(btnFontSizeMob !== undefined && btnFontSizeMob !== '' && {
-      fontSize: btnFontSizeMob + 'px'
+      fontSize: btnFontSizeMob + btnUnit
     }),
     ...(btnRadius !== undefined && btnRadius !== '' && {
       borderRadius: btnRadius + 'px'
@@ -1078,7 +1040,7 @@ const Inspector = _ref => {
     controlName: TITLE_FONTSIZE,
     objAttrs: objAttrs,
     noUnits: false,
-    max: 22,
+    max: 100,
     min: 5
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: "Title Case Style",
@@ -1139,7 +1101,7 @@ const Inspector = _ref => {
     controlName: DESCRIPTION_FONTSIZE,
     objAttrs: objAttrs,
     noUnits: false,
-    max: 22,
+    max: 50,
     min: 5
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: "Description Case Style",
@@ -1190,9 +1152,10 @@ const Inspector = _ref => {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('icon Size', 'advanced-icon-box'),
     controlName: ICON_SIZE,
     objAttrs: objAttrs,
+    units: ['px', 'em'],
     noUnits: false,
-    max: 50,
-    min: 5
+    max: 100,
+    min: 1
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalBoxControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border Radius', 'advanced-icon-box'),
     values: iconRadius,
@@ -1264,7 +1227,7 @@ const Inspector = _ref => {
     controlName: BUTTON_FONTSIZE,
     objAttrs: objAttrs,
     noUnits: false,
-    max: 30,
+    max: 50,
     min: 5
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Radius', 'advanced-icon-box'),
@@ -1273,7 +1236,7 @@ const Inspector = _ref => {
       btnRadius: btnValue
     }),
     min: 2,
-    max: 30
+    max: 100
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_alignment_control__WEBPACK_IMPORTED_MODULE_7__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Alignment', 'advanced-icon-box'),
     value: btnAlign,

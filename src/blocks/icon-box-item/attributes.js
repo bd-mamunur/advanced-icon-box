@@ -115,9 +115,6 @@ const attributes = {
 		default: '#ec0707',
 	},
 
-	align: {
-		type: 'string',
-	},
 	alignIcon: {
 		type: 'string',
 	},
@@ -154,6 +151,7 @@ const attributes = {
 			[`${TITLE_FONTSIZE}DeskRange`]: 20,
 			[`${TITLE_FONTSIZE}TabRange`]: 15,
 			[`${TITLE_FONTSIZE}MobRange`]: 10,
+			[`${TITLE_FONTSIZE}Unit`]: 'px',
 		},
 	}),
 
@@ -163,6 +161,7 @@ const attributes = {
 			[`${DESCRIPTION_FONTSIZE}DeskRange`]: 14,
 			[`${DESCRIPTION_FONTSIZE}TabRange`]: 12,
 			[`${DESCRIPTION_FONTSIZE}MobRange`]: 10,
+			[`${DESCRIPTION_FONTSIZE}Unit`]: 'px',
 		},
 	}),
 	...generateResRangleControlAttributes({
@@ -171,6 +170,7 @@ const attributes = {
 			[`${BUTTON_FONTSIZE}DeskRange`]: 14,
 			[`${BUTTON_FONTSIZE}TabRange`]: 12,
 			[`${BUTTON_FONTSIZE}MobRange`]: 10,
+			[`${BUTTON_FONTSIZE}Unit`]: 'px',
 		},
 	}),
 	...generateResRangleControlAttributes({
@@ -179,6 +179,7 @@ const attributes = {
 			[`${ICON_SIZE}DeskRange`]: 30,
 			[`${ICON_SIZE}TabRange`]: 22,
 			[`${ICON_SIZE}MobRange`]: 10,
+			[`${ICON_SIZE}Unit`]: 'px',
 		},
 	}),
 };

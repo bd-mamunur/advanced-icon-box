@@ -162,7 +162,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					controlName={TITLE_FONTSIZE}
 					objAttrs={objAttrs}
 					noUnits={false}
-					max={22}
+					max={100}
 					min={5}
 				/>
 
@@ -245,7 +245,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					controlName={DESCRIPTION_FONTSIZE}
 					objAttrs={objAttrs}
 					noUnits={false}
-					max={22}
+					max={50}
 					min={5}
 				/>
 
@@ -308,9 +308,10 @@ const Inspector = ({ attributes, setAttributes }) => {
 					label={__('icon Size', 'advanced-icon-box')}
 					controlName={ICON_SIZE}
 					objAttrs={objAttrs}
+					units={['px', 'em']}
 					noUnits={false}
-					max={50}
-					min={5}
+					max={100}
+					min={1}
 				/>
 				<CardDivider />
 				<BoxControl
@@ -421,7 +422,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					controlName={BUTTON_FONTSIZE}
 					objAttrs={objAttrs}
 					noUnits={false}
-					max={30}
+					max={50}
 					min={5}
 				/>
 
@@ -432,7 +433,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 						setAttributes({ btnRadius: btnValue })
 					}
 					min={2}
-					max={30}
+					max={100}
 				/>
 				<AlignmentControl
 					label={__('Button Alignment', 'advanced-icon-box')}

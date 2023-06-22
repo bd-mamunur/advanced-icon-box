@@ -80,76 +80,27 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		[`${TITLE_FONTSIZE}DeskRange`]: fontSizeDesk,
 		[`${TITLE_FONTSIZE}TabRange`]: fontSizeTab,
 		[`${TITLE_FONTSIZE}MobRange`]: fontSizeMob,
+		[`${TITLE_FONTSIZE}Unit`]: titleUnit,
 	} = attributes;
 	const {
 		[`${DESCRIPTION_FONTSIZE}DeskRange`]: descFontSizeDesk,
 		[`${DESCRIPTION_FONTSIZE}TabRange`]: descFontSizeTab,
 		[`${DESCRIPTION_FONTSIZE}MobRange`]: descFontSizeMob,
+		[`${DESCRIPTION_FONTSIZE}Unit`]: dscUnit,
 	} = attributes;
 
 	const {
 		[`${BUTTON_FONTSIZE}DeskRange`]: btnFontSizeDesk,
 		[`${BUTTON_FONTSIZE}TabRange`]: btnFontSizeTab,
 		[`${BUTTON_FONTSIZE}MobRange`]: btnFontSizeMob,
+		[`${BUTTON_FONTSIZE}Unit`]: btnUnit,
 	} = attributes;
 	const {
 		[`${ICON_SIZE}DeskRange`]: iconSizeDesk,
 		[`${ICON_SIZE}TabRange`]: iconSizeTab,
 		[`${ICON_SIZE}MobRange`]: iconSizeMob,
+		[`${ICON_SIZE}Unit`]: iconUnit,
 	} = attributes;
-
-	// .${uniqueId} .bdt-title {
-	// 	color: ${titleColor};
-	// font-size: ${fontSizeTab}px !important;
-	// 	text-align: ${titleAlign};
-	// 	text-transform: ${titleCase} !important;
-	//  }
-
-	//description desktop
-
-	// .${uniqueId} .bdt-desc .bdt-desc-size{
-	// 	color: ${descColor};
-	// 	font-size: ${descFontSizeDesk}px;
-	// 	text-align: ${descAlign};
-	// 	text-transform: ${descCase}
-
-	// }
-
-	// 	.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-	// 		border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
-	// iconRadius.right ? iconRadius.right : '0'
-	// }
-	//    ${iconRadius.bottom ? iconRadius.bottom : '0'} ${
-	// iconRadius.left ? iconRadius.left : '0'
-	// } !important;
-	// 	width:${iconSizeDesk}px;
-	// 	height:${iconSizeDesk}px;
-	// 	  background:${iconColor} ;
-	// }
-
-	//desktop button span
-	// .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
-	// 	color: ${btnColor};
-	// 	background-color: ${btnBgColor};
-	// 	font-size: ${btnFontSizeDesk}px;
-	// 	border-radius: ${btnRadius}px;
-
-	// 	}
-
-	// deskTabMob btn hover
-
-	// .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
-	// 	color: ${btnHoverColor};
-	// 	background-color: ${btnBgHovercolor};
-	//  }
-
-	// mobile title style
-	// .${uniqueId} .bdt-title {
-	// 	color: ${titleColor};
-	// 	font-size: ${fontSizeMob}px !important;
-	// 	text-align: ${titleAlign};
-	// 	text-transform: ${titleCase} !important;
-	// }
 
 	/**
 	 * Presets Based Styles
@@ -159,7 +110,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		case 'style-1':
 			presetStyles = `
 			.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
-				text-align: ${iconAlign ? iconAlign : '0'} !important;
+				text-align: ${iconAlign ? iconAlign : '0'} ;
 				position: absolute;
 				top: 0px;
 				bottom: -10px;
@@ -212,7 +163,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const bdtTitleStyles = {
 		...(fontSizeDesk !== undefined &&
 			fontSizeDesk !== '' && {
-				'font-size': fontSizeDesk + 'px',
+				'font-size': fontSizeDesk + titleUnit,
 			}),
 		...(titleAlign !== undefined &&
 			titleAlign !== '' && {
@@ -238,11 +189,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			}),
 		...(iconSizeDesk !== undefined &&
 			iconSizeDesk !== '' && {
-				width: iconSizeDesk + 'px',
+				width: iconSizeDesk + iconUnit,
 			}),
 		...(iconSizeDesk !== undefined &&
 			iconSizeDesk !== '' && {
-				height: iconSizeDesk + 'px',
+				height: iconSizeDesk + iconUnit,
 			}),
 		...(iconColor !== undefined &&
 			iconColor !== '' && {
@@ -256,7 +207,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			}),
 		...(descFontSizeDesk !== undefined &&
 			descFontSizeDesk !== '' && {
-				'font-size': descFontSizeDesk + 'px',
+				'font-size': descFontSizeDesk + dscUnit,
 			}),
 		...(descAlign !== undefined &&
 			descAlign !== '' && {
@@ -278,7 +229,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			}),
 		...(btnFontSizeDesk !== undefined &&
 			btnFontSizeDesk !== '' && {
-				fontSize: btnFontSizeDesk + 'px',
+				fontSize: btnFontSizeDesk + btnUnit,
 			}),
 		...(btnRadius !== undefined &&
 			btnRadius !== '' && {
@@ -301,7 +252,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const bdtTitleStyleTab = {
 		...(fontSizeTab !== undefined &&
 			fontSizeTab !== '' && {
-				'font-size': fontSizeTab + 'px',
+				'font-size': fontSizeTab + titleUnit,
 			}),
 		...(titleAlign !== undefined &&
 			titleAlign !== '' && {
@@ -328,11 +279,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			}),
 		...(iconSizeTab !== undefined &&
 			iconSizeTab !== '' && {
-				width: iconSizeTab + 'px',
+				width: iconSizeTab + iconUnit,
 			}),
 		...(iconSizeTab !== undefined &&
 			iconSizeTab !== '' && {
-				height: iconSizeTab + 'px',
+				height: iconSizeTab + iconUnit,
 			}),
 		...(iconColor !== undefined &&
 			iconColor !== '' && {
@@ -346,7 +297,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			}),
 		...(descFontSizeTab !== undefined &&
 			descFontSizeTab !== '' && {
-				'font-size': descFontSizeTab + 'px',
+				'font-size': descFontSizeTab + dscUnit,
 			}),
 		...(descAlign !== undefined &&
 			descAlign !== '' && {
@@ -369,7 +320,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			}),
 		...(btnFontSizeTab !== undefined &&
 			btnFontSizeTab !== '' && {
-				fontSize: btnFontSizeTab + 'px',
+				fontSize: btnFontSizeTab + btnUnit,
 			}),
 		...(btnRadius !== undefined &&
 			btnRadius !== '' && {
@@ -381,7 +332,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const bdtTitleStyleMob = {
 		...(fontSizeMob !== undefined &&
 			fontSizeMob !== '' && {
-				'font-size': fontSizeMob + 'px',
+				'font-size': fontSizeMob + titleUnit,
 			}),
 		...(titleAlign !== undefined &&
 			titleAlign !== '' && {
@@ -409,11 +360,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			}),
 		...(iconSizeMob !== undefined &&
 			iconSizeMob !== '' && {
-				width: iconSizeMob + 'px',
+				width: iconSizeMob + iconUnit,
 			}),
 		...(iconSizeMob !== undefined &&
 			iconSizeMob !== '' && {
-				height: iconSizeMob + 'px',
+				height: iconSizeMob + iconUnit,
 			}),
 		...(iconColor !== undefined &&
 			iconColor !== '' && {
@@ -428,7 +379,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			}),
 		...(descFontSizeMob !== undefined &&
 			descFontSizeMob !== '' && {
-				'font-size': descFontSizeMob + 'px',
+				'font-size': descFontSizeMob + dscUnit,
 			}),
 		...(descAlign !== undefined &&
 			descAlign !== '' && {
@@ -451,7 +402,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			}),
 		...(btnFontSizeMob !== undefined &&
 			btnFontSizeMob !== '' && {
-				fontSize: btnFontSizeMob + 'px',
+				fontSize: btnFontSizeMob + btnUnit,
 			}),
 		...(btnRadius !== undefined &&
 			btnRadius !== '' && {
