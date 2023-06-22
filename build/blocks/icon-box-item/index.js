@@ -355,6 +355,17 @@ function Edit(_ref) {
   // 	text-align: ${descAlign};
   // 	text-transform: ${descCase}
   // }
+  // 	.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
+  // 		border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
+  // iconRadius.right ? iconRadius.right : '0'
+  // }
+  //    ${iconRadius.bottom ? iconRadius.bottom : '0'} ${
+  // iconRadius.left ? iconRadius.left : '0'
+  // } !important;
+  // 	width:${iconSizeDesk}px;
+  // 	height:${iconSizeDesk}px;
+  // 	  background:${iconColor} ;
+  // }
   //desktop button span
   // .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
   // 	color: ${btnColor};
@@ -451,6 +462,19 @@ function Edit(_ref) {
       'text-transform': titleCase
     })
   };
+  const bdtIconStyleDesk = { ...(iconRadius !== undefined && iconRadius !== '' && {
+      borderRadius: `${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'} ${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'}`
+    }),
+    ...(iconSizeDesk !== undefined && iconSizeDesk !== '' && {
+      width: iconSizeDesk + 'px'
+    }),
+    ...(iconSizeDesk !== undefined && iconSizeDesk !== '' && {
+      height: iconSizeDesk + 'px'
+    }),
+    ...(iconColor !== undefined && iconColor !== '' && {
+      backgroundColor: iconColor
+    })
+  };
   const bdtDscStyleDesk = { ...(descColor !== undefined && descColor !== '' && {
       color: descColor
     }),
@@ -498,6 +522,20 @@ function Edit(_ref) {
     ...(titleCase !== undefined && titleCase !== '' && {
       'text-transform': titleCase
     })
+  }; // icon tab style
+
+  const bdtIconStyleTab = { ...(iconRadius !== undefined && iconRadius !== '' && {
+      borderRadius: `${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'} ${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'}`
+    }),
+    ...(iconSizeTab !== undefined && iconSizeTab !== '' && {
+      width: iconSizeTab + 'px'
+    }),
+    ...(iconSizeTab !== undefined && iconSizeTab !== '' && {
+      height: iconSizeTab + 'px'
+    }),
+    ...(iconColor !== undefined && iconColor !== '' && {
+      backgroundColor: iconColor
+    })
   };
   const bdtDscStyleTab = { ...(descColor !== undefined && descColor !== '' && {
       color: descColor
@@ -537,6 +575,20 @@ function Edit(_ref) {
     }),
     ...(titleCase !== undefined && titleCase !== '' && {
       'text-transform': titleCase
+    })
+  }; // icon tab style
+
+  const bdtIconStyleMob = { ...(iconRadius !== undefined && iconRadius !== '' && {
+      borderRadius: `${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'} ${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'}`
+    }),
+    ...(iconSizeMob !== undefined && iconSizeMob !== '' && {
+      width: iconSizeMob + 'px'
+    }),
+    ...(iconSizeMob !== undefined && iconSizeMob !== '' && {
+      height: iconSizeMob + 'px'
+    }),
+    ...(iconColor !== undefined && iconColor !== '' && {
+      backgroundColor: iconColor
     })
   };
   const bdtDscStyleMob = { ...(descColor !== undefined && descColor !== '' && {
@@ -594,13 +646,7 @@ function Edit(_ref) {
 		background:${iconHoverColor};
   	}` : ''}
 		
-	.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-				 border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'}
-			${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'} !important;
-			 width:${iconSizeDesk}px;
-			 height:${iconSizeDesk}px;
-		  	 background:${iconColor} ;
-	}
+	${Object.keys(bdtIconStyleDesk).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(bdtIconStyleDesk)}}` : ' '}
 	
     ${Object.keys(bdtbuttonSapanDesk).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span {${convertToCss(bdtbuttonSapanDesk)}}` : ' '}
 
@@ -646,17 +692,13 @@ function Edit(_ref) {
 		${iconHoverColor ? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg:hover {
 			background:${iconHoverColor};
 		  }` : ''}
-		.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-			border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'}
-	   ${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'} !important;
-		width:${iconSizeTab}px;
-		height:${iconSizeTab}px;
-		background:${iconColor} ;
-}
+
+		${Object.keys(bdtIconStyleTab).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(bdtIconStyleTab)}}` : ' '}
+
 
 	${Object.keys(bdtbuttonSapanTab).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span {${convertToCss(bdtbuttonSapanTab)}}` : ' '}
 
-
+	${Object.keys(bdtIconStyleTab).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(bdtIconStyleTab)}}` : ' '}
 
 	${Object.keys(bdtbuttonSapanTab).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a {${convertToCss(bdtbuttonSapanTab)}}` : ' '}
 
@@ -698,13 +740,10 @@ function Edit(_ref) {
 		${iconHoverColor ? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg:hover {
 			background:${iconHoverColor};
 		  }` : ''}
-		.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-			border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'}
-	   ${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'} !important;
-		width:${iconSizeMob}px;
-		height:${iconSizeMob}px;
-		background:${iconColor} ;
-	}
+
+		${Object.keys(bdtIconStyleMob).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(bdtIconStyleMob)}}` : ' '}
+
+
 	${Object.keys(bdtbuttonSapanMob).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span {${convertToCss(bdtbuttonSapanMob)}}` : ' '}
 
 	${Object.keys(bdtbuttonSapanMob).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a {${convertToCss(bdtbuttonSapanMob)}}` : ' '}
@@ -741,7 +780,6 @@ function Edit(_ref) {
       });
     }
   }, [attributes]);
-  console.log(iconRadius);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", null, `${(0,_helper_softminify__WEBPACK_IMPORTED_MODULE_6__.softMinifyCssStrings)(blockStyleCss)}`), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_inspector__WEBPACK_IMPORTED_MODULE_5__["default"], {
     attributes: attributes,
     setAttributes: setAttributes
@@ -924,6 +962,16 @@ const alignIconOption = [{
   name: 'editor-alignright',
   value: 'right'
 }];
+const alignIconOptionTwo = [{
+  name: 'editor-alignleft',
+  value: 'normal'
+}, {
+  name: 'editor-aligncenter',
+  value: 'center'
+}, {
+  name: 'editor-alignright',
+  value: 'end'
+}];
 
 const Inspector = _ref => {
   let {
@@ -1054,16 +1102,7 @@ const Inspector = _ref => {
     onChange: value => setAttributes({
       titleAlign: value
     }),
-    options: [{
-      name: 'editor-alignleft',
-      value: 'left'
-    }, {
-      name: 'editor-aligncenter',
-      value: 'center'
-    }, {
-      name: 'editor-alignright',
-      value: 'right'
-    }]
+    options: alignIconOption
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
     normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
@@ -1124,16 +1163,7 @@ const Inspector = _ref => {
     onChange: value => setAttributes({
       descAlign: value
     }),
-    options: [{
-      name: 'editor-alignleft',
-      value: 'left'
-    }, {
-      name: 'editor-aligncenter',
-      value: 'center'
-    }, {
-      name: 'editor-alignright',
-      value: 'right'
-    }]
+    options: alignIconOption
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
     normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description color', 'advanced-icon-box'),
@@ -1175,64 +1205,28 @@ const Inspector = _ref => {
     onChange: value => setAttributes({
       iconAlign: value
     }),
-    options: [{
-      name: 'editor-alignleft',
-      value: 'left'
-    }, {
-      name: 'editor-aligncenter',
-      value: 'center'
-    }, {
-      name: 'editor-alignright',
-      value: 'right'
-    }]
+    options: alignIconOption
   }), preset === 'style-2' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_alignment_control__WEBPACK_IMPORTED_MODULE_7__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Alignment', 'advanced-icon-box'),
     value: iconTopBottom,
     onChange: value => setAttributes({
       iconTopBottom: value
     }),
-    options: [{
-      name: 'editor-alignleft',
-      value: 'normal'
-    }, {
-      name: 'editor-aligncenter',
-      value: 'center'
-    }, {
-      name: 'editor-alignright',
-      value: 'end'
-    }]
+    options: alignIconOptionTwo
   }), preset === 'style-3' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_alignment_control__WEBPACK_IMPORTED_MODULE_7__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Alignment', 'advanced-icon-box'),
     value: iconTopBottomR,
     onChange: value => setAttributes({
       iconTopBottomR: value
     }),
-    options: [{
-      name: 'editor-alignleft',
-      value: 'normal'
-    }, {
-      name: 'editor-aligncenter',
-      value: 'center'
-    }, {
-      name: 'editor-alignright',
-      value: 'end'
-    }]
+    options: alignIconOptionTwo
   }), preset === 'style-4' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_alignment_control__WEBPACK_IMPORTED_MODULE_7__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Alignment', 'advanced-icon-box'),
     value: alignIcon,
     onChange: value => setAttributes({
       alignIcon: value
     }),
-    options: [{
-      name: 'editor-alignleft',
-      value: 'left'
-    }, {
-      name: 'editor-aligncenter',
-      value: 'center'
-    }, {
-      name: 'editor-alignright',
-      value: 'right'
-    }]
+    options: alignIconOption
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
     normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icon Background color', 'advanced-icon-box'),

@@ -115,6 +115,18 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	// }
 
+	// 	.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
+	// 		border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
+	// iconRadius.right ? iconRadius.right : '0'
+	// }
+	//    ${iconRadius.bottom ? iconRadius.bottom : '0'} ${
+	// iconRadius.left ? iconRadius.left : '0'
+	// } !important;
+	// 	width:${iconSizeDesk}px;
+	// 	height:${iconSizeDesk}px;
+	// 	  background:${iconColor} ;
+	// }
+
 	//desktop button span
 	// .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
 	// 	color: ${btnColor};
@@ -215,6 +227,28 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				'text-transform': titleCase,
 			}),
 	};
+	const bdtIconStyleDesk = {
+		...(iconRadius !== undefined &&
+			iconRadius !== '' && {
+				borderRadius: `${iconRadius.top ? iconRadius.top : '0'} ${
+					iconRadius.right ? iconRadius.right : '0'
+				} ${iconRadius.bottom ? iconRadius.bottom : '0'} ${
+					iconRadius.left ? iconRadius.left : '0'
+				}`,
+			}),
+		...(iconSizeDesk !== undefined &&
+			iconSizeDesk !== '' && {
+				width: iconSizeDesk + 'px',
+			}),
+		...(iconSizeDesk !== undefined &&
+			iconSizeDesk !== '' && {
+				height: iconSizeDesk + 'px',
+			}),
+		...(iconColor !== undefined &&
+			iconColor !== '' && {
+				backgroundColor: iconColor,
+			}),
+	};
 	const bdtDscStyleDesk = {
 		...(descColor !== undefined &&
 			descColor !== '' && {
@@ -282,7 +316,29 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				'text-transform': titleCase,
 			}),
 	};
-
+	// icon tab style
+	const bdtIconStyleTab = {
+		...(iconRadius !== undefined &&
+			iconRadius !== '' && {
+				borderRadius: `${iconRadius.top ? iconRadius.top : '0'} ${
+					iconRadius.right ? iconRadius.right : '0'
+				} ${iconRadius.bottom ? iconRadius.bottom : '0'} ${
+					iconRadius.left ? iconRadius.left : '0'
+				}`,
+			}),
+		...(iconSizeTab !== undefined &&
+			iconSizeTab !== '' && {
+				width: iconSizeTab + 'px',
+			}),
+		...(iconSizeTab !== undefined &&
+			iconSizeTab !== '' && {
+				height: iconSizeTab + 'px',
+			}),
+		...(iconColor !== undefined &&
+			iconColor !== '' && {
+				backgroundColor: iconColor,
+			}),
+	};
 	const bdtDscStyleTab = {
 		...(descColor !== undefined &&
 			descColor !== '' && {
@@ -338,6 +394,30 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		...(titleCase !== undefined &&
 			titleCase !== '' && {
 				'text-transform': titleCase,
+			}),
+	};
+
+	// icon tab style
+	const bdtIconStyleMob = {
+		...(iconRadius !== undefined &&
+			iconRadius !== '' && {
+				borderRadius: `${iconRadius.top ? iconRadius.top : '0'} ${
+					iconRadius.right ? iconRadius.right : '0'
+				} ${iconRadius.bottom ? iconRadius.bottom : '0'} ${
+					iconRadius.left ? iconRadius.left : '0'
+				}`,
+			}),
+		...(iconSizeMob !== undefined &&
+			iconSizeMob !== '' && {
+				width: iconSizeMob + 'px',
+			}),
+		...(iconSizeMob !== undefined &&
+			iconSizeMob !== '' && {
+				height: iconSizeMob + 'px',
+			}),
+		...(iconColor !== undefined &&
+			iconColor !== '' && {
+				backgroundColor: iconColor,
 			}),
 	};
 
@@ -442,16 +522,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			: ''
 	}
 		
-	.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-				 border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
-		iconRadius.right ? iconRadius.right : '0'
-	}
-			${iconRadius.bottom ? iconRadius.bottom : '0'} ${
-		iconRadius.left ? iconRadius.left : '0'
-	} !important;
-			 width:${iconSizeDesk}px;
-			 height:${iconSizeDesk}px;
-		  	 background:${iconColor} ;
+	${
+		Object.keys(bdtIconStyleDesk).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(
+					bdtIconStyleDesk
+			  )}}`
+			: ' '
 	}
 	
     ${
@@ -557,17 +633,15 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		  }`
 				: ''
 		}
-		.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-			border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
-		iconRadius.right ? iconRadius.right : '0'
-	}
-	   ${iconRadius.bottom ? iconRadius.bottom : '0'} ${
-		iconRadius.left ? iconRadius.left : '0'
-	} !important;
-		width:${iconSizeTab}px;
-		height:${iconSizeTab}px;
-		background:${iconColor} ;
-}
+
+		${
+			Object.keys(bdtIconStyleTab).length > 0
+				? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(
+						bdtIconStyleTab
+				  )}}`
+				: ' '
+		}
+
 
 	${
 		Object.keys(bdtbuttonSapanTab).length > 0
@@ -577,7 +651,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			: ' '
 	}
 
-
+	${
+		Object.keys(bdtIconStyleTab).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(
+					bdtIconStyleTab
+			  )}}`
+			: ' '
+	}
 
 	${
 		Object.keys(bdtbuttonSapanTab).length > 0
@@ -668,17 +748,16 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		  }`
 				: ''
 		}
-		.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg{
-			border-radius : ${iconRadius.top ? iconRadius.top : '0'} ${
-		iconRadius.right ? iconRadius.right : '0'
-	}
-	   ${iconRadius.bottom ? iconRadius.bottom : '0'} ${
-		iconRadius.left ? iconRadius.left : '0'
-	} !important;
-		width:${iconSizeMob}px;
-		height:${iconSizeMob}px;
-		background:${iconColor} ;
-	}
+
+		${
+			Object.keys(bdtIconStyleMob).length > 0
+				? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(
+						bdtIconStyleMob
+				  )}}`
+				: ' '
+		}
+
+
 	${
 		Object.keys(bdtbuttonSapanMob).length > 0
 			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span {${convertToCss(
@@ -738,7 +817,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			setAttributes({ blockStyle: blockStyleCss });
 		}
 	}, [attributes]);
-	console.log(iconRadius);
+
 	return (
 		<Fragment>
 			<style>{`${softMinifyCssStrings(blockStyleCss)}`}</style>

@@ -47,6 +47,11 @@ const alignIconOption = [
 	{ name: 'editor-aligncenter', value: 'center' },
 	{ name: 'editor-alignright', value: 'right' },
 ];
+const alignIconOptionTwo = [
+	{ name: 'editor-alignleft', value: 'normal' },
+	{ name: 'editor-aligncenter', value: 'center' },
+	{ name: 'editor-alignright', value: 'end' },
+];
 
 const Inspector = ({ attributes, setAttributes }) => {
 	const {
@@ -184,11 +189,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 							titleAlign: value,
 						})
 					}
-					options={[
-						{ name: 'editor-alignleft', value: 'left' },
-						{ name: 'editor-aligncenter', value: 'center' },
-						{ name: 'editor-alignright', value: 'right' },
-					]}
+					options={alignIconOption}
 				/>
 				<CardDivider />
 				<TabPanelControl
@@ -271,11 +272,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 							descAlign: value,
 						})
 					}
-					options={[
-						{ name: 'editor-alignleft', value: 'left' },
-						{ name: 'editor-aligncenter', value: 'center' },
-						{ name: 'editor-alignright', value: 'right' },
-					]}
+					options={alignIconOption}
 				/>
 				<TabPanelControl
 					normalComponents={
@@ -330,11 +327,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 								iconAlign: value,
 							})
 						}
-						options={[
-							{ name: 'editor-alignleft', value: 'left' },
-							{ name: 'editor-aligncenter', value: 'center' },
-							{ name: 'editor-alignright', value: 'right' },
-						]}
+						options={alignIconOption}
 					/>
 				)}
 				{preset === 'style-2' && (
@@ -346,11 +339,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 								iconTopBottom: value,
 							})
 						}
-						options={[
-							{ name: 'editor-alignleft', value: 'normal' },
-							{ name: 'editor-aligncenter', value: 'center' },
-							{ name: 'editor-alignright', value: 'end' },
-						]}
+						options={alignIconOptionTwo}
 					/>
 				)}
 				{preset === 'style-3' && (
@@ -362,11 +351,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 								iconTopBottomR: value,
 							})
 						}
-						options={[
-							{ name: 'editor-alignleft', value: 'normal' },
-							{ name: 'editor-aligncenter', value: 'center' },
-							{ name: 'editor-alignright', value: 'end' },
-						]}
+						options={alignIconOptionTwo}
 					/>
 				)}
 				{preset === 'style-4' && (
@@ -378,11 +363,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 								alignIcon: value,
 							})
 						}
-						options={[
-							{ name: 'editor-alignleft', value: 'left' },
-							{ name: 'editor-aligncenter', value: 'center' },
-							{ name: 'editor-alignright', value: 'right' },
-						]}
+						options={alignIconOption}
 					/>
 				)}
 
