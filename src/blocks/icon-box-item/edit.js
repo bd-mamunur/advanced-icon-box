@@ -115,6 +115,22 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	// }
 
+	//desktop button span
+	// .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
+	// 	color: ${btnColor};
+	// 	background-color: ${btnBgColor};
+	// 	font-size: ${btnFontSizeDesk}px;
+	// 	border-radius: ${btnRadius}px;
+
+	// 	}
+
+	// deskTabMob btn hover
+
+	// .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
+	// 	color: ${btnHoverColor};
+	// 	background-color: ${btnBgHovercolor};
+	//  }
+
 	// mobile title style
 	// .${uniqueId} .bdt-title {
 	// 	color: ${titleColor};
@@ -217,6 +233,36 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				'text-transform': descCase,
 			}),
 	};
+	const bdtbuttonSapanDesk = {
+		...(btnColor !== undefined &&
+			btnColor !== '' && {
+				color: btnColor,
+			}),
+		...(btnBgColor !== undefined &&
+			btnBgColor !== '' && {
+				backgroundColor: btnBgColor,
+			}),
+		...(btnFontSizeDesk !== undefined &&
+			btnFontSizeDesk !== '' && {
+				fontSize: btnFontSizeDesk + 'px',
+			}),
+		...(btnRadius !== undefined &&
+			btnRadius !== '' && {
+				borderRadius: btnRadius + 'px',
+			}),
+	};
+
+	// DeskTabMob Tab hover style
+
+	const bdtDeskTabMobHover = {
+		...(btnHoverColor !== undefined &&
+			btnHoverColor !== '' && { color: btnHoverColor }),
+		...(btnBgHovercolor !== undefined &&
+			btnBgHovercolor !== '' && {
+				backgroundColor: btnBgHovercolor,
+			}),
+	};
+
 	//tab title style
 	const bdtTitleStyleTab = {
 		...(fontSizeTab !== undefined &&
@@ -256,6 +302,25 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			}),
 	};
 
+	const bdtbuttonSapanTab = {
+		...(btnColor !== undefined &&
+			btnColor !== '' && {
+				color: btnColor,
+			}),
+		...(btnBgColor !== undefined &&
+			btnBgColor !== '' && {
+				backgroundColor: btnBgColor,
+			}),
+		...(btnFontSizeTab !== undefined &&
+			btnFontSizeTab !== '' && {
+				fontSize: btnFontSizeTab + 'px',
+			}),
+		...(btnRadius !== undefined &&
+			btnRadius !== '' && {
+				borderRadius: btnRadius + 'px',
+			}),
+	};
+
 	// mobile title style
 	const bdtTitleStyleMob = {
 		...(fontSizeMob !== undefined &&
@@ -292,6 +357,25 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		...(descCase !== undefined &&
 			descCase !== '' && {
 				'text-transform': descCase,
+			}),
+	};
+
+	const bdtbuttonSapanMob = {
+		...(btnColor !== undefined &&
+			btnColor !== '' && {
+				color: btnColor,
+			}),
+		...(btnBgColor !== undefined &&
+			btnBgColor !== '' && {
+				backgroundColor: btnBgColor,
+			}),
+		...(btnFontSizeMob !== undefined &&
+			btnFontSizeMob !== '' && {
+				fontSize: btnFontSizeMob + 'px',
+			}),
+		...(btnRadius !== undefined &&
+			btnRadius !== '' && {
+				borderRadius: btnRadius + 'px',
 			}),
 	};
 
@@ -370,34 +454,42 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		  	 background:${iconColor} ;
 	}
 	
+    ${
+		Object.keys(bdtbuttonSapanDesk).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span {${convertToCss(
+					bdtbuttonSapanDesk
+			  )}}`
+			: ' '
+	}
 
-	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
-		 color: ${btnColor};
-		 background-color: ${btnBgColor};
-		 font-size: ${btnFontSizeDesk}px;
-		 border-radius: ${btnRadius}px;
-		 
-		 }
-		 
-	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
-		 color: ${btnColor};
-		 background-color: ${btnBgColor};
-		 font-size: ${btnFontSizeDesk}px;
-		 border-radius: ${btnRadius}px;
-		 
-			  }
-	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
-		 color: ${btnHoverColor};
-		 background-color: ${btnBgHovercolor};
-	 }
-	 .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
-		 color: ${btnHoverColor};
-		 background-color: ${btnBgHovercolor};
-		 }
-	 
-	 .${uniqueId} #btn-link {
-		 text-align : ${btnAlign}
-	 }
+	${
+		Object.keys(bdtbuttonSapanDesk).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a {${convertToCss(
+					bdtbuttonSapanDesk
+			  )}}`
+			: ' '
+	}
+	
+    ${
+		Object.keys(bdtDeskTabMobHover).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover {${convertToCss(
+					bdtDeskTabMobHover
+			  )}}`
+			: ' '
+	}
+
+	${
+		Object.keys(bdtDeskTabMobHover).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {${convertToCss(
+					bdtDeskTabMobHover
+			  )}}`
+			: ' '
+	}
+			 
+
+	.${uniqueId} #btn-link {
+		text-align : ${btnAlign}
+	}
      
 	${presetStyles}
 
@@ -477,36 +569,47 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		background:${iconColor} ;
 }
 
-		
-	    .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
-				color: ${btnColor};
-				background-color: ${btnBgColor};
-				font-size: ${btnFontSizeTab}px;
-				border-radius: ${btnRadius}px;
-		
-			 }
-		
-			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
-				color: ${btnColor};
-				 background-color: ${btnBgColor};
-				 font-size: ${btnFontSizeTab}px;
-				 border-radius: ${btnRadius}px;
-		
-			 }
-			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
-				color: ${btnHoverColor};
-				 background-color: ${btnBgHovercolor};
-			 }
-			.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
-				color: ${btnHoverColor};
-				 background-color: ${btnBgHovercolor};
-			 }
-	
-			.${uniqueId} #btn-link {
-				text-align : ${btnAlign}
-			}
+	${
+		Object.keys(bdtbuttonSapanTab).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span {${convertToCss(
+					bdtbuttonSapanTab
+			  )}}`
+			: ' '
+	}
 
-		`;
+
+
+	${
+		Object.keys(bdtbuttonSapanTab).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a {${convertToCss(
+					bdtbuttonSapanTab
+			  )}}`
+			: ' '
+	}
+
+	${
+		Object.keys(bdtDeskTabMobHover).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover {${convertToCss(
+					bdtDeskTabMobHover
+			  )}}`
+			: ' '
+	}
+
+	${
+		Object.keys(bdtDeskTabMobHover).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {${convertToCss(
+					bdtDeskTabMobHover
+			  )}}`
+			: ' '
+	}
+	
+	.${uniqueId} #btn-link {
+		text-align : ${btnAlign}
+	}
+
+	${presetStyles}
+
+	`;
 
 	const mobStyles = `
 	${
@@ -574,37 +677,48 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	} !important;
 		width:${iconSizeMob}px;
 		height:${iconSizeMob}px;
-		 background:${iconColor} ;
-}
+		background:${iconColor} ;
+	}
+	${
+		Object.keys(bdtbuttonSapanMob).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span {${convertToCss(
+					bdtbuttonSapanMob
+			  )}}`
+			: ' '
+	}
 
+	${
+		Object.keys(bdtbuttonSapanMob).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a {${convertToCss(
+					bdtbuttonSapanMob
+			  )}}`
+			: ' '
+	}
 
-		.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span{
-				color: ${btnColor};
-			    background-color: ${btnBgColor};
-				font-size: ${btnFontSizeMob}px;
-				border-radius: ${btnRadius}px;
-		}
-		
-		.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a{
-				 color: ${btnColor};
-				 background-color: ${btnBgColor};
-				 font-size: ${btnFontSizeMob}px;
-				 border-radius: ${btnRadius}px;
+    ${
+		Object.keys(bdtDeskTabMobHover).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover {${convertToCss(
+					bdtDeskTabMobHover
+			  )}}`
+			: ' '
+	}
 
-			 }
-		.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover{
-				color: ${btnHoverColor};
-				 background-color: ${btnBgHovercolor};
-			 }
-	    .${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {
-				 color: ${btnHoverColor};
-				 background-color: ${btnBgHovercolor};
-			 }
+	${
+		Object.keys(bdtDeskTabMobHover).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {${convertToCss(
+					bdtDeskTabMobHover
+			  )}}`
+			: ' '
+	}
 	
-		.${uniqueId} #btn-link {
-				text-align : ${btnAlign}
-			}
-		`;
+	
+	.${uniqueId} #btn-link {
+		text-align : ${btnAlign}
+	}
+
+	${presetStyles}
+		
+	`;
 
 	/**
 	 * Block All Styles
@@ -624,7 +738,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			setAttributes({ blockStyle: blockStyleCss });
 		}
 	}, [attributes]);
-	console.log(alignIcon);
+	console.log(iconRadius);
 	return (
 		<Fragment>
 			<style>{`${softMinifyCssStrings(blockStyleCss)}`}</style>
