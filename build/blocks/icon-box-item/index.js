@@ -17,7 +17,6 @@ const {
   generateResRangleControlAttributes
 } = _generators__WEBPACK_IMPORTED_MODULE_1__;
 const {
-  GRID_COLUMNS,
   TITLE_FONTSIZE,
   DESCRIPTION_FONTSIZE,
   BUTTON_FONTSIZE,
@@ -147,14 +146,6 @@ const attributes = {
   preset: {
     type: 'string'
   },
-  ...generateResRangleControlAttributes({
-    controlName: GRID_COLUMNS,
-    defaults: {
-      [`${GRID_COLUMNS}DeskRange`]: 3,
-      [`${GRID_COLUMNS}TabRange`]: 2,
-      [`${GRID_COLUMNS}MobRange`]: 1
-    }
-  }),
   ...generateResRangleControlAttributes({
     controlName: TITLE_FONTSIZE,
     defaults: {
