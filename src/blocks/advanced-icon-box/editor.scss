@@ -27,3 +27,21 @@
 		}
 	}
 }
+
+.res-btn {
+	button.components-button {
+		span.dashicon {
+			font-size: 15px;
+			width: 15px;
+			height: 15px;
+		}
+	}
+}
+
+.components-button-group.units-wrapper {
+	button.components-button {
+		font-size: 10px;
+		width: 30px;
+		height: 25px;
+	}
+}

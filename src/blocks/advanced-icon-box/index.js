@@ -21,9 +21,9 @@ registerBlockType(metadata, {
 		src: 'admin-site-alt3',
 	},
 	attributes,
-	// providesContext: {
-	// 	'advanced-icon-box/recordId': 'recordId',
-	// },
+	providesContext: {
+		'bdt/preset': 'preset',
+	},
 	edit: Edit,
 	save: Save,
 });

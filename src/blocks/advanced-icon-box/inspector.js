@@ -3,13 +3,13 @@
  */
 import { __ } from '@wordpress/i18n';
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, CardDivider, RangeControl } from '@wordpress/components';
+import { PanelBody, CardDivider, SelectControl } from '@wordpress/components';
 
 import * as Constants from './constants';
 import * as Controls from '../../controls';
 
 const { ResRangleControl } = Controls;
-const { GRID_COLUMNS } = Constants;
+const { GRID_COLUMNS, COLUMNS_GAP } = Constants;
 
 import objAttributes from './attributes';
 /**
@@ -18,7 +18,7 @@ import objAttributes from './attributes';
 
 const Inspector = ({ attributes, setAttributes }) => {
 	const objAttrs = { attributes, setAttributes, objAttributes };
-	const { columGap } = attributes;
+	const { preset } = attributes;
 	return (
 		<InspectorControls>
 			<PanelBody
@@ -36,12 +36,28 @@ const Inspector = ({ attributes, setAttributes }) => {
 
 				<CardDivider />
 
-				<RangeControl
-					label={__('Columns Gap')}
-					value={columGap}
-					onChange={(column) => setAttributes({ columGap: column })}
-					min={0}
-					max={30}
+				<ResRangleControl
+					label={__('Columns Gap', 'advanced-icon-box')}
+					controlName={COLUMNS_GAP}
+					objAttrs={objAttrs}
+					noUnits={false}
+					max={50}
+					min={1}
+				/>
+				<CardDivider />
+
+				<SelectControl
+					label={__('preset', 'advanced-icon-box')}
+					value={preset}
+					options={[
+						{ label: 'Preset 1', value: 'style-1' },
+						{ label: 'Preset 2', value: 'style-2' },
+						{ label: 'Preset 3', value: 'style-3' },
+						{ label: 'Preset 4', value: 'style-4' },
+					]}
+					onChange={(NewPreset) => {
+						setAttributes({ preset: NewPreset });
+					}}
 				/>
 			</PanelBody>
 		</InspectorControls>

@@ -13,6 +13,9 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
+	presetTwo: {
+		type: 'string',
+	},
 	title: {
 		type: 'string',
 		default: 18,
@@ -49,9 +52,7 @@ const attributes = {
 	descColor: {
 		type: 'string',
 	},
-	descHoverColor: {
-		type: 'string',
-	},
+
 	descAlign: {
 		type: 'string',
 	},
@@ -123,12 +124,6 @@ const attributes = {
 		type: 'string',
 	},
 	iconColor: {
-		type: 'string',
-	},
-	iconHoverColor: {
-		type: 'string',
-	},
-	preset: {
 		type: 'string',
 	},
 

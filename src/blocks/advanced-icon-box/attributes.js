@@ -3,7 +3,7 @@ import * as generators from '../../generators';
 
 const { generateResRangleControlAttributes } = generators;
 
-const { GRID_COLUMNS } = constants;
+const { GRID_COLUMNS, COLUMNS_GAP } = constants;
 
 const attributes = {
 	uniqueId: {
@@ -12,7 +12,7 @@ const attributes = {
 	blockStyle: {
 		type: 'object',
 	},
-	columGap: {
+	preset: {
 		type: 'string',
 	},
 	...generateResRangleControlAttributes({
@@ -21,6 +21,15 @@ const attributes = {
 			[`${GRID_COLUMNS}DeskRange`]: 3,
 			[`${GRID_COLUMNS}TabRange`]: 2,
 			[`${GRID_COLUMNS}MobRange`]: 1,
+		},
+	}),
+	...generateResRangleControlAttributes({
+		controlName: COLUMNS_GAP,
+		defaults: {
+			[`${COLUMNS_GAP}DeskRange`]: 3,
+			[`${COLUMNS_GAP}TabRange`]: 2,
+			[`${COLUMNS_GAP}MobRange`]: 1,
+			[`${COLUMNS_GAP}Unit`]: 'px',
 		},
 	}),
 };

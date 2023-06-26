@@ -11,13 +11,13 @@ import './editor.scss';
  * Internal dependencies
  */
 import * as Constants from './constants';
-const { GRID_COLUMNS } = Constants;
+const { GRID_COLUMNS, COLUMNS_GAP } = Constants;
 
 import Inspector from './inspector';
 import { softMinifyCssStrings } from '../../helper/softminify';
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-	const { uniqueId, blockStyle, columGap } = attributes;
+	const { uniqueId, blockStyle } = attributes;
 
 	useEffect(() => {
 		if (!uniqueId) {
@@ -30,37 +30,43 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		[`${GRID_COLUMNS}TabRange`]: columnTab,
 		[`${GRID_COLUMNS}MobRange`]: columnMob,
 	} = attributes;
+	const {
+		[`${COLUMNS_GAP}DeskRange`]: columnsGapDesk,
+		[`${COLUMNS_GAP}TabRange`]: columnsGapTab,
+		[`${COLUMNS_GAP}MobRange`]: columnsGapMob,
+		[`${COLUMNS_GAP}Unit`]: unit,
+	} = attributes;
 
 	const deskStyles = `
 		.${uniqueId} .block-editor-block-list__layout{
 			grid-template-columns: repeat(${columnDesk}, 1fr);
-			gap: ${columGap}px;
+			gap: ${columnsGapDesk}${unit};
 		}
 	
 		.${uniqueId} .aib-content {
 			grid-template-columns: repeat(${columnDesk},1fr);
-			gap: ${columGap}px;
+			gap: ${columnsGapDesk}${unit};
 		}
 		
 	`;
 	const tabStyles = `	
 	.${uniqueId} .block-editor-block-list__layout {
 		grid-template-columns: repeat(${columnTab}, 1fr);
-		gap: ${columGap}px;
+		gap: ${columnsGapTab}${unit};
 	}
 	.${uniqueId} .aib-content {
 		grid-template-columns: repeat(${columnTab},1fr);
-		gap: ${columGap}px;
+		gap: ${columnsGapTab}${unit};
 	}
 `;
 	const mobStyles = `
 		.${uniqueId} .block-editor-block-list__layout{
 			grid-template-columns: repeat(${columnMob}, 1fr);
-			gap: ${columGap}px;
+			gap: ${columnsGapMob}${unit};
 		}
 		.${uniqueId} .aib-content {
 			grid-template-columns: repeat(${columnMob},1fr);
-			gap: ${columGap}px;
+			gap: ${columnsGapMob}${unit};
 		}
 		`;
 

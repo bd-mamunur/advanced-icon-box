@@ -34,22 +34,19 @@ const convertToCss = (obj) => {
 	return cssResult;
 };
 
-export default function Edit({ attributes, setAttributes, clientId }) {
+export default function Edit({ attributes, setAttributes, clientId, context }) {
 	const {
 		uniqueId,
 		blockStyle,
-		preset,
-		iconRadius,
+		presetTwo,
 		title,
 		titleAlign,
 		titleCase,
 		titleColor,
-		titleHoverColor,
 		description,
 		descColor,
 		descAlign,
 		descCase,
-		descHoverColor,
 		bgColor,
 		bgHoverColor,
 		headingTag,
@@ -63,17 +60,22 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		btnBgHovercolor,
 		btnHoverColor,
 		icon,
+		iconRadius,
 		iconTopBottom,
 		iconTopBottomR,
 		alignIcon,
 		iconColor,
-		iconHoverColor,
 	} = attributes;
 
 	useEffect(() => {
 		if (!uniqueId) {
 			setAttributes({ uniqueId: `bdt-blocks-${clientId.slice(0, 8)}` });
 		}
+	}, []);
+
+	const { 'bdt/preset': preset } = context;
+	useEffect(() => {
+		setAttributes({ presetTwo: preset });
 	}, []);
 
 	const {
@@ -105,17 +107,18 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	/**
 	 * Presets Based Styles
 	 */
+
 	let presetStyles;
 	switch (preset) {
 		case 'style-1':
 			presetStyles = `
-			.${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
+			 .${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
 				text-align: ${iconAlign ? iconAlign : '0'} ;
 				position: absolute;
 				top: 0px;
-				bottom: -10px;
+				bottom: 0px;
 				left: 0px;
-				right: -10px;
+				right: 0px;
 				
 		   }
 	
@@ -417,14 +420,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			? `.${uniqueId} .bdt-title {${convertToCss(bdtTitleStyles)}}`
 			: ' '
 	}
-    ${
-		titleHoverColor
-			? `.${uniqueId} .bdt-title:hover {
-		color: ${titleHoverColor};
-	 }`
-			: ''
-	}
-	 
+ 
 	${
 		Object.keys(bdtDscStyleDesk).length > 0
 			? `.${uniqueId} .bdt-desc .bdt-desc-size {${convertToCss(
@@ -433,16 +429,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			: ' '
 	}
 	
-	  ${
-			descHoverColor
-				? `.${uniqueId} .bdt-desc #desc-hov:hover {
-				color: ${descHoverColor} !important;
-		}`
-				: ''
-		}
+	
 	 
 	${
-		preset === 'style-4' && alignIcon
+		presetTwo === 'style-4' && alignIcon
 			? `.${uniqueId} .bdt-icon-wrap {
 			text-align:${alignIcon};
 	}`
@@ -465,13 +455,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
    }`
 			: ''
 	}	
-	${
-		iconHoverColor
-			? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg:hover {
-		background:${iconHoverColor};
-  	}`
-			: ''
-	}
+
 		
 	${
 		Object.keys(bdtIconStyleDesk).length > 0
@@ -529,15 +513,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			: ' '
 	}
 	 
-	 ${
-			titleHoverColor
-				? `.${uniqueId} .bdt-title:hover {
-		color: ${titleHoverColor};
-	 }`
-				: ''
-		}
-
-		 
+	 
 	${
 		Object.keys(bdtDscStyleTab).length > 0
 			? `.${uniqueId} .bdt-desc .bdt-desc-size {${convertToCss(
@@ -546,16 +522,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			: ' '
 	}
 	
-	 
+
 		${
-			descHoverColor
-				? `.${uniqueId} .bdt-desc #desc-hov:hover {
-				color: ${descHoverColor} !important;
-		}`
-				: ''
-		}
-		${
-			preset === 'style-4' && alignIcon
+			presetTwo === 'style-4' && alignIcon
 				? `.${uniqueId} .bdt-icon-wrap {
 				text-align:${alignIcon};
 		}`
@@ -577,13 +546,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				: ''
 		}
 		
-		${
-			iconHoverColor
-				? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg:hover {
-			background:${iconHoverColor};
-		  }`
-				: ''
-		}
+	
 
 		${
 			Object.keys(bdtIconStyleTab).length > 0
@@ -649,13 +612,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			: ' '
 	}	
 	 
-		${
-			titleHoverColor
-				? `.${uniqueId} .bdt-title:hover {
-		color: ${titleHoverColor};
-	 }`
-				: ''
-		}
+
 
 		${
 			Object.keys(bdtDscStyleMob).length > 0
@@ -665,16 +622,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 				: ' '
 		}
 	
-		
-			 ${
-					descHoverColor
-						? `.${uniqueId} .bdt-desc #desc-hov:hover {
-					color: ${descHoverColor} !important;
-			}`
-						: ''
-				}
+	
 			${
-				preset === 'style-4' && alignIcon
+				presetTwo === 'style-4' && alignIcon
 					? `.${uniqueId} .bdt-icon-wrap {
 						text-align:${alignIcon};
 				}`
@@ -692,13 +642,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		.${uniqueId} .bdt-item:hover  {
 				background: ${bgHoverColor};
 		}
-		${
-			iconHoverColor
-				? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg:hover {
-			background:${iconHoverColor};
-		  }`
-				: ''
-		}
+	
 
 		${
 			Object.keys(bdtIconStyleMob).length > 0

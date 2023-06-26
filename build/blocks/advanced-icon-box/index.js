@@ -17,7 +17,8 @@ const {
   generateResRangleControlAttributes
 } = _generators__WEBPACK_IMPORTED_MODULE_1__;
 const {
-  GRID_COLUMNS
+  GRID_COLUMNS,
+  COLUMNS_GAP
 } = _constants__WEBPACK_IMPORTED_MODULE_0__;
 const attributes = {
   uniqueId: {
@@ -26,7 +27,7 @@ const attributes = {
   blockStyle: {
     type: 'object'
   },
-  columGap: {
+  preset: {
     type: 'string'
   },
   ...generateResRangleControlAttributes({
@@ -35,6 +36,15 @@ const attributes = {
       [`${GRID_COLUMNS}DeskRange`]: 3,
       [`${GRID_COLUMNS}TabRange`]: 2,
       [`${GRID_COLUMNS}MobRange`]: 1
+    }
+  }),
+  ...generateResRangleControlAttributes({
+    controlName: COLUMNS_GAP,
+    defaults: {
+      [`${COLUMNS_GAP}DeskRange`]: 3,
+      [`${COLUMNS_GAP}TabRange`]: 2,
+      [`${COLUMNS_GAP}MobRange`]: 1,
+      [`${COLUMNS_GAP}Unit`]: 'px'
     }
   })
 };
@@ -50,9 +60,11 @@ const attributes = {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "GRID_COLUMNS": function() { return /* binding */ GRID_COLUMNS; }
+/* harmony export */   "GRID_COLUMNS": function() { return /* binding */ GRID_COLUMNS; },
+/* harmony export */   "COLUMNS_GAP": function() { return /* binding */ COLUMNS_GAP; }
 /* harmony export */ });
 const GRID_COLUMNS = 'gridColumns';
+const COLUMNS_GAP = 'columnsGap';
 
 /***/ }),
 
@@ -90,7 +102,8 @@ const {
 
 
 const {
-  GRID_COLUMNS
+  GRID_COLUMNS,
+  COLUMNS_GAP
 } = _constants__WEBPACK_IMPORTED_MODULE_3__;
 
 
@@ -102,8 +115,7 @@ function Edit(_ref) {
   } = _ref;
   const {
     uniqueId,
-    blockStyle,
-    columGap
+    blockStyle
   } = attributes;
   useEffect(() => {
     if (!uniqueId) {
@@ -117,36 +129,42 @@ function Edit(_ref) {
     [`${GRID_COLUMNS}TabRange`]: columnTab,
     [`${GRID_COLUMNS}MobRange`]: columnMob
   } = attributes;
+  const {
+    [`${COLUMNS_GAP}DeskRange`]: columnsGapDesk,
+    [`${COLUMNS_GAP}TabRange`]: columnsGapTab,
+    [`${COLUMNS_GAP}MobRange`]: columnsGapMob,
+    [`${COLUMNS_GAP}Unit`]: unit
+  } = attributes;
   const deskStyles = `
 		.${uniqueId} .block-editor-block-list__layout{
 			grid-template-columns: repeat(${columnDesk}, 1fr);
-			gap: ${columGap}px;
+			gap: ${columnsGapDesk}${unit};
 		}
 	
 		.${uniqueId} .aib-content {
 			grid-template-columns: repeat(${columnDesk},1fr);
-			gap: ${columGap}px;
+			gap: ${columnsGapDesk}${unit};
 		}
 		
 	`;
   const tabStyles = `	
 	.${uniqueId} .block-editor-block-list__layout {
 		grid-template-columns: repeat(${columnTab}, 1fr);
-		gap: ${columGap}px;
+		gap: ${columnsGapTab}${unit};
 	}
 	.${uniqueId} .aib-content {
 		grid-template-columns: repeat(${columnTab},1fr);
-		gap: ${columGap}px;
+		gap: ${columnsGapTab}${unit};
 	}
 `;
   const mobStyles = `
 		.${uniqueId} .block-editor-block-list__layout{
 			grid-template-columns: repeat(${columnMob}, 1fr);
-			gap: ${columGap}px;
+			gap: ${columnsGapMob}${unit};
 		}
 		.${uniqueId} .aib-content {
 			grid-template-columns: repeat(${columnMob},1fr);
-			gap: ${columGap}px;
+			gap: ${columnsGapMob}${unit};
 		}
 		`;
   /**
@@ -218,9 +236,9 @@ __webpack_require__.r(__webpack_exports__);
     src: 'admin-site-alt3'
   },
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_5__["default"],
-  // providesContext: {
-  // 	'advanced-icon-box/recordId': 'recordId',
-  // },
+  providesContext: {
+    'bdt/preset': 'preset'
+  },
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
@@ -259,7 +277,8 @@ const {
   ResRangleControl
 } = _controls__WEBPACK_IMPORTED_MODULE_5__;
 const {
-  GRID_COLUMNS
+  GRID_COLUMNS,
+  COLUMNS_GAP
 } = _constants__WEBPACK_IMPORTED_MODULE_4__;
 
 /**
@@ -277,7 +296,7 @@ const Inspector = _ref => {
     objAttributes: _attributes__WEBPACK_IMPORTED_MODULE_6__["default"]
   };
   const {
-    columGap
+    preset
   } = attributes;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Column Settings', 'advanced-icon-box'),
@@ -289,14 +308,34 @@ const Inspector = _ref => {
     noUnits: true,
     min: 1,
     max: 10
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Columns Gap'),
-    value: columGap,
-    onChange: column => setAttributes({
-      columGap: column
-    }),
-    min: 0,
-    max: 30
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ResRangleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Columns Gap', 'advanced-icon-box'),
+    controlName: COLUMNS_GAP,
+    objAttrs: objAttrs,
+    noUnits: false,
+    max: 50,
+    min: 1
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('preset', 'advanced-icon-box'),
+    value: preset,
+    options: [{
+      label: 'Preset 1',
+      value: 'style-1'
+    }, {
+      label: 'Preset 2',
+      value: 'style-2'
+    }, {
+      label: 'Preset 3',
+      value: 'style-3'
+    }, {
+      label: 'Preset 4',
+      value: 'style-4'
+    }],
+    onChange: NewPreset => {
+      setAttributes({
+        preset: NewPreset
+      });
+    }
   })));
 };
 

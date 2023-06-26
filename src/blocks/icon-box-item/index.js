@@ -20,6 +20,7 @@ registerBlockType(metadata, {
 	icon: {
 		src: 'welcome-view-site',
 	},
+	usesContext: ['bdt/preset'],
 	attributes,
 	edit: Edit,
 	save: Save,

@@ -60,12 +60,10 @@ const Inspector = ({ attributes, setAttributes }) => {
 		titleAlign,
 		headingTag,
 		titleColor,
-		titleHoverColor,
 		description,
 		descColor,
 		descAlign,
 		descCase,
-		descHoverColor,
 		contentTag,
 		bgColor,
 		bgHoverColor,
@@ -84,35 +82,15 @@ const Inspector = ({ attributes, setAttributes }) => {
 		iconTopBottomR,
 		alignIcon,
 		iconColor,
-		iconHoverColor,
-		preset,
+		presetTwo,
 	} = attributes;
 	const objAttrs = { attributes, setAttributes, objAttributes };
 
 	return (
 		<InspectorControls>
 			<PanelBody
-				title={__('Preset', 'advanced-icon-box')}
-				initialOpen={true}
-			>
-				<SelectControl
-					label={__('Preset Style', 'advance-icon-box')}
-					value={preset}
-					options={[
-						{ label: 'Preset 1', value: 'style-1' },
-						{ label: 'Preset 2', value: 'style-2' },
-						{ label: 'Preset 3', value: 'style-3' },
-						{ label: 'Preset 4', value: 'style-4' },
-					]}
-					onChange={(v) => {
-						setAttributes({ preset: v });
-					}}
-				/>
-			</PanelBody>
-
-			<PanelBody
 				title={__('General', 'advanced-icon-box')}
-				initialOpen={true}
+				initialOpen={false}
 			>
 				<TabPanelControl
 					normalComponents={
@@ -134,7 +112,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 				/>
 			</PanelBody>
 			<PanelBody
-				title={__('Title Section', 'advanced-icon-box')}
+				title={__('Title', 'advanced-icon-box')}
 				initialOpen={false}
 			>
 				<TextControl
@@ -192,29 +170,18 @@ const Inspector = ({ attributes, setAttributes }) => {
 					options={alignIconOption}
 				/>
 				<CardDivider />
-				<TabPanelControl
-					normalComponents={
-						<ColorControl
-							label={__('Color', 'advanced-icon-box')}
-							color={titleColor}
-							colorName="titleColor"
-							onChange={setAttributes}
-						/>
-					}
-					hoverComponents={
-						<ColorControl
-							label={__('Hover Color', 'advanced-icon-box')}
-							color={titleHoverColor}
-							colorName="titleHoverColor"
-							onChange={setAttributes}
-						/>
-					}
+
+				<ColorControl
+					label={__('Title Color', 'advanced-icon-box')}
+					color={titleColor}
+					colorName="titleColor"
+					onChange={setAttributes}
 				/>
 			</PanelBody>
 
 			<PanelBody
-				title={__('Content', 'advanced-icon-box')}
-				initialOpen={true}
+				title={__('Description', 'advanced-icon-box')}
+				initialOpen={false}
 			>
 				<TextareaControl
 					help={__(
@@ -274,41 +241,31 @@ const Inspector = ({ attributes, setAttributes }) => {
 					}
 					options={alignIconOption}
 				/>
-				<TabPanelControl
-					normalComponents={
-						<ColorControl
-							label={__('Description color', 'advanced-icon-box')}
-							color={descColor}
-							colorName="descColor"
-							onChange={setAttributes}
-						/>
-					}
-					hoverComponents={
-						<ColorControl
-							label={__('Hover Color', 'advanced-icon-box')}
-							color={descHoverColor}
-							colorName="descHoverColor"
-							onChange={setAttributes}
-						/>
-					}
+				<CardDivider />
+				<ColorControl
+					label={__('Description color', 'advanced-icon-box')}
+					color={descColor}
+					colorName="descColor"
+					onChange={setAttributes}
 				/>
 			</PanelBody>
 
 			<PanelBody
-				title={__('Icon Picker', 'advacned-icon-box')}
-				initialOpen={true}
+				title={__('Icon', 'advacned-icon-box')}
+				initialOpen={false}
 			>
 				<IconPickerControl
 					label={__('Select Icon', 'advanced-icon-box')}
 					value={icon}
 					onChange={(value) => setAttributes({ icon: value })}
 				/>
+
 				<CardDivider />
 				<ResRangleControl
 					label={__('icon Size', 'advanced-icon-box')}
 					controlName={ICON_SIZE}
 					objAttrs={objAttrs}
-					units={['px', 'em']}
+					units={['px', '%']}
 					noUnits={false}
 					max={100}
 					min={1}
@@ -319,7 +276,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					values={iconRadius}
 					onChange={(v) => setAttributes({ iconRadius: v })}
 				/>
-				{preset === 'style-1' && (
+				{presetTwo === 'style-1' && (
 					<AlignmentControl
 						label={__('Icon Alignment', 'advanced-icon-box')}
 						value={iconAlign}
@@ -331,7 +288,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 						options={alignIconOption}
 					/>
 				)}
-				{preset === 'style-2' && (
+				{presetTwo === 'style-2' && (
 					<AlignmentControl
 						label={__('Icon Alignment', 'advanced-icon-box')}
 						value={iconTopBottom}
@@ -343,7 +300,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 						options={alignIconOptionTwo}
 					/>
 				)}
-				{preset === 'style-3' && (
+				{presetTwo === 'style-3' && (
 					<AlignmentControl
 						label={__('Icon Alignment', 'advanced-icon-box')}
 						value={iconTopBottomR}
@@ -355,7 +312,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 						options={alignIconOptionTwo}
 					/>
 				)}
-				{preset === 'style-4' && (
+				{presetTwo === 'style-4' && (
 					<AlignmentControl
 						label={__('Icon Alignment', 'advanced-icon-box')}
 						value={alignIcon}
@@ -367,34 +324,18 @@ const Inspector = ({ attributes, setAttributes }) => {
 						options={alignIconOption}
 					/>
 				)}
-
 				<CardDivider />
-				<TabPanelControl
-					normalComponents={
-						<ColorControl
-							label={__(
-								'Icon Background color',
-								'advanced-icon-box'
-							)}
-							color={iconColor}
-							colorName="iconColor"
-							onChange={setAttributes}
-						/>
-					}
-					hoverComponents={
-						<ColorControl
-							label={__('Icon Hover Color', 'advanced-icon-box')}
-							color={iconHoverColor}
-							colorName="iconHoverColor"
-							onChange={setAttributes}
-						/>
-					}
+				<ColorControl
+					label={__('Background color', 'advanced-icon-box')}
+					color={iconColor}
+					colorName="iconColor"
+					onChange={setAttributes}
 				/>
 			</PanelBody>
 
 			<PanelBody
 				title={__('Button Settings', 'advanced-icon-box')}
-				initialOpen={true}
+				initialOpen={false}
 			>
 				<TextControl
 					label={__('Button Label', 'advanced-icon-box')}
@@ -450,10 +391,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					normalComponents={
 						<>
 							<ColorControl
-								label={__(
-									'Button Text Color',
-									'advanced-icon-box'
-								)}
+								label={__('Color', 'advanced-icon-box')}
 								color={btnColor}
 								colorName="btnColor"
 								onChange={setAttributes}
@@ -472,17 +410,14 @@ const Inspector = ({ attributes, setAttributes }) => {
 					hoverComponents={
 						<>
 							<ColorControl
-								label={__(
-									'Button Hover Color',
-									'advanced-icon-box'
-								)}
+								label={__('Color', 'advanced-icon-box')}
 								color={btnHoverColor}
 								colorName="btnHoverColor"
 								onChange={setAttributes}
 							/>
 							<ColorControl
 								label={__(
-									'Background Hover Color',
+									'Background Color',
 									'advanced-icon-box'
 								)}
 								color={btnBgHovercolor}
