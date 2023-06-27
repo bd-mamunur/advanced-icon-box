@@ -49,6 +49,9 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		descCase,
 		bgColor,
 		bgHoverColor,
+		bgBorder,
+		bgBorderColor,
+		bgRadius,
 		headingTag,
 		contentTag,
 		iconAlign,
@@ -57,8 +60,7 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		btnAlign,
 		btnBgColor,
 		btnColor,
-		btnBgHovercolor,
-		btnHoverColor,
+		btnBorderColor,
 		icon,
 		iconRadius,
 		iconTopBottom,
@@ -76,7 +78,7 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 	const { 'bdt/preset': preset } = context;
 	useEffect(() => {
 		setAttributes({ presetTwo: preset });
-	}, []);
+	}, [preset]);
 
 	const {
 		[`${TITLE_FONTSIZE}DeskRange`]: fontSizeDesk,
@@ -181,6 +183,22 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 				'text-transform': titleCase,
 			}),
 	};
+	//container border all device
+	const bdtBorderDesk = {
+		...(bgBorder !== undefined &&
+			bgBorder !== '' && {
+				border: `${bgBorder}px solid ${bgBorderColor}`,
+			}),
+		...(bgRadius !== undefined &&
+			bgRadius !== '' && {
+				borderRadius: bgRadius + 'px',
+			}),
+		...(bgColor !== undefined &&
+			bgColor !== '' && {
+				backgroundColor: bgColor,
+			}),
+	};
+
 	const bdtIconStyleDesk = {
 		...(iconRadius !== undefined &&
 			iconRadius !== '' && {
@@ -240,16 +258,16 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			}),
 	};
 
-	// DeskTabMob Tab hover style
+	// Desk Tab Mob  hover style
 
-	const bdtDeskTabMobHover = {
-		...(btnHoverColor !== undefined &&
-			btnHoverColor !== '' && { color: btnHoverColor }),
-		...(btnBgHovercolor !== undefined &&
-			btnBgHovercolor !== '' && {
-				backgroundColor: btnBgHovercolor,
-			}),
-	};
+	// const bdtDeskTabMobHover = {
+	// 	...(btnHoverColor !== undefined &&
+	// 		btnHoverColor !== '' && { color: btnHoverColor }),
+	// 	...(btnBgHovercolor !== undefined &&
+	// 		btnBgHovercolor !== '' && {
+	// 			backgroundColor: btnBgHovercolor,
+	// 		}),
+	// };
 
 	//tab title style
 	const bdtTitleStyleTab = {
@@ -437,16 +455,18 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			text-align:${alignIcon};
 	}`
 			: ''
-	}	 
-    ${
-		bgColor
-			? `.${uniqueId} .bdt-item  {
-		background: ${bgColor};
-			 
-	}`
-			: ''
+	}	
+
+	 
+	${
+		Object.keys(bdtBorderDesk).length > 0
+			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item {${convertToCss(
+					bdtBorderDesk
+			  )}}`
+			: ' '
 	}
-	
+
+
 	 
 	${
 		bgHoverColor
@@ -481,25 +501,9 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			: ' '
 	}
 	
-    ${
-		Object.keys(bdtDeskTabMobHover).length > 0
-			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover {${convertToCss(
-					bdtDeskTabMobHover
-			  )}}`
-			: ' '
-	}
-
-	${
-		Object.keys(bdtDeskTabMobHover).length > 0
-			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {${convertToCss(
-					bdtDeskTabMobHover
-			  )}}`
-			: ' '
-	}
-			 
 
 	.${uniqueId} #btn-link {
-		text-align : ${btnAlign}
+		text-align : ${btnAlign};
 	}
      
 	${presetStyles}
@@ -530,14 +534,15 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		}`
 				: ''
 		}
+
 		${
-			bgColor
-				? `.${uniqueId} .bdt-item  {
-			background: ${bgColor};
-				 
-		}`
-				: ''
+			Object.keys(bdtBorderDesk).length > 0
+				? `.${uniqueId} .bdt-advanced-icon-box .bdt-item {${convertToCss(
+						bdtBorderDesk
+				  )}}`
+				: ' '
 		}
+
 		${
 			bgHoverColor
 				? `.${uniqueId} .bdt-item:hover  {
@@ -581,22 +586,7 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			: ' '
 	}
 
-	${
-		Object.keys(bdtDeskTabMobHover).length > 0
-			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover {${convertToCss(
-					bdtDeskTabMobHover
-			  )}}`
-			: ' '
-	}
 
-	${
-		Object.keys(bdtDeskTabMobHover).length > 0
-			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {${convertToCss(
-					bdtDeskTabMobHover
-			  )}}`
-			: ' '
-	}
-	
 	.${uniqueId} #btn-link {
 		text-align : ${btnAlign}
 	}
@@ -623,21 +613,21 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		}
 	
 	
-			${
-				presetTwo === 'style-4' && alignIcon
-					? `.${uniqueId} .bdt-icon-wrap {
+		${
+			presetTwo === 'style-4' && alignIcon
+				? `.${uniqueId} .bdt-icon-wrap {
 						text-align:${alignIcon};
 				}`
-					: ''
-			}			
-			${
-				bgColor
-					? `.${uniqueId} .bdt-item  {
-				background: ${bgColor};
-					 
-			}`
-					: ''
-			}
+				: ''
+		}
+
+		${
+			Object.keys(bdtBorderDesk).length > 0
+				? `.${uniqueId} .bdt-advanced-icon-box .bdt-item {${convertToCss(
+						bdtBorderDesk
+				  )}}`
+				: ' '
+		}
 			
 		.${uniqueId} .bdt-item:hover  {
 				background: ${bgHoverColor};
@@ -669,23 +659,6 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			: ' '
 	}
 
-    ${
-		Object.keys(bdtDeskTabMobHover).length > 0
-			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover {${convertToCss(
-					bdtDeskTabMobHover
-			  )}}`
-			: ' '
-	}
-
-	${
-		Object.keys(bdtDeskTabMobHover).length > 0
-			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {${convertToCss(
-					bdtDeskTabMobHover
-			  )}}`
-			: ' '
-	}
-	
-	
 	.${uniqueId} #btn-link {
 		text-align : ${btnAlign}
 	}

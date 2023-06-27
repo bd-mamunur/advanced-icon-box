@@ -59,9 +59,6 @@ const attributes = {
   titleColor: {
     type: 'string'
   },
-  titleHoverColor: {
-    type: 'string'
-  },
   description: {
     type: 'string'
   },
@@ -81,8 +78,14 @@ const attributes = {
   bgHoverColor: {
     type: 'string'
   },
-  alignment: {
+  bgBorder: {
+    type: 'number'
+  },
+  bgBorderColor: {
     type: 'string'
+  },
+  bgRadius: {
+    type: 'number'
   },
   iconAlign: {
     type: 'string'
@@ -117,13 +120,8 @@ const attributes = {
     type: 'string',
     default: '#ccc'
   },
-  btnBgHovercolor: {
-    type: 'string',
-    default: '#e6ffe6'
-  },
-  btnHoverColor: {
-    type: 'string',
-    default: '#ec0707'
+  btnBorderColor: {
+    type: 'string'
   },
   alignIcon: {
     type: 'string'
@@ -283,6 +281,9 @@ function Edit(_ref) {
     descCase,
     bgColor,
     bgHoverColor,
+    bgBorder,
+    bgBorderColor,
+    bgRadius,
     headingTag,
     contentTag,
     iconAlign,
@@ -291,8 +292,7 @@ function Edit(_ref) {
     btnAlign,
     btnBgColor,
     btnColor,
-    btnBgHovercolor,
-    btnHoverColor,
+    btnBorderColor,
     icon,
     iconRadius,
     iconTopBottom,
@@ -314,7 +314,7 @@ function Edit(_ref) {
     setAttributes({
       presetTwo: preset
     });
-  }, []);
+  }, [preset]);
   const {
     [`${TITLE_FONTSIZE}DeskRange`]: fontSizeDesk,
     [`${TITLE_FONTSIZE}TabRange`]: fontSizeTab,
@@ -414,6 +414,17 @@ function Edit(_ref) {
     ...(titleCase !== undefined && titleCase !== '' && {
       'text-transform': titleCase
     })
+  }; //container border all device
+
+  const bdtBorderDesk = { ...(bgBorder !== undefined && bgBorder !== '' && {
+      border: `${bgBorder}px solid ${bgBorderColor}`
+    }),
+    ...(bgRadius !== undefined && bgRadius !== '' && {
+      borderRadius: bgRadius + 'px'
+    }),
+    ...(bgColor !== undefined && bgColor !== '' && {
+      backgroundColor: bgColor
+    })
   };
   const bdtIconStyleDesk = { ...(iconRadius !== undefined && iconRadius !== '' && {
       borderRadius: `${iconRadius.top ? iconRadius.top : '0'} ${iconRadius.right ? iconRadius.right : '0'} ${iconRadius.bottom ? iconRadius.bottom : '0'} ${iconRadius.left ? iconRadius.left : '0'}`
@@ -453,15 +464,16 @@ function Edit(_ref) {
     ...(btnRadius !== undefined && btnRadius !== '' && {
       borderRadius: btnRadius + 'px'
     })
-  }; // DeskTabMob Tab hover style
-
-  const bdtDeskTabMobHover = { ...(btnHoverColor !== undefined && btnHoverColor !== '' && {
-      color: btnHoverColor
-    }),
-    ...(btnBgHovercolor !== undefined && btnBgHovercolor !== '' && {
-      backgroundColor: btnBgHovercolor
-    })
-  }; //tab title style
+  }; // Desk Tab Mob  hover style
+  // const bdtDeskTabMobHover = {
+  // 	...(btnHoverColor !== undefined &&
+  // 		btnHoverColor !== '' && { color: btnHoverColor }),
+  // 	...(btnBgHovercolor !== undefined &&
+  // 		btnBgHovercolor !== '' && {
+  // 			backgroundColor: btnBgHovercolor,
+  // 		}),
+  // };
+  //tab title style
 
   const bdtTitleStyleTab = { ...(fontSizeTab !== undefined && fontSizeTab !== '' && {
       'font-size': fontSizeTab + titleUnit
@@ -580,12 +592,12 @@ function Edit(_ref) {
 	 
 	${presetTwo === 'style-4' && alignIcon ? `.${uniqueId} .bdt-icon-wrap {
 			text-align:${alignIcon};
-	}` : ''}	 
-    ${bgColor ? `.${uniqueId} .bdt-item  {
-		background: ${bgColor};
-			 
-	}` : ''}
-	
+	}` : ''}	
+
+	 
+	${Object.keys(bdtBorderDesk).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item {${convertToCss(bdtBorderDesk)}}` : ' '}
+
+
 	 
 	${bgHoverColor ? `.${uniqueId} .bdt-item:hover  {
 		background: ${bgHoverColor};
@@ -598,13 +610,9 @@ function Edit(_ref) {
 
 	${Object.keys(bdtbuttonSapanDesk).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a {${convertToCss(bdtbuttonSapanDesk)}}` : ' '}
 	
-    ${Object.keys(bdtDeskTabMobHover).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover {${convertToCss(bdtDeskTabMobHover)}}` : ' '}
-
-	${Object.keys(bdtDeskTabMobHover).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {${convertToCss(bdtDeskTabMobHover)}}` : ' '}
-			 
 
 	.${uniqueId} #btn-link {
-		text-align : ${btnAlign}
+		text-align : ${btnAlign};
 	}
      
 	${presetStyles}
@@ -620,10 +628,9 @@ function Edit(_ref) {
 		${presetTwo === 'style-4' && alignIcon ? `.${uniqueId} .bdt-icon-wrap {
 				text-align:${alignIcon};
 		}` : ''}
-		${bgColor ? `.${uniqueId} .bdt-item  {
-			background: ${bgColor};
-				 
-		}` : ''}
+
+		${Object.keys(bdtBorderDesk).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item {${convertToCss(bdtBorderDesk)}}` : ' '}
+
 		${bgHoverColor ? `.${uniqueId} .bdt-item:hover  {
 			background: ${bgHoverColor};
 	   }` : ''}
@@ -639,10 +646,7 @@ function Edit(_ref) {
 
 	${Object.keys(bdtbuttonSapanTab).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a {${convertToCss(bdtbuttonSapanTab)}}` : ' '}
 
-	${Object.keys(bdtDeskTabMobHover).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover {${convertToCss(bdtDeskTabMobHover)}}` : ' '}
 
-	${Object.keys(bdtDeskTabMobHover).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {${convertToCss(bdtDeskTabMobHover)}}` : ' '}
-	
 	.${uniqueId} #btn-link {
 		text-align : ${btnAlign}
 	}
@@ -658,13 +662,11 @@ function Edit(_ref) {
 		${Object.keys(bdtDscStyleMob).length > 0 ? `.${uniqueId} .bdt-desc .bdt-desc-size {${convertToCss(bdtDscStyleMob)}}` : ' '}
 	
 	
-			${presetTwo === 'style-4' && alignIcon ? `.${uniqueId} .bdt-icon-wrap {
+		${presetTwo === 'style-4' && alignIcon ? `.${uniqueId} .bdt-icon-wrap {
 						text-align:${alignIcon};
-				}` : ''}			
-			${bgColor ? `.${uniqueId} .bdt-item  {
-				background: ${bgColor};
-					 
-			}` : ''}
+				}` : ''}
+
+		${Object.keys(bdtBorderDesk).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item {${convertToCss(bdtBorderDesk)}}` : ' '}
 			
 		.${uniqueId} .bdt-item:hover  {
 				background: ${bgHoverColor};
@@ -678,11 +680,6 @@ function Edit(_ref) {
 
 	${Object.keys(bdtbuttonSapanMob).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a {${convertToCss(bdtbuttonSapanMob)}}` : ' '}
 
-    ${Object.keys(bdtDeskTabMobHover).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span:hover {${convertToCss(bdtDeskTabMobHover)}}` : ' '}
-
-	${Object.keys(bdtDeskTabMobHover).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn a:hover {${convertToCss(bdtDeskTabMobHover)}}` : ' '}
-	
-	
 	.${uniqueId} #btn-link {
 		text-align : ${btnAlign}
 	}
@@ -910,7 +907,6 @@ const Inspector = _ref => {
     setAttributes
   } = _ref;
   const {
-    iconRadius,
     title,
     titleAlign,
     headingTag,
@@ -922,21 +918,24 @@ const Inspector = _ref => {
     contentTag,
     bgColor,
     bgHoverColor,
-    iconAlign,
+    bgBorder,
+    bgBorderColor,
+    bgRadius,
     btnLabel,
     btnRadius,
     btnAlign,
     titleCase,
     btnBgColor,
     btnColor,
-    btnBgHovercolor,
-    btnHoverColor,
+    btnBorderColor,
     btnLinkObj,
     icon,
+    iconAlign,
     iconTopBottom,
     iconTopBottomR,
     alignIcon,
     iconColor,
+    iconRadius,
     presetTwo
   } = attributes;
   const objAttrs = {
@@ -960,6 +959,27 @@ const Inspector = _ref => {
       colorName: "bgHoverColor",
       onChange: setAttributes
     })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border', 'advanced-icon-box'),
+    value: bgBorder,
+    onChange: borderV => setAttributes({
+      bgBorder: borderV
+    }),
+    min: 0,
+    max: 10
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
+    color: bgBorderColor,
+    colorName: "bgBorderColor",
+    onChange: setAttributes
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border Radius', 'advancedd-icon-box'),
+    value: bgRadius,
+    onChange: radiusV => setAttributes({
+      bgRadius: radiusV
+    }),
+    min: 1,
+    max: 100
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Title', 'advanced-icon-box'),
     initialOpen: false
@@ -1122,7 +1142,7 @@ const Inspector = _ref => {
     colorName: "iconColor",
     onChange: setAttributes
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Settings', 'advanced-icon-box'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button', 'advanced-icon-box'),
     initialOpen: false
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Label', 'advanced-icon-box'),
@@ -1162,29 +1182,21 @@ const Inspector = _ref => {
       btnAlign: value
     }),
     options: alignIconOption
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
-    normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
-      color: btnColor,
-      colorName: "btnColor",
-      onChange: setAttributes
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background color', 'advanced-icon-box'),
-      color: btnBgColor,
-      colorName: "btnBgColor",
-      onChange: setAttributes
-    })),
-    hoverComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
-      color: btnHoverColor,
-      colorName: "btnHoverColor",
-      onChange: setAttributes
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background Color', 'advanced-icon-box'),
-      color: btnBgHovercolor,
-      colorName: "btnBgHovercolor",
-      onChange: setAttributes
-    }))
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
+    color: btnColor,
+    colorName: "btnColor",
+    onChange: setAttributes
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background color', 'advanced-icon-box'),
+    color: btnBgColor,
+    colorName: "btnBgColor",
+    onChange: setAttributes
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border color', 'advanced-icon-box'),
+    color: btnBorderColor,
+    colorName: "btnBorderColor",
+    onChange: setAttributes
   })));
 };
 

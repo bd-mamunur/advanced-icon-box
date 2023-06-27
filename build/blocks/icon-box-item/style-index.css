@@ -16,10 +16,8 @@
   font-family: "Lato", sans-serif;
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-item {
-  border: 1px solid rgba(247, 247, 247, 0.829);
   transition: border 0.3s ease;
   position: relative;
-  border-radius: 10px;
 }
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-icon-bg {
   display: inline-block;
@@ -66,7 +64,7 @@
 .wp-block-bdt-advanced-icon-box .bdt-avnaced-icon-box-style-1 .bdt-hover-icon {
   display: none;
 }
-.wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-item {
+.wp-block-bdt-advanced-icon-box .bdt-item {
   padding: 10px;
   margin: 5px;
   word-break: break-all;

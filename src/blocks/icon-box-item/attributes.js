@@ -43,9 +43,7 @@ const attributes = {
 	titleColor: {
 		type: 'string',
 	},
-	titleHoverColor: {
-		type: 'string',
-	},
+
 	description: {
 		type: 'string',
 	},
@@ -66,9 +64,16 @@ const attributes = {
 	bgHoverColor: {
 		type: 'string',
 	},
-	alignment: {
+	bgBorder: {
+		type: 'number',
+	},
+	bgBorderColor: {
 		type: 'string',
 	},
+	bgRadius: {
+		type: 'number',
+	},
+
 	iconAlign: {
 		type: 'string',
 	},
@@ -102,13 +107,8 @@ const attributes = {
 		type: 'string',
 		default: '#ccc',
 	},
-	btnBgHovercolor: {
+	btnBorderColor: {
 		type: 'string',
-		default: '#e6ffe6',
-	},
-	btnHoverColor: {
-		type: 'string',
-		default: '#ec0707',
 	},
 
 	alignIcon: {

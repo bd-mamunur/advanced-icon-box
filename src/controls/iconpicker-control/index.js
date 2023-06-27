@@ -22,6 +22,7 @@ import './style.scss';
 const IconPickerControl = ({ label, instanceId, onChange, value }) => {
 	const [iconsPanel, setIconsPanel] = useState(false);
 	const [Search, setSearch] = useState('');
+
 	return (
 		<div className="bdt-icon-picker">
 			<Flex>

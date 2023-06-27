@@ -55,7 +55,6 @@ const alignIconOptionTwo = [
 
 const Inspector = ({ attributes, setAttributes }) => {
 	const {
-		iconRadius,
 		title,
 		titleAlign,
 		headingTag,
@@ -67,21 +66,24 @@ const Inspector = ({ attributes, setAttributes }) => {
 		contentTag,
 		bgColor,
 		bgHoverColor,
-		iconAlign,
+		bgBorder,
+		bgBorderColor,
+		bgRadius,
 		btnLabel,
 		btnRadius,
 		btnAlign,
 		titleCase,
 		btnBgColor,
 		btnColor,
-		btnBgHovercolor,
-		btnHoverColor,
+		btnBorderColor,
 		btnLinkObj,
 		icon,
+		iconAlign,
 		iconTopBottom,
 		iconTopBottomR,
 		alignIcon,
 		iconColor,
+		iconRadius,
 		presetTwo,
 	} = attributes;
 	const objAttrs = { attributes, setAttributes, objAttributes };
@@ -109,6 +111,29 @@ const Inspector = ({ attributes, setAttributes }) => {
 							onChange={setAttributes}
 						/>
 					}
+				/>
+				<CardDivider />
+				<RangeControl
+					label={__('Border', 'advanced-icon-box')}
+					value={bgBorder}
+					onChange={(borderV) => setAttributes({ bgBorder: borderV })}
+					min={0}
+					max={10}
+				/>
+				<ColorControl
+					label={__('Color', 'advanced-icon-box')}
+					color={bgBorderColor}
+					colorName="bgBorderColor"
+					onChange={setAttributes}
+				/>
+				<CardDivider />
+
+				<RangeControl
+					label={__('Border Radius', 'advancedd-icon-box')}
+					value={bgRadius}
+					onChange={(radiusV) => setAttributes({ bgRadius: radiusV })}
+					min={1}
+					max={100}
 				/>
 			</PanelBody>
 			<PanelBody
@@ -334,7 +359,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 			</PanelBody>
 
 			<PanelBody
-				title={__('Button Settings', 'advanced-icon-box')}
+				title={__('Button', 'advanced-icon-box')}
 				initialOpen={false}
 			>
 				<TextControl
@@ -387,45 +412,23 @@ const Inspector = ({ attributes, setAttributes }) => {
 					options={alignIconOption}
 				/>
 				<CardDivider />
-				<TabPanelControl
-					normalComponents={
-						<>
-							<ColorControl
-								label={__('Color', 'advanced-icon-box')}
-								color={btnColor}
-								colorName="btnColor"
-								onChange={setAttributes}
-							/>
-							<ColorControl
-								label={__(
-									'Background color',
-									'advanced-icon-box'
-								)}
-								color={btnBgColor}
-								colorName="btnBgColor"
-								onChange={setAttributes}
-							/>
-						</>
-					}
-					hoverComponents={
-						<>
-							<ColorControl
-								label={__('Color', 'advanced-icon-box')}
-								color={btnHoverColor}
-								colorName="btnHoverColor"
-								onChange={setAttributes}
-							/>
-							<ColorControl
-								label={__(
-									'Background Color',
-									'advanced-icon-box'
-								)}
-								color={btnBgHovercolor}
-								colorName="btnBgHovercolor"
-								onChange={setAttributes}
-							/>
-						</>
-					}
+				<ColorControl
+					label={__('Color', 'advanced-icon-box')}
+					color={btnColor}
+					colorName="btnColor"
+					onChange={setAttributes}
+				/>
+				<ColorControl
+					label={__('Background color', 'advanced-icon-box')}
+					color={btnBgColor}
+					colorName="btnBgColor"
+					onChange={setAttributes}
+				/>
+				<ColorControl
+					label={__('Border color', 'advanced-icon-box')}
+					color={btnBorderColor}
+					colorName="btnBorderColor"
+					onChange={setAttributes}
 				/>
 			</PanelBody>
 		</InspectorControls>
