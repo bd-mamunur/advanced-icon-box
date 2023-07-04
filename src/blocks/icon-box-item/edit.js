@@ -256,18 +256,11 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			btnRadius !== '' && {
 				borderRadius: btnRadius + 'px',
 			}),
+		...(btnBorderColor !== undefined &&
+			btnBorderColor !== '' && {
+				borderColor: btnBorderColor,
+			}),
 	};
-
-	// Desk Tab Mob  hover style
-
-	// const bdtDeskTabMobHover = {
-	// 	...(btnHoverColor !== undefined &&
-	// 		btnHoverColor !== '' && { color: btnHoverColor }),
-	// 	...(btnBgHovercolor !== undefined &&
-	// 		btnBgHovercolor !== '' && {
-	// 			backgroundColor: btnBgHovercolor,
-	// 		}),
-	// };
 
 	//tab title style
 	const bdtTitleStyleTab = {
@@ -346,6 +339,10 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		...(btnRadius !== undefined &&
 			btnRadius !== '' && {
 				borderRadius: btnRadius + 'px',
+			}),
+		...(btnBorderColor !== undefined &&
+			btnBorderColor !== '' && {
+				borderColor: btnBorderColor,
 			}),
 	};
 
@@ -428,6 +425,10 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		...(btnRadius !== undefined &&
 			btnRadius !== '' && {
 				borderRadius: btnRadius + 'px',
+			}),
+		...(btnBorderColor !== undefined &&
+			btnBorderColor !== '' && {
+				borderColor: btnBorderColor,
 			}),
 	};
 
