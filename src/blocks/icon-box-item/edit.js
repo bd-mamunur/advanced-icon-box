@@ -114,8 +114,8 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 	switch (preset) {
 		case 'style-1':
 			presetStyles = `
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
-				text-align: ${iconAlign ? iconAlign : '0'} ;
+			 .${uniqueId} .bdt-icon-bg{
+				text-align: ${iconAlign} ;
 				position: absolute;
 				top: 0px;
 				bottom: 0px;
@@ -123,7 +123,6 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 				right: 0px;
 				
 		   }
-	
 
 			.${uniqueId} .bdt-body-content {
 				margin-top: 65px;

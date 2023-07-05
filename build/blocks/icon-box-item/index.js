@@ -348,8 +348,8 @@ function Edit(_ref) {
   switch (preset) {
     case 'style-1':
       presetStyles = `
-			 .${uniqueId} .bdt-advanced-icon-box .bdt-icon-bg{
-				text-align: ${iconAlign ? iconAlign : '0'} ;
+			 .${uniqueId} .bdt-icon-bg{
+				text-align: ${iconAlign} ;
 				position: absolute;
 				top: 0px;
 				bottom: 0px;
@@ -357,7 +357,6 @@ function Edit(_ref) {
 				right: 0px;
 				
 		   }
-	
 
 			.${uniqueId} .bdt-body-content {
 				margin-top: 65px;
