@@ -21,7 +21,7 @@ export default function save({ attributes }) {
 				<div className="bdt-container">
 					<div className="bdt-advanced-icon-box bdt-avnaced-icon-box-style-1">
 						<div className="bdt-item" id="bdt-item-box">
-							<div className="bdt-icon-wrap">
+							<div className="bdt-icon-wrap bdt-icon-align">
 								{icon && (
 									<div className="bdt-icon-bg bdt-svg">
 										<DisplayIcon icon={icon} />

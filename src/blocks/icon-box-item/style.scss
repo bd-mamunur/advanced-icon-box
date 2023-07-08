@@ -14,7 +14,6 @@
 
 	.bdt-advanced-icon-box .bdt-item {
 		transition: border 0.3s ease;
-		position: relative;
 	}
 	.bdt-advanced-icon-box .bdt-icon-bg {
 		display: inline-block;
@@ -49,6 +48,7 @@
 		border-radius: 30px;
 		text-transform: capitalize;
 		transition: all 0.3s ease;
+		cursor: pointer;
 	}
 
 	.bdt-advanced-icon-box svg {

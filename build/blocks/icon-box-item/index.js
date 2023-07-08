@@ -342,26 +342,28 @@ function Edit(_ref) {
   /**
    * Presets Based Styles
    */
+  // .bdt-icon-bg
+  // position: absolute;
+  // 			top: 0px;
+  // 			bottom: 0px;
+  // 			left: 0px;
+  // 			right: 0px;
+  // margin-left:-10px;
+  // .${uniqueId} .bdt-body-content {
+  // 	margin-top: 0px;
+  // }
 
   let presetStyles;
 
   switch (preset) {
     case 'style-1':
       presetStyles = `
-			 .${uniqueId} .bdt-icon-bg{
-				text-align: ${iconAlign} ;
-				position: absolute;
-				top: 0px;
-				bottom: 0px;
-				left: 0px;
-				right: 0px;
-				
+			 .${uniqueId} .bdt-icon-align {
+				text-align: ${iconAlign};
+				margin-left:-10px;
+				margin-right:-10px;
+				margin-top:-10px;
 		   }
-
-			.${uniqueId} .bdt-body-content {
-				margin-top: 65px;
-			}
-			
 			`;
       break;
 
@@ -719,7 +721,7 @@ function Edit(_ref) {
     className: "bdt-item",
     id: "bdt-item-box"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bdt-icon-wrap"
+    className: "bdt-icon-wrap bdt-icon-align"
   }, icon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-icon-bg bdt-svg"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls__WEBPACK_IMPORTED_MODULE_7__.DisplayIcon, {
@@ -1245,7 +1247,7 @@ function save(_ref) {
     className: "bdt-item",
     id: "bdt-item-box"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "bdt-icon-wrap"
+    className: "bdt-icon-wrap bdt-icon-align"
   }, icon && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bdt-icon-bg bdt-svg"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls__WEBPACK_IMPORTED_MODULE_2__.DisplayIcon, {

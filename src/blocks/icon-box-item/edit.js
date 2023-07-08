@@ -114,22 +114,13 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 	switch (preset) {
 		case 'style-1':
 			presetStyles = `
-			 .${uniqueId} .bdt-icon-bg{
-				text-align: ${iconAlign} ;
-				position: absolute;
-				top: 0px;
-				bottom: 0px;
-				left: 0px;
-				right: 0px;
-				
+			 .${uniqueId} .bdt-icon-align {
+				text-align: ${iconAlign};
+				margin-left:-10px;
+				margin-right:-10px;
+				margin-top:-10px;
 		   }
-
-			.${uniqueId} .bdt-body-content {
-				margin-top: 65px;
-			}
-			
 			`;
-
 			break;
 		case 'style-2':
 			presetStyles = `
@@ -698,7 +689,7 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 				<div className="bdt-container">
 					<div className="bdt-advanced-icon-box bdt-avnaced-icon-box-style-1">
 						<div className="bdt-item" id="bdt-item-box">
-							<div className="bdt-icon-wrap">
+							<div className="bdt-icon-wrap bdt-icon-align">
 								{icon && (
 									<div className="bdt-icon-bg bdt-svg">
 										<DisplayIcon icon={icon} />
