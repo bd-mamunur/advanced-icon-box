@@ -469,7 +469,7 @@ function Edit(_ref) {
       borderRadius: btnRadius + 'px'
     }),
     ...(btnBorder !== undefined && btnBorder !== '' && {
-      border: `${btnBorder}px solid #ccc`
+      border: `${btnBorder}px solid`
     }),
     ...(btnBorderColor !== undefined && btnBorderColor !== '' && {
       borderColor: btnBorderColor

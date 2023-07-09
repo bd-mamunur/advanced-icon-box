@@ -249,7 +249,7 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			}),
 		...(btnBorder !== undefined &&
 			btnBorder !== '' && {
-				border: `${btnBorder}px solid #ccc`,
+				border: `${btnBorder}px solid`,
 			}),
 		...(btnBorderColor !== undefined &&
 			btnBorderColor !== '' && {
