@@ -58,7 +58,6 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		btnRadius,
 		btnAlign,
 		btnBgColor,
-		//btn border repaire
 		btnBorder,
 		btnColor,
 		btnBorderColor,
@@ -67,6 +66,7 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		iconTopBottom,
 		iconTopBottomR,
 		alignIcon,
+		iColor,
 		iconColor,
 	} = attributes;
 
@@ -211,6 +211,10 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			iconSizeDesk !== '' && {
 				height: iconSizeDesk + iconUnit,
 			}),
+		...(iColor !== undefined &&
+			iColor !== '' && {
+				fill: iColor,
+			}),
 		...(iconColor !== undefined &&
 			iconColor !== '' && {
 				backgroundColor: iconColor,
@@ -290,6 +294,10 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			iconSizeTab !== '' && {
 				height: iconSizeTab + iconUnit,
 			}),
+		...(iColor !== undefined &&
+			iColor !== '' && {
+				fill: iColor,
+			}),
 		...(iconColor !== undefined &&
 			iconColor !== '' && {
 				backgroundColor: iconColor,
@@ -366,6 +374,10 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		...(iconSizeMob !== undefined &&
 			iconSizeMob !== '' && {
 				height: iconSizeMob + iconUnit,
+			}),
+		...(iColor !== undefined &&
+			iColor !== '' && {
+				fill: iColor,
 			}),
 		...(iconColor !== undefined &&
 			iconColor !== '' && {

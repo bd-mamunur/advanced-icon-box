@@ -82,6 +82,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 		iconTopBottom,
 		iconTopBottomR,
 		alignIcon,
+		iColor,
 		iconColor,
 		iconRadius,
 		presetTwo,
@@ -134,7 +135,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					value={bgRadius}
 					onChange={(radiusV) => setAttributes({ bgRadius: radiusV })}
 					min={1}
-					max={100}
+					max={250}
 				/>
 				<CardDivider />
 				<TabPanelControl
@@ -340,7 +341,13 @@ const Inspector = ({ attributes, setAttributes }) => {
 				)}
 				<CardDivider />
 				<ColorControl
-					label={__('Background color', 'advanced-icon-box')}
+					label={__('Color', 'advanced-icon-box')}
+					color={iColor}
+					colorName="iColor"
+					onChange={setAttributes}
+				/>
+				<ColorControl
+					label={__('Background', 'advanced-icon-box')}
 					color={iconColor}
 					colorName="iconColor"
 					onChange={setAttributes}

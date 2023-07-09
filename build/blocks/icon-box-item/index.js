@@ -147,6 +147,9 @@ const attributes = {
   iconTopBottomR: {
     type: 'string'
   },
+  iColor: {
+    type: 'string'
+  },
   iconColor: {
     type: 'string'
   },
@@ -302,7 +305,6 @@ function Edit(_ref) {
     btnRadius,
     btnAlign,
     btnBgColor,
-    //btn border repaire
     btnBorder,
     btnColor,
     btnBorderColor,
@@ -311,6 +313,7 @@ function Edit(_ref) {
     iconTopBottom,
     iconTopBottomR,
     alignIcon,
+    iColor,
     iconColor
   } = attributes;
   useEffect(() => {
@@ -442,6 +445,9 @@ function Edit(_ref) {
     ...(iconSizeDesk !== undefined && iconSizeDesk !== '' && {
       height: iconSizeDesk + iconUnit
     }),
+    ...(iColor !== undefined && iColor !== '' && {
+      fill: iColor
+    }),
     ...(iconColor !== undefined && iconColor !== '' && {
       backgroundColor: iconColor
     })
@@ -496,6 +502,9 @@ function Edit(_ref) {
     ...(iconSizeTab !== undefined && iconSizeTab !== '' && {
       height: iconSizeTab + iconUnit
     }),
+    ...(iColor !== undefined && iColor !== '' && {
+      fill: iColor
+    }),
     ...(iconColor !== undefined && iconColor !== '' && {
       backgroundColor: iconColor
     })
@@ -546,6 +555,9 @@ function Edit(_ref) {
     }),
     ...(iconSizeMob !== undefined && iconSizeMob !== '' && {
       height: iconSizeMob + iconUnit
+    }),
+    ...(iColor !== undefined && iColor !== '' && {
+      fill: iColor
     }),
     ...(iconColor !== undefined && iconColor !== '' && {
       backgroundColor: iconColor
@@ -929,6 +941,7 @@ const Inspector = _ref => {
     iconTopBottom,
     iconTopBottomR,
     alignIcon,
+    iColor,
     iconColor,
     iconRadius,
     presetTwo
@@ -997,7 +1010,7 @@ const Inspector = _ref => {
       bgRadius: radiusV
     }),
     min: 1,
-    max: 100
+    max: 250
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
     normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background', 'advanced-icon-box'),
@@ -1136,7 +1149,12 @@ const Inspector = _ref => {
     }),
     options: alignIconOption
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background color', 'advanced-icon-box'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
+    color: iColor,
+    colorName: "iColor",
+    onChange: setAttributes
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background', 'advanced-icon-box'),
     color: iconColor,
     colorName: "iconColor",
     onChange: setAttributes

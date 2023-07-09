@@ -9,6 +9,13 @@
   /* advanced icon box style 1 css  */
   /* ===========================================  */
 }
+.wp-block-bdt-advanced-icon-box *,
+.wp-block-bdt-advanced-icon-box *:before,
+.wp-block-bdt-advanced-icon-box *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .wp-block-bdt-advanced-icon-box body {
   margin: 0;
   padding: 0;

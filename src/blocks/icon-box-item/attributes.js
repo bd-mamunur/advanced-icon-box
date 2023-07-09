@@ -133,6 +133,9 @@ const attributes = {
 	iconTopBottomR: {
 		type: 'string',
 	},
+	iColor: {
+		type: 'string',
+	},
 	iconColor: {
 		type: 'string',
 	},
