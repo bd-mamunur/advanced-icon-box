@@ -62,18 +62,18 @@ const Inspector = ({ attributes, setAttributes }) => {
 		description,
 		descColor,
 		descAlign,
-		descCase,
 		contentTag,
 		bgColor,
 		bgHoverColor,
 		bgBorder,
+		bgBorderStyle,
 		bgBorderColor,
 		bgRadius,
 		btnLabel,
 		btnRadius,
 		btnAlign,
-		titleCase,
 		btnBgColor,
+		btnBorder,
 		btnColor,
 		btnBorderColor,
 		btnLinkObj,
@@ -91,28 +91,9 @@ const Inspector = ({ attributes, setAttributes }) => {
 	return (
 		<InspectorControls>
 			<PanelBody
-				title={__('General', 'advanced-icon-box')}
+				title={__('Container', 'advanced-icon-box')}
 				initialOpen={false}
 			>
-				<TabPanelControl
-					normalComponents={
-						<ColorControl
-							label={__('Background color', 'advanced-icon-box')}
-							color={bgColor}
-							colorName="bgColor"
-							onChange={setAttributes}
-						/>
-					}
-					hoverComponents={
-						<ColorControl
-							label={__('Hover Color', 'advanced-icon-box')}
-							color={bgHoverColor}
-							colorName="bgHoverColor"
-							onChange={setAttributes}
-						/>
-					}
-				/>
-				<CardDivider />
 				<RangeControl
 					label={__('Border', 'advanced-icon-box')}
 					value={bgBorder}
@@ -120,6 +101,26 @@ const Inspector = ({ attributes, setAttributes }) => {
 					min={0}
 					max={10}
 				/>
+
+				<SelectControl
+					label={__('Border Style')}
+					value={bgBorderStyle}
+					options={[
+						{ label: 'Solid', value: 'solid' },
+						{ label: 'Dotted', value: 'dotted' },
+						{ label: 'Dashed', value: 'dashed' },
+						{ label: 'Double', value: 'double' },
+						{ label: 'Groove', value: 'groove' },
+						{ label: 'Ridge', value: 'ridge' },
+						{ label: 'Inset', value: 'inset' },
+						{ label: 'Outset', value: 'outset' },
+						{ label: 'None', value: 'none' },
+					]}
+					onChange={(borderStyle) => {
+						setAttributes({ bgBorderStyle: borderStyle });
+					}}
+				/>
+
 				<ColorControl
 					label={__('Color', 'advanced-icon-box')}
 					color={bgBorderColor}
@@ -134,6 +135,25 @@ const Inspector = ({ attributes, setAttributes }) => {
 					onChange={(radiusV) => setAttributes({ bgRadius: radiusV })}
 					min={1}
 					max={100}
+				/>
+				<CardDivider />
+				<TabPanelControl
+					normalComponents={
+						<ColorControl
+							label={__('Background', 'advanced-icon-box')}
+							color={bgColor}
+							colorName="bgColor"
+							onChange={setAttributes}
+						/>
+					}
+					hoverComponents={
+						<ColorControl
+							label={__('Hover Background', 'advanced-icon-box')}
+							color={bgHoverColor}
+							colorName="bgHoverColor"
+							onChange={setAttributes}
+						/>
+					}
 				/>
 			</PanelBody>
 			<PanelBody
@@ -167,21 +187,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 					noUnits={false}
 					max={100}
 					min={5}
-				/>
-
-				<SelectControl
-					label="Title Case Style"
-					value={titleCase}
-					options={[
-						{ label: 'Lowercase', value: 'lowercase' },
-						{ label: 'Capitalize', value: 'capitalize' },
-						{ label: 'Uppercase', value: 'uppercase' },
-					]}
-					onChange={(value) =>
-						setAttributes({
-							titleCase: value,
-						})
-					}
 				/>
 
 				<AlignmentControl
@@ -240,22 +245,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 					max={50}
 					min={5}
 				/>
-
-				<SelectControl
-					label="Description Case Style"
-					value={descCase}
-					options={[
-						{ label: 'Lowercase', value: 'lowercase' },
-						{ label: 'Capitalize', value: 'capitalize' },
-						{ label: 'Uppercase', value: 'uppercase' },
-					]}
-					onChange={(value) =>
-						setAttributes({
-							descCase: value,
-						})
-					}
-				/>
-
 				<AlignmentControl
 					label={__('Description Alignment', 'advanced-icon-box')}
 					value={descAlign}
@@ -412,6 +401,21 @@ const Inspector = ({ attributes, setAttributes }) => {
 					options={alignIconOption}
 				/>
 				<CardDivider />
+
+				<RangeControl
+					label={__('Border', 'advanced-icon-box')}
+					value={btnBorder}
+					onChange={(border) => setAttributes({ btnBorder: border })}
+					min={0}
+					max={10}
+				/>
+				<ColorControl
+					label={__('Border color', 'advanced-icon-box')}
+					color={btnBorderColor}
+					colorName="btnBorderColor"
+					onChange={setAttributes}
+				/>
+				<CardDivider />
 				<ColorControl
 					label={__('Color', 'advanced-icon-box')}
 					color={btnColor}
@@ -422,12 +426,6 @@ const Inspector = ({ attributes, setAttributes }) => {
 					label={__('Background color', 'advanced-icon-box')}
 					color={btnBgColor}
 					colorName="btnBgColor"
-					onChange={setAttributes}
-				/>
-				<ColorControl
-					label={__('Border color', 'advanced-icon-box')}
-					color={btnBorderColor}
-					colorName="btnBorderColor"
 					onChange={setAttributes}
 				/>
 			</PanelBody>

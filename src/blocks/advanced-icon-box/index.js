@@ -24,6 +24,10 @@ registerBlockType(metadata, {
 	providesContext: {
 		'bdt/preset': 'preset',
 	},
+	supports: {
+		align: true,
+		align: ['full', 'wide'],
+	},
 	edit: Edit,
 	save: Save,
 });

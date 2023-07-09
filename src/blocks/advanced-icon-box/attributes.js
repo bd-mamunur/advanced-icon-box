@@ -15,6 +15,10 @@ const attributes = {
 	preset: {
 		type: 'string',
 	},
+	// support align setup
+	align: {
+		type: 'string',
+	},
 	...generateResRangleControlAttributes({
 		controlName: GRID_COLUMNS,
 		defaults: {

@@ -30,6 +30,10 @@ const attributes = {
   preset: {
     type: 'string'
   },
+  // support align setup
+  align: {
+    type: 'string'
+  },
   ...generateResRangleControlAttributes({
     controlName: GRID_COLUMNS,
     defaults: {
@@ -239,6 +243,10 @@ __webpack_require__.r(__webpack_exports__);
   providesContext: {
     'bdt/preset': 'preset'
   },
+  supports: {
+    align: true,
+    align: ['full', 'wide']
+  },
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
   save: _save__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
@@ -296,7 +304,8 @@ const Inspector = _ref => {
     objAttributes: _attributes__WEBPACK_IMPORTED_MODULE_6__["default"]
   };
   const {
-    preset
+    preset,
+    align
   } = attributes;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Column Settings', 'advanced-icon-box'),
@@ -307,14 +316,14 @@ const Inspector = _ref => {
     objAttrs: objAttrs,
     noUnits: true,
     min: 1,
-    max: 10
+    max: 4
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ResRangleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Columns Gap', 'advanced-icon-box'),
     controlName: COLUMNS_GAP,
     objAttrs: objAttrs,
     noUnits: false,
-    max: 50,
-    min: 1
+    max: 100,
+    min: 0
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('preset', 'advanced-icon-box'),
     value: preset,
@@ -334,6 +343,24 @@ const Inspector = _ref => {
     onChange: NewPreset => {
       setAttributes({
         preset: NewPreset
+      });
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Container Width', 'advanced-icon-box'),
+    value: align,
+    options: [{
+      label: 'None',
+      value: 'none'
+    }, {
+      label: 'Wide',
+      value: 'wide'
+    }, {
+      label: 'Full',
+      value: 'full'
+    }],
+    onChange: size => {
+      setAttributes({
+        align: size
       });
     }
   })));

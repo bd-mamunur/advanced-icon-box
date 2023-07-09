@@ -41,15 +41,14 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		presetTwo,
 		title,
 		titleAlign,
-		titleCase,
 		titleColor,
 		description,
 		descColor,
 		descAlign,
-		descCase,
 		bgColor,
 		bgHoverColor,
 		bgBorder,
+		bgBorderStyle,
 		bgBorderColor,
 		bgRadius,
 		headingTag,
@@ -59,6 +58,8 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		btnRadius,
 		btnAlign,
 		btnBgColor,
+		//btn border repaire
+		btnBorder,
 		btnColor,
 		btnBorderColor,
 		icon,
@@ -168,17 +169,21 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			titleColor !== '' && {
 				color: titleColor,
 			}),
-		...(titleCase !== undefined &&
-			titleCase !== '' && {
-				'text-transform': titleCase,
-			}),
 	};
 	//container border all device
 	const bdtBorderDesk = {
 		...(bgBorder !== undefined &&
 			bgBorder !== '' && {
-				border: `${bgBorder}px solid ${bgBorderColor}`,
+				borderWidth: `${bgBorder}px`,
 			}),
+
+		...(bgBorderStyle !== undefined &&
+			bgBorderStyle !== '' && {
+				borderStyle: `${bgBorderStyle}`,
+			}),
+
+		...(bgBorderColor !== undefined &&
+			bgBorderColor !== '' && { borderColor: `${bgBorderColor}` }),
 		...(bgRadius !== undefined &&
 			bgRadius !== '' && {
 				borderRadius: bgRadius + 'px',
@@ -224,10 +229,6 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			descAlign !== '' && {
 				'text-align': descAlign,
 			}),
-		...(descCase !== undefined &&
-			descCase !== '' && {
-				'text-transform': descCase,
-			}),
 	};
 	const bdtbuttonSapanDesk = {
 		...(btnColor !== undefined &&
@@ -245,6 +246,10 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		...(btnRadius !== undefined &&
 			btnRadius !== '' && {
 				borderRadius: btnRadius + 'px',
+			}),
+		...(btnBorder !== undefined &&
+			btnBorder !== '' && {
+				border: `${btnBorder}px solid #ccc`,
 			}),
 		...(btnBorderColor !== undefined &&
 			btnBorderColor !== '' && {
@@ -265,10 +270,6 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		...(titleColor !== undefined &&
 			titleColor !== '' && {
 				color: titleColor,
-			}),
-		...(titleCase !== undefined &&
-			titleCase !== '' && {
-				'text-transform': titleCase,
 			}),
 	};
 	// icon tab style
@@ -306,10 +307,6 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		...(descAlign !== undefined &&
 			descAlign !== '' && {
 				'text-align': descAlign,
-			}),
-		...(descCase !== undefined &&
-			descCase !== '' && {
-				'text-transform': descCase,
 			}),
 	};
 
@@ -350,10 +347,6 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			titleColor !== '' && {
 				color: titleColor,
 			}),
-		...(titleCase !== undefined &&
-			titleCase !== '' && {
-				'text-transform': titleCase,
-			}),
 	};
 
 	// icon tab style
@@ -392,10 +385,6 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		...(descAlign !== undefined &&
 			descAlign !== '' && {
 				'text-align': descAlign,
-			}),
-		...(descCase !== undefined &&
-			descCase !== '' && {
-				'text-transform': descCase,
 			}),
 	};
 

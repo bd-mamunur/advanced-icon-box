@@ -18,7 +18,8 @@ import objAttributes from './attributes';
 
 const Inspector = ({ attributes, setAttributes }) => {
 	const objAttrs = { attributes, setAttributes, objAttributes };
-	const { preset } = attributes;
+	const { preset, align } = attributes;
+
 	return (
 		<InspectorControls>
 			<PanelBody
@@ -31,7 +32,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					objAttrs={objAttrs}
 					noUnits={true}
 					min={1}
-					max={10}
+					max={4}
 				/>
 
 				<CardDivider />
@@ -41,8 +42,8 @@ const Inspector = ({ attributes, setAttributes }) => {
 					controlName={COLUMNS_GAP}
 					objAttrs={objAttrs}
 					noUnits={false}
-					max={50}
-					min={1}
+					max={100}
+					min={0}
 				/>
 				<CardDivider />
 
@@ -57,6 +58,19 @@ const Inspector = ({ attributes, setAttributes }) => {
 					]}
 					onChange={(NewPreset) => {
 						setAttributes({ preset: NewPreset });
+					}}
+				/>
+
+				<SelectControl
+					label={__('Container Width', 'advanced-icon-box')}
+					value={align}
+					options={[
+						{ label: 'None', value: 'none' },
+						{ label: 'Wide', value: 'wide' },
+						{ label: 'Full', value: 'full' },
+					]}
+					onChange={(size) => {
+						setAttributes({ align: size });
 					}}
 				/>
 			</PanelBody>

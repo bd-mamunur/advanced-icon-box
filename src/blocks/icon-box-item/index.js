@@ -22,6 +22,7 @@ registerBlockType(metadata, {
 	},
 	usesContext: ['bdt/preset'],
 	attributes,
+
 	edit: Edit,
 	save: Save,
 });

@@ -9,19 +9,22 @@
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ "./src/blocks/icon-box-item/constants/index.js");
-/* harmony import */ var _generators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../generators */ "./src/generators/index.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./src/blocks/icon-box-item/constants/index.js");
+/* harmony import */ var _generators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../generators */ "./src/generators/index.js");
+
 
 
 const {
   generateResRangleControlAttributes
-} = _generators__WEBPACK_IMPORTED_MODULE_1__;
+} = _generators__WEBPACK_IMPORTED_MODULE_2__;
 const {
   TITLE_FONTSIZE,
   DESCRIPTION_FONTSIZE,
   BUTTON_FONTSIZE,
   ICON_SIZE
-} = _constants__WEBPACK_IMPORTED_MODULE_0__;
+} = _constants__WEBPACK_IMPORTED_MODULE_1__;
 const attributes = {
   uniqueId: {
     type: 'string'
@@ -53,9 +56,6 @@ const attributes = {
   titleAlign: {
     type: 'string'
   },
-  titleCase: {
-    type: 'string'
-  },
   titleColor: {
     type: 'string'
   },
@@ -68,9 +68,6 @@ const attributes = {
   descAlign: {
     type: 'string'
   },
-  descCase: {
-    type: 'string'
-  },
   bgColor: {
     type: 'string',
     default: '#EFFFF2'
@@ -81,8 +78,13 @@ const attributes = {
   bgBorder: {
     type: 'number'
   },
+  bgBorderStyle: {
+    type: 'string',
+    default: 'solid'
+  },
   bgBorderColor: {
-    type: 'string'
+    type: 'string',
+    default: '#ccc'
   },
   bgRadius: {
     type: 'number'
@@ -116,6 +118,10 @@ const attributes = {
     type: 'string',
     default: '#fff'
   },
+  btnBorder: {
+    type: 'string',
+    default: '#ccc'
+  },
   btnColor: {
     type: 'string',
     default: '#ccc'
@@ -127,7 +133,13 @@ const attributes = {
     type: 'string'
   },
   icon: {
-    type: 'string'
+    type: 'string',
+    default: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 384 512"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+      d: "M36 32.2C18.4 30.1 2.4 42.5 .2 60S10.5 93.6 28 95.8l7.9 1c16 2 28 15.6 28 31.8V160H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H64V384c0 53 43 96 96 96h32c106 0 192-86 192-192V256c0-53-43-96-96-96H272c-17.7 0-32 14.3-32 32s14.3 32 32 32h16c17.7 0 32 14.3 32 32v32c0 70.7-57.3 128-128 128H160c-17.7 0-32-14.3-32-32V224h32c17.7 0 32-14.3 32-32s-14.3-32-32-32H128V128.5c0-48.4-36.1-89.3-84.1-95.3l-7.9-1z"
+    }))
   },
   iconTopBottom: {
     type: 'string'
@@ -273,15 +285,14 @@ function Edit(_ref) {
     presetTwo,
     title,
     titleAlign,
-    titleCase,
     titleColor,
     description,
     descColor,
     descAlign,
-    descCase,
     bgColor,
     bgHoverColor,
     bgBorder,
+    bgBorderStyle,
     bgBorderColor,
     bgRadius,
     headingTag,
@@ -291,6 +302,8 @@ function Edit(_ref) {
     btnRadius,
     btnAlign,
     btnBgColor,
+    //btn border repaire
+    btnBorder,
     btnColor,
     btnBorderColor,
     icon,
@@ -342,16 +355,6 @@ function Edit(_ref) {
   /**
    * Presets Based Styles
    */
-  // .bdt-icon-bg
-  // position: absolute;
-  // 			top: 0px;
-  // 			bottom: 0px;
-  // 			left: 0px;
-  // 			right: 0px;
-  // margin-left:-10px;
-  // .${uniqueId} .bdt-body-content {
-  // 	margin-top: 0px;
-  // }
 
   let presetStyles;
 
@@ -411,14 +414,17 @@ function Edit(_ref) {
     }),
     ...(titleColor !== undefined && titleColor !== '' && {
       color: titleColor
-    }),
-    ...(titleCase !== undefined && titleCase !== '' && {
-      'text-transform': titleCase
     })
   }; //container border all device
 
   const bdtBorderDesk = { ...(bgBorder !== undefined && bgBorder !== '' && {
-      border: `${bgBorder}px solid ${bgBorderColor}`
+      borderWidth: `${bgBorder}px`
+    }),
+    ...(bgBorderStyle !== undefined && bgBorderStyle !== '' && {
+      borderStyle: `${bgBorderStyle}`
+    }),
+    ...(bgBorderColor !== undefined && bgBorderColor !== '' && {
+      borderColor: `${bgBorderColor}`
     }),
     ...(bgRadius !== undefined && bgRadius !== '' && {
       borderRadius: bgRadius + 'px'
@@ -448,9 +454,6 @@ function Edit(_ref) {
     }),
     ...(descAlign !== undefined && descAlign !== '' && {
       'text-align': descAlign
-    }),
-    ...(descCase !== undefined && descCase !== '' && {
-      'text-transform': descCase
     })
   };
   const bdtbuttonSapanDesk = { ...(btnColor !== undefined && btnColor !== '' && {
@@ -465,6 +468,9 @@ function Edit(_ref) {
     ...(btnRadius !== undefined && btnRadius !== '' && {
       borderRadius: btnRadius + 'px'
     }),
+    ...(btnBorder !== undefined && btnBorder !== '' && {
+      border: `${btnBorder}px solid #ccc`
+    }),
     ...(btnBorderColor !== undefined && btnBorderColor !== '' && {
       borderColor: btnBorderColor
     })
@@ -478,9 +484,6 @@ function Edit(_ref) {
     }),
     ...(titleColor !== undefined && titleColor !== '' && {
       color: titleColor
-    }),
-    ...(titleCase !== undefined && titleCase !== '' && {
-      'text-transform': titleCase
     })
   }; // icon tab style
 
@@ -505,9 +508,6 @@ function Edit(_ref) {
     }),
     ...(descAlign !== undefined && descAlign !== '' && {
       'text-align': descAlign
-    }),
-    ...(descCase !== undefined && descCase !== '' && {
-      'text-transform': descCase
     })
   };
   const bdtbuttonSapanTab = { ...(btnColor !== undefined && btnColor !== '' && {
@@ -535,9 +535,6 @@ function Edit(_ref) {
     }),
     ...(titleColor !== undefined && titleColor !== '' && {
       color: titleColor
-    }),
-    ...(titleCase !== undefined && titleCase !== '' && {
-      'text-transform': titleCase
     })
   }; // icon tab style
 
@@ -562,9 +559,6 @@ function Edit(_ref) {
     }),
     ...(descAlign !== undefined && descAlign !== '' && {
       'text-align': descAlign
-    }),
-    ...(descCase !== undefined && descCase !== '' && {
-      'text-transform': descCase
     })
   };
   const bdtbuttonSapanMob = { ...(btnColor !== undefined && btnColor !== '' && {
@@ -915,18 +909,18 @@ const Inspector = _ref => {
     description,
     descColor,
     descAlign,
-    descCase,
     contentTag,
     bgColor,
     bgHoverColor,
     bgBorder,
+    bgBorderStyle,
     bgBorderColor,
     bgRadius,
     btnLabel,
     btnRadius,
     btnAlign,
-    titleCase,
     btnBgColor,
+    btnBorder,
     btnColor,
     btnBorderColor,
     btnLinkObj,
@@ -945,22 +939,9 @@ const Inspector = _ref => {
     objAttributes: _attributes__WEBPACK_IMPORTED_MODULE_6__["default"]
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('General', 'advanced-icon-box'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Container', 'advanced-icon-box'),
     initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
-    normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background color', 'advanced-icon-box'),
-      color: bgColor,
-      colorName: "bgColor",
-      onChange: setAttributes
-    }),
-    hoverComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hover Color', 'advanced-icon-box'),
-      color: bgHoverColor,
-      colorName: "bgHoverColor",
-      onChange: setAttributes
-    })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border', 'advanced-icon-box'),
     value: bgBorder,
     onChange: borderV => setAttributes({
@@ -968,6 +949,42 @@ const Inspector = _ref => {
     }),
     min: 0,
     max: 10
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border Style'),
+    value: bgBorderStyle,
+    options: [{
+      label: 'Solid',
+      value: 'solid'
+    }, {
+      label: 'Dotted',
+      value: 'dotted'
+    }, {
+      label: 'Dashed',
+      value: 'dashed'
+    }, {
+      label: 'Double',
+      value: 'double'
+    }, {
+      label: 'Groove',
+      value: 'groove'
+    }, {
+      label: 'Ridge',
+      value: 'ridge'
+    }, {
+      label: 'Inset',
+      value: 'inset'
+    }, {
+      label: 'Outset',
+      value: 'outset'
+    }, {
+      label: 'None',
+      value: 'none'
+    }],
+    onChange: borderStyle => {
+      setAttributes({
+        bgBorderStyle: borderStyle
+      });
+    }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
     color: bgBorderColor,
@@ -981,6 +998,19 @@ const Inspector = _ref => {
     }),
     min: 1,
     max: 100
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TabPanelControl, {
+    normalComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background', 'advanced-icon-box'),
+      color: bgColor,
+      colorName: "bgColor",
+      onChange: setAttributes
+    }),
+    hoverComponents: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hover Background', 'advanced-icon-box'),
+      color: bgHoverColor,
+      colorName: "bgHoverColor",
+      onChange: setAttributes
+    })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Title', 'advanced-icon-box'),
     initialOpen: false
@@ -1005,22 +1035,6 @@ const Inspector = _ref => {
     noUnits: false,
     max: 100,
     min: 5
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: "Title Case Style",
-    value: titleCase,
-    options: [{
-      label: 'Lowercase',
-      value: 'lowercase'
-    }, {
-      label: 'Capitalize',
-      value: 'capitalize'
-    }, {
-      label: 'Uppercase',
-      value: 'uppercase'
-    }],
-    onChange: value => setAttributes({
-      titleCase: value
-    })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_alignment_control__WEBPACK_IMPORTED_MODULE_7__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Title Alignment', 'advanced-icon-box'),
     value: titleAlign,
@@ -1058,22 +1072,6 @@ const Inspector = _ref => {
     noUnits: false,
     max: 50,
     min: 5
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: "Description Case Style",
-    value: descCase,
-    options: [{
-      label: 'Lowercase',
-      value: 'lowercase'
-    }, {
-      label: 'Capitalize',
-      value: 'capitalize'
-    }, {
-      label: 'Uppercase',
-      value: 'uppercase'
-    }],
-    onChange: value => setAttributes({
-      descCase: value
-    })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_alignment_control__WEBPACK_IMPORTED_MODULE_7__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description Alignment', 'advanced-icon-box'),
     value: descAlign,
@@ -1183,6 +1181,19 @@ const Inspector = _ref => {
       btnAlign: value
     }),
     options: alignIconOption
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border', 'advanced-icon-box'),
+    value: btnBorder,
+    onChange: border => setAttributes({
+      btnBorder: border
+    }),
+    min: 0,
+    max: 10
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border color', 'advanced-icon-box'),
+    color: btnBorderColor,
+    colorName: "btnBorderColor",
+    onChange: setAttributes
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Color', 'advanced-icon-box'),
     color: btnColor,
@@ -1192,11 +1203,6 @@ const Inspector = _ref => {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background color', 'advanced-icon-box'),
     color: btnBgColor,
     colorName: "btnBgColor",
-    onChange: setAttributes
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ColorControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Border color', 'advanced-icon-box'),
-    color: btnBorderColor,
-    colorName: "btnBorderColor",
     onChange: setAttributes
   })));
 };
