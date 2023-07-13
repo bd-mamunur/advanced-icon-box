@@ -109,7 +109,8 @@ const attributes = {
     default: 'left'
   },
   btnRadius: {
-    type: 'string'
+    type: 'string',
+    default: '5'
   },
   btnBgColor: {
     type: 'string',
@@ -397,7 +398,7 @@ function Edit(_ref) {
       break;
 
     default:
-      presetStyles = '';
+      '';
   }
 
   const bdtTitleStyles = { ...(fontSizeDesk !== undefined && fontSizeDesk !== '' && {
@@ -635,10 +636,10 @@ function Edit(_ref) {
 		
 	
 
-		${Object.keys(bdtIconStyleTab).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(bdtIconStyleTab)}}` : ' '}
+		${Object.keys(bdtIconStyleTab).length > 0 ? `.${uniqueId}  .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(bdtIconStyleTab)}}` : ' '}
 
 
-	${Object.keys(bdtbuttonSapanTab).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span {${convertToCss(bdtbuttonSapanTab)}}` : ' '}
+	${Object.keys(bdtbuttonSapanTab).length > 0 ? `.${uniqueId} .bdt-item .bdt-link-btn span {${convertToCss(bdtbuttonSapanTab)}}` : ' '}
 
 	${Object.keys(bdtIconStyleTab).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(bdtIconStyleTab)}}` : ' '}
 
@@ -1175,7 +1176,12 @@ const Inspector = _ref => {
     onChange: data => setAttributes({
       btnLinkObj: data
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ResRangleControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    onClick: () => setAttributes({
+      btnLinkObj: null
+    }),
+    variant: "primary"
+  }, "Clear"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CardDivider, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(ResRangleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Font Size', 'advanced-icon-box'),
     controlName: BUTTON_FONTSIZE,
     objAttrs: objAttrs,
@@ -1188,7 +1194,7 @@ const Inspector = _ref => {
     onChange: btnValue => setAttributes({
       btnRadius: btnValue
     }),
-    min: 2,
+    min: 1,
     max: 100
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_controls_alignment_control__WEBPACK_IMPORTED_MODULE_7__["default"], {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Alignment', 'advanced-icon-box'),

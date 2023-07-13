@@ -15,6 +15,7 @@ import {
 	TextareaControl,
 	RangeControl,
 	__experimentalBoxControl as BoxControl,
+	Button,
 } from '@wordpress/components';
 
 /**
@@ -377,6 +378,12 @@ const Inspector = ({ attributes, setAttributes }) => {
 					]}
 					onChange={(data) => setAttributes({ btnLinkObj: data })}
 				/>
+				<Button
+					onClick={() => setAttributes({ btnLinkObj: null })}
+					variant="primary"
+				>
+					Clear
+				</Button>
 
 				<CardDivider />
 				<ResRangleControl
@@ -394,7 +401,7 @@ const Inspector = ({ attributes, setAttributes }) => {
 					onChange={(btnValue) =>
 						setAttributes({ btnRadius: btnValue })
 					}
-					min={2}
+					min={1}
 					max={100}
 				/>
 				<AlignmentControl
@@ -407,8 +414,8 @@ const Inspector = ({ attributes, setAttributes }) => {
 					}
 					options={alignIconOption}
 				/>
-				<CardDivider />
 
+				<CardDivider />
 				<RangeControl
 					label={__('Border', 'advanced-icon-box')}
 					value={btnBorder}

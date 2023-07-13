@@ -31,6 +31,8 @@
 .wp-block-bdt-advanced-icon-box .bdt-icon-bg svg {
   background: #32de23;
   padding: 10px;
+  width: 25px;
+  height: 25px;
 }
 .wp-block-bdt-advanced-icon-box .bdt-title {
   margin: 0 0 0 0;
@@ -54,10 +56,6 @@
   transition: all 0.3s ease;
   cursor: pointer;
 }
-.wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box svg {
-  width: 25px;
-  height: 25px;
-}
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box .bdt-body-content,
 .wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box {
   z-index: 1;
@@ -75,10 +73,6 @@
   margin: 5px;
   word-break: break-all;
   overflow-wrap: break-word;
-}
-.wp-block-bdt-advanced-icon-box .bdt-advanced-icon-box svg {
-  width: 30px;
-  height: 30px;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

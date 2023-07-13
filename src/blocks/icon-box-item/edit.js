@@ -153,7 +153,7 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 		case 'style-4':
 			break;
 		default:
-			presetStyles = '';
+			'';
 	}
 
 	const bdtTitleStyles = {
@@ -547,7 +547,7 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 
 		${
 			Object.keys(bdtIconStyleTab).length > 0
-				? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(
+				? `.${uniqueId}  .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(
 						bdtIconStyleTab
 				  )}}`
 				: ' '
@@ -556,7 +556,7 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 
 	${
 		Object.keys(bdtbuttonSapanTab).length > 0
-			? `.${uniqueId} .bdt-advanced-icon-box .bdt-item .bdt-link-btn span {${convertToCss(
+			? `.${uniqueId} .bdt-item .bdt-link-btn span {${convertToCss(
 					bdtbuttonSapanTab
 			  )}}`
 			: ' '
@@ -662,6 +662,7 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 	/**
 	 * Block All Styles
 	 */
+
 	const blockStyleCss = `
 		${deskStyles}
 		@media (max-width: 1024px) and (min-width: 768px) {

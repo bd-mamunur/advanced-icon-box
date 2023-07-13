@@ -99,6 +99,7 @@ const attributes = {
 	},
 	btnRadius: {
 		type: 'string',
+		default: '5',
 	},
 	btnBgColor: {
 		type: 'string',
