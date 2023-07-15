@@ -395,6 +395,7 @@ function Edit(_ref) {
       break;
 
     case 'style-4':
+      presetStyles = ``;
       break;
 
     default:
@@ -636,7 +637,7 @@ function Edit(_ref) {
 		
 	
 
-		${Object.keys(bdtIconStyleTab).length > 0 ? `.${uniqueId}  .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(bdtIconStyleTab)}}` : ' '}
+		${Object.keys(bdtIconStyleTab).length > 0 ? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(bdtIconStyleTab)}}` : ' '}
 
 
 	${Object.keys(bdtbuttonSapanTab).length > 0 ? `.${uniqueId} .bdt-item .bdt-link-btn span {${convertToCss(bdtbuttonSapanTab)}}` : ' '}

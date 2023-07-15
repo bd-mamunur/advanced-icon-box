@@ -151,6 +151,8 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 			`;
 			break;
 		case 'style-4':
+			presetStyles = ``;
+
 			break;
 		default:
 			'';
@@ -547,7 +549,7 @@ export default function Edit({ attributes, setAttributes, clientId, context }) {
 
 		${
 			Object.keys(bdtIconStyleTab).length > 0
-				? `.${uniqueId}  .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(
+				? `.${uniqueId} .bdt-advanced-icon-box .bdt-svg svg {${convertToCss(
 						bdtIconStyleTab
 				  )}}`
 				: ' '
